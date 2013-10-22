@@ -1,0 +1,33 @@
+!!!
+%html{"data-framework" => "angularjs", :lang => "en", "ng-app" => "emailer"}
+  %head
+    %title todo
+    %script{:src => "bower_components/angular/angular.min.js"}
+    %script{:src => "bower_components/underscore/underscore-min.js"}
+    %link{:href => "bower_components/bootstrap/dist/css/bootstrap.min.css", :rel => "stylesheet"}/
+    %script{:src => "js/app.js", :type => "text/javascript"}
+    %script{:src => "js/services/campaign.js", :type => "text/javascript"}
+    %script{:src => "js/controllers/campaignCtrl.js", :type => "text/javascript"}
+    :css
+      body { padding-top: 70px; }
+  %body{"ng-controller" => "CampaignCtrl"}
+    .container
+      %nav.navbar.navbar-default.navbar-fixed-top{:role => "navigation"}
+        %span.navbar-brand Campaigns
+
+      %ul.list-unstyled
+        %li{"ng-repeat" => "campaign in campaigns"}
+          %label.checkbox-inline
+            %input{"ng-model" => "todo.done", :type => "checkbox"}/
+          %p {{campaign.name}}
+      %form.form-inline{:role => "form"}
+        .form-group
+          %input.form-control.input-lg{"ng-model" => "newTodoText", :type => "text"}/
+        .form-group
+          %button.btn.btn-primary.form-control.input-lg{"ng-click" => "addNewItem()"}
+            %span.glyphicon.glyphicon-plus-sign
+            Item
+      %div
+        %button.btn.btn-danger{"ng-click" => "clearFinishedTodos()"}
+          %span.glyphicon.glyphicon-send
+          Clear finished todos
