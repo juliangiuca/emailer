@@ -1,0 +1,20 @@
+.container
+  %nav.navbar.navbar-default.navbar-fixed-top{:role => "navigation"}
+    %span.navbar-brand Campaigns
+
+  %ul.list-unstyled
+    %li{"ng-repeat" => "campaign in campaigns"}
+      %label.checkbox-inline
+        %input{"ng-model" => "campaign.done", :type => "checkbox"}/
+        %p
+          %a{href: "#/campaigns/{{campaign.id}}"} {{campaign.name}}
+
+  %form.form-inline{:role => "form"}
+    .form-group
+      %input.form-control.input-lg{"ng-model" => "newCampaign.name", :type => "text"}/
+    .form-group
+      %button.btn.btn-primary.form-control.input-lg{"ng-click" => "addCampaign()"}
+        %span.glyphicon.glyphicon-plus-sign
+        Item
+%a{href: "#/users"}
+  Users

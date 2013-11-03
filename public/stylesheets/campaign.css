@@ -1,0 +1,11 @@
+.body .editing .view, .name .editing .view {
+  display: none; }
+.body .editing .edit, .name .editing .edit {
+  display: block;
+  padding: 13px 17px 12px 17px;
+  margin: 0 0 0 43px; }
+  .body .editing .edit textarea, .name .editing .edit textarea {
+    width: 90%; }
+
+.edit {
+  display: none; }

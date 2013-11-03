@@ -1,0 +1,22 @@
+.body, .name {
+  .editing {
+    .view {
+      display: none
+    }
+
+    .edit {
+      display: block;
+      padding: 13px 17px 12px 17px;
+      margin: 0 0 0 43px;
+
+      textarea {
+        width: 90%;
+      }
+    }
+  }
+}
+
+.edit {
+  display: none
+}
+

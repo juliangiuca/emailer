@@ -1,0 +1,26 @@
+{
+  "name": "emailer",
+  "version": "0.0.1",
+  "authors": [
+    "localTOAST <localtoast@eggandjam.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-route": "~1.2.0-rc.3",
+    "angular-resource": "~1.2.0-rc.3",
+    "angular": "1.2.0-rc.3",
+    "bootstrap": "~3.0.0",
+    "underscore": "~1.5.2",
+    "angular-bootstrap": "*"
+
+  }
+}

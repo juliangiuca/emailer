@@ -1,0 +1,27 @@
+.name
+  %div{"ng-dblclick" => "editName()", "ng-class" => "{editing: editingName}"}
+    .view
+      {{campaign.name}}
+
+    %input.edit{"ng-model" => "campaign.name", "emailer-enter" => "doneEditingName()", "emailer-focus" => "editingName"}
+
+.body
+  %div{"ng-dblclick" => "editBody()", "ng-class" => "{editing: editingBody}"}
+    .view
+      {{campaign.body || "No content! =0"}}
+
+    .edit
+      %textarea{"ng-model" => "campaign.body", "ng-blur" => "saveBody()", "emailer-focus" => "editingBody"}
+        {{campaign.body}}
+      %button{"ng-click" => "doneEditingBody()"}
+        Done
+
+.container-fluid{"ng-controller" => "UserCtrl"}
+  %pre Email: {{selected| json}}
+  %input{type: "text", "ng-model" => "selected", "typeahead" => "email for email in emails | filter:$viewValue | limitTo:8"}
+
+
+.back
+  %a{href: "/#/campaigns"}
+    back
+
