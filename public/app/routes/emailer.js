@@ -2,7 +2,7 @@ emailer.config(['$routeProvider', function ($routeProvider) {
   $routeProvider.
     when('/campaigns/:campaignId', {
       templateUrl: 'ngView/campaigns/show',
-      controller: 'CampaignShowCtrl',
+      //controller: 'CampaignShowCtrl',
     }).
     when('/campaigns', {
       templateUrl: 'ngView/campaigns/index',

@@ -1,27 +1,50 @@
-.name
-  %div{"ng-dblclick" => "editName()", "ng-class" => "{editing: editingName}"}
-    .view
-      {{campaign.name}}
+.emails{"ng-controller" => "CampaignShowCtrl"}
+  .name
+    %div{"ng-dblclick" => "editName()", "ng-class" => "{editing: editingName}"}
+      .view
+        {{campaign.name}}
 
-    %input.edit{"ng-model" => "campaign.name", "emailer-enter" => "doneEditingName()", "emailer-focus" => "editingName"}
+      %input.edit{"ng-model" => "campaign.name", "emailer-enter" => "doneEditingName()", "emailer-focus" => "editingName"}
 
-.body
-  %div{"ng-dblclick" => "editBody()", "ng-class" => "{editing: editingBody}"}
-    .view
-      {{campaign.body || "No content! =0"}}
+  .body
+    %div{"ng-dblclick" => "editBody()", "ng-class" => "{editing: editingBody}"}
+      .view
+        {{campaign.body || "No content! =0"}}
 
-    .edit
-      %textarea{"ng-model" => "campaign.body", "ng-blur" => "saveBody()", "emailer-focus" => "editingBody"}
-        {{campaign.body}}
-      %button{"ng-click" => "doneEditingBody()"}
-        Done
+      .edit
+        %textarea{"ng-model" => "campaign.body", "ng-blur" => "saveBody()", "emailer-focus" => "editingBody"}
+          {{campaign.body}}
+        %button{"ng-click" => "doneEditingBody()"}
+          Done
 
-.container-fluid{"ng-controller" => "UserCtrl"}
-  %pre Email: {{selected| json}}
-  %input{type: "text", "ng-model" => "selected", "typeahead" => "email for email in emails | filter:$viewValue | limitTo:8"}
+  .send
+    %button.btn.btn-success{"ng-click" => "showModal()"}
+      Send
+      %span.glyphicon.glyphicon-send
 
+.emails{"ng-controller" => "CampaignEmailCtrl"}
+  .container-fluid
+    %label Email
+    %input{type: "text", "ng-model" => "selected", "typeahead" => "email for email in emails | filter:$viewValue | limitTo:8", "typeahead-on-select" => "addToCampaign(selected)"}
+
+  %ul
+    %li{"ng-repeat" => "user in campaignUsers"}
+      {{user.email}}
+      %button.btn.btn-warning.btn-xs{"ng-click" => "removeUser(user.id)"}
+        %span.glyphicon.glyphicon-remove
 
 .back
   %a{href: "/#/campaigns"}
     back
+
+%script{type: "text/ng-template", id: "confirmationDialog"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %h3 Send {{campaign.name || "campaign"}}?
+      .modal-body
+        You will email all the peoples, and there is no undo. Do you want to proceed?
+      .modal-footer
+        %button.btn.btn-primary{"ng-click" => "ok()"} Oh Hells Yes
+        %button.btn.btn-warning{"ng-click" => "cancel()"} Not yet...
 

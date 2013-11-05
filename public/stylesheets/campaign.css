@@ -5,7 +5,8 @@
   padding: 13px 17px 12px 17px;
   margin: 0 0 0 43px; }
   .body .editing .edit textarea, .name .editing .edit textarea {
-    width: 90%; }
+    width: 90%;
+    height: 70%; }
 
 .edit {
   display: none; }

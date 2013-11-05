@@ -2,6 +2,7 @@
 %html{"data-framework" => "angularjs", :lang => "en", "ng-app" => "emailer"}
   %head
     %title todo
+    %meta{name: "viewport", content: "width=device-width, initial-scale=1.0"}
     %script{:src => "app/bower_components/angular/angular.js"}
     %script{:src => "app/bower_components/angular-resource/angular-resource.js"}
     %script{:src => "app/bower_components/angular-route/angular-route.js"}
@@ -17,5 +18,24 @@
 
     :css
       body { padding-top: 70px; }
+      .nav, .pagination, .carousel a { cursor: pointer; }
+      .modal {
+        display: block;
+        height: 0;
+        overflow: visible;
+      }
+      .hide {
+        display: none;
+      }
+      .modal-body:before,
+      .modal-body:after {
+        display: table;
+        content: " ";
+      }
+      .modal-header:before,
+      .modal-header:after {
+        display: table;
+        content: " ";
+      }
   %body
     %ng-view

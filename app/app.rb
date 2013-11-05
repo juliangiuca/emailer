@@ -1,5 +1,4 @@
 
-require 'sass/plugin/rack'
 
 module Emailer
   class App < Sinatra::Base
@@ -31,6 +30,32 @@ module Emailer
 
       campaign.update_attribute(attr, @request_payload[attr])
       json campaign
+    end
+
+    post '/campaigns/:campaign_id/deliver' do
+      campaign = Campaign.find(params[:campaign_id])
+      campaign.deliver
+      json campaign
+    end
+
+    get '/campaigns/:campaign_id/users' do
+      campaign = Campaign.find(params[:campaign_id])
+      json campaign.users
+    end
+
+    post '/campaigns/:campaign_id/users' do
+      campaign = Campaign.find(params[:campaign_id])
+      user = User.where(email: @request_payload["email"]).includes(:campaigns).references(:campaigns).first
+      if !user.campaigns.include?(campaign)
+        campaign.users << user
+      end
+
+      json user
+    end
+
+    delete '/campaigns/:campaign_id/users/:user_id' do
+      campaign_user = CampaignUser.where(user_id: params[:user_id], campaign_id: params[:campaign_id]).first
+      campaign_user.try(:delete)
     end
 
     get '/campaigns.?:format?' do

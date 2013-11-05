@@ -10,8 +10,9 @@ emailer.controller("CampaignCtrl", ["$scope", "$routeParams", "Campaign", functi
   }
 }])
 
-emailer.controller("CampaignShowCtrl", ["$scope", "$routeParams", "Campaign", function CampaignShowCtrl ($scope, $routeParams, Campaign) {
+emailer.controller("CampaignShowCtrl", ["$scope", "$routeParams", "$modal", "$log", "Campaign", function CampaignShowCtrl ($scope, $routeParams, $modal, $log, Campaign) {
   $scope.campaign = Campaign.get({campaignId: $routeParams.campaignId});
+  $scope.emails = [];
 
   $scope.editName = function () {
     $scope.editing = true
@@ -37,5 +38,38 @@ emailer.controller("CampaignShowCtrl", ["$scope", "$routeParams", "Campaign", fu
   $scope.saveBody = function () {
     $scope.editing = null
     $scope.campaign.$update({changed: "body"})
+  };
+
+  $scope.showModal = function () {
+    var modalInstance = $modal.open({
+      templateUrl: 'confirmationDialog',
+      controller: "CampaignConfirmationCtrl",
+      resolve: {
+        campaign: function() {
+          return $scope.campaign;
+        },
+      } //resolve
+    }); //$modal.open
+
+    modalInstance.result.then(function () {
+      //They pressed OK
+      $scope.campaign.$deliver()
+
+    }, function () {
+      //They pressed cancel
+    });
+  }
+}]);
+
+
+emailer.controller("CampaignConfirmationCtrl", ["$scope", "$modalInstance", "campaign", function CampaignConfirmationCtrl ($scope, $modalInstance, campaign) {
+  $scope.campaign = campaign;
+
+  $scope.ok = function () {
+    $modalInstance.close();
+  };
+
+  $scope.cancel = function () {
+    $modalInstance.dismiss('cancel');
   };
 }]);

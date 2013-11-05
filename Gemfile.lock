@@ -1,3 +1,13 @@
+GIT
+  remote: git://github.com/resque/resque.git
+  revision: e374e082441ceda0be1645efa4855a28bc00eabc
+  specs:
+    resque (2.0.0.pre.1)
+      json
+      mono_logger (~> 1.0)
+      redis-namespace (>= 1.3.0)
+      thor (~> 0.17)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -18,6 +28,8 @@ GEM
       multi_json (~> 1.3)
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
+    annotate (2.5.0)
+      rake
     arel (4.0.0)
     atomic (1.1.14)
     backports (3.3.5)
@@ -30,6 +42,11 @@ GEM
     debugger-linecache (1.2.0)
     debugger-ruby_core_source (1.2.3)
     diff-lcs (1.2.4)
+    dotenv (0.9.0)
+    foreman (0.63.0)
+      dotenv (>= 0.7)
+      thor (>= 0.13.6)
+    github-markup (0.7.5)
     haml (4.0.3)
       tilt
     i18n (0.6.5)
@@ -39,6 +56,7 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.25)
     minitest (4.7.5)
+    mono_logger (1.1.0)
     multi_json (1.8.2)
     pg (0.17.0)
     polyamorous (0.6.4)
@@ -49,6 +67,10 @@ GEM
       rack
     rack-test (0.6.2)
       rack (>= 1.0)
+    rake (10.1.0)
+    redis (3.0.5)
+    redis-namespace (1.3.2)
+      redis (~> 3.0.4)
     rspec (2.14.1)
       rspec-core (~> 2.14.0)
       rspec-expectations (~> 2.14.0)
@@ -73,6 +95,7 @@ GEM
       activerecord (>= 3.0)
       activesupport (>= 3.0)
       polyamorous (~> 0.6.0)
+    thor (0.18.1)
     thread_safe (0.1.3)
       atomic
     tilt (1.4.1)
@@ -87,12 +110,16 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers
   activerecord
+  annotate
   arel
   debugger
+  foreman
+  github-markup
   haml
   json
   mail
   pg
+  resque (~> 2.0.0.pre.1)!
   rspec
   sass
   sinatra
