@@ -18,7 +18,6 @@ require 'squeel'
 require 'sass/plugin/rack'
 require 'redis'
 require 'resque'
-require 'github/markup'
 
 require_relative 'database'
 
