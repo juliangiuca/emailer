@@ -43,4 +43,4 @@ Mail.defaults do
 
 end
 
-ActiveRecord::Base.logger = Logger.new("logs/queries.log")
+ActiveRecord::Base.logger = Logger.new("log/queries.log")
