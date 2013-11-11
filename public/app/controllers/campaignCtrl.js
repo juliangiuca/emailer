@@ -1,7 +1,7 @@
 emailer.controller("CampaignCtrl", ["$scope", "$routeParams", "Campaign", function CampaignCtrl ($scope, $routeParams, Campaign) {
   $scope.campaigns = Campaign.query();
 
-  $scope.addCampaign = function(thingie) {
+  $scope.addCampaign = function() {
     var newCampaign = $scope.newCampaign
     var c = new Campaign(newCampaign)
     c.$save(function (data) {

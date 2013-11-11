@@ -1,7 +1,7 @@
 ActiveRecord::Base.establish_connection(
   :adapter => "postgresql",
   :host => "localhost",
-  :username => "local",
+  :username => "julian",
   :password => "",
   :database => "emailer_development"
 )
