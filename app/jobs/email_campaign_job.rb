@@ -17,13 +17,15 @@ class EmailCampaignJob
     def self.perform(campaign_id, user_id)
       campaign = Campaign.find(campaign_id)
       user = User.find(user_id)
-      tracked_email = TrackEmail.new(campaign, user)
+      tracked_email = CampaignDelegate.new(campaign)
+      tracked_email.for_user = user
 
       mail = Mail.new do
+        content_type 'text/html; charset=UTF-8'
         from    'me@eggandjam.com'
         to      'me@eggandjam.com'
         subject "#{campaign.name}"
-        body    campaign.body
+        body    tracked_email.parsed_body
       end
       mail.deliver!
     end
