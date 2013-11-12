@@ -3,15 +3,17 @@
   %head
     %title todo
     %meta{name: "viewport", content: "width=device-width, initial-scale=1.0"}
-    %script{:src => "app/bower_components/angular/angular.js"}
-    %script{:src => "app/bower_components/angular-resource/angular-resource.js"}
-    %script{:src => "app/bower_components/angular-route/angular-route.js"}
-    %script{:src => "app/bower_components/angular-bootstrap/ui-bootstrap.min.js"}
-    %script{:src => "app/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"}
-    %script{:src => "app/bower_components/underscore/underscore-min.js"}
-    %script{:src => "app/bower_components/angular-highlightjs/angular-highlight.min.js"}
-    %link{:href => "app/bower_components/bootstrap/dist/css/bootstrap.min.css", :rel => "stylesheet"}/
+    %script{:src => "bower_components/angular/angular.js"}
+    %script{:src => "bower_components/angular-resource/angular-resource.js"}
+    %script{:src => "bower_components/angular-route/angular-route.js"}
+    %script{:src => "bower_components/angular-bootstrap/ui-bootstrap.min.js"}
+    %script{:src => "bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"}
+    %script{:src => "bower_components/underscore/underscore-min.js"}
+    %script{:src => "bower_components/highlightjs/highlight.pack.js"}
+    %script{:src => "bower_components/angular-highlightjs/angular-highlightjs.min.js"}
+    %link{:href => "bower_components/bootstrap/dist/css/bootstrap.min.css", :rel => "stylesheet"}/
     %link{:href => "stylesheets/campaign.css", :rel => "stylesheet"}/
+    %link{:href => "bower_components/highlightjs/styles/github.css", :rel => "stylesheet"}/
     %script{:src => "app/app.js", :type => "text/javascript"}
     - %w(routes services directives controllers).each do |type|
       - Dir.glob(File.join(RACK_ROOT, "public", "app", type, "*.js")).each do |file|

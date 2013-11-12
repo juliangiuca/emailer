@@ -5,6 +5,7 @@ module Emailer
     helpers Sinatra::JSON
     set :public_folder, File.join(File.dirname(__FILE__), "..", '/public')
     set(:accepted_verbs) { |*verbs| condition { verbs.any?{|v| v == request.request_method }  } }
+    Haml::Options.defaults[:format] = :html5
 
     use Sass::Plugin::Rack
 
@@ -81,6 +82,15 @@ module Emailer
 
     get '/ngView/:ngController/:ngAction' do
       haml :"ng_view/#{params[:captures].join("/")}"
+    end
+
+    get '/tp/:token' do
+      tp = TrackingPixel.where(tracking: params[:token]).includes(:user).first
+      logger "tracking #{tp.user.name} for campaign #{tp.campaign_id}"
+      tp.views += 1
+      tp.date_first_viewed ||= Date.today
+      tp.save!
+      send_file "public/tracking_pixel.gif"
     end
 
     #get '/stylesheets/*' do

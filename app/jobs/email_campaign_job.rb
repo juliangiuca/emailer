@@ -16,6 +16,8 @@ class EmailCampaignJob
 
     def self.perform(campaign_id, user_id)
       campaign = Campaign.find(campaign_id)
+      user = User.find(user_id)
+      tracked_email = TrackEmail.new(campaign, user)
 
       mail = Mail.new do
         from    'me@eggandjam.com'

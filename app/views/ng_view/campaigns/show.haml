@@ -12,7 +12,7 @@
         {{campaign.body || "No content! =0"}}
 
       .edit
-        %textarea{"ng-model" => "campaign.body", "ng-blur" => "saveBody()", "emailer-focus" => "editingBody"}
+        %textarea.form-control{"ng-model"=>"campaign.body", "ng-blur"=>"saveBody()", "emailer-focus"=>"editingBody", :rows => 5}
           {{campaign.body}}
         %button{"ng-click" => "doneEditingBody()"}
           Done
