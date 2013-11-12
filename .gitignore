@@ -1,4 +1,4 @@
-logs/*
+log/*
 .sass-cache
 .env
 .DS_Store
