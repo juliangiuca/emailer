@@ -86,11 +86,13 @@ module Emailer
 
     get '/tp/:token' do
       tp = TrackingPixel.where(tracking: params[:token]).includes(:user).first
-      logger "tracking #{tp.user.name} for campaign #{tp.campaign_id}"
+      logger.info "tracking #{tp.user.name} for campaign #{tp.campaign_id}"
       tp.views += 1
       tp.date_first_viewed ||= Date.today
       tp.save!
-      send_file "public/tracking_pixel.gif"
+      sleep 5
+      redirect request.url
+      #send_file "public/tracking_pixel.gif"
     end
 
     #get '/stylesheets/*' do

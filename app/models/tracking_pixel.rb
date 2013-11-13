@@ -21,7 +21,13 @@ class TrackingPixel < ActiveRecord::Base
   validates_presence_of :user_id
   validates_presence_of :campaign_id
 
-  def self.generate_token(options={})
-    tp = TrackingPixel.new( options.merge(tracking: SecureRandom.urlsafe_base64) )
+  def self.generate_tokens(options={})
+    TrackingPixel.create!(
+      options.merge({
+        tracking: SecureRandom.urlsafe_base64,
+        timing: SecureRandom.urlsafe_base64
+      })
+    )
   end
+
 end

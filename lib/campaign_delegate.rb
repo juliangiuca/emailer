@@ -5,14 +5,30 @@ class CampaignDelegate < SimpleDelegator
     @user = user
   end
 
+  def mappings
+    {
+      "%pixel" => tracking,
+      "%timing_pixel" => timing,
+      "%name" => user.name,
+    }
+  end
+
   def parsed_body
-    @parsed_body ||= body.gsub("%pixel", tracking_pixel)
+    regex = Regexp.new("(#{mappings.keys.join("|")})")
+    @parsed_body ||= body.gsub(regex, mappings)
   end
 
   private
   def tracking_pixel
-   @tp ||= TrackingPixel.generate_token(campaign_id: self.id, user_id: user.id, sent: Date.today)
-   %Q|<img src="http://localhost:9292/tp/#{@tp.tracking}">|
+   @tracking_pixel ||= TrackingPixel.generate_tokens(campaign_id: self.id, user_id: user.id, sent: Date.today)
+  end
+
+  def tracking
+   %Q|<img src="https://julian.fwd.wf/tp/#{@tracking_pixel.tracking}">|
+  end
+
+  def timing
+   %Q|<img src="https://julian.fwd.wf/tp/#{@tracking_pixel.timing}">|
   end
 
 
