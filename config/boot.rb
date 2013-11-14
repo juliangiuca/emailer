@@ -23,7 +23,9 @@ require_relative 'database'
 
 use Rack::Logger
 
-Resque.redis = Redis.new
+uri = URI.parse(ENV["REDISCLOUD_URL"] || "redis://local@localhost:6379")
+$redis = Redis.new(:host => uri.host, :port => uri.port, :password => uri.password)
+Resque.redis = $redis
 
 ["app/models", "lib", "app/jobs"].each do |path|
   Dir.glob(File.join(RACK_ROOT, path, "/**/*.rb")).each do |file|

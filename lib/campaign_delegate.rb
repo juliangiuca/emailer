@@ -8,7 +8,6 @@ class CampaignDelegate < SimpleDelegator
   def mappings
     {
       "%pixel" => tracking,
-      "%timing_pixel" => timing,
       "%name" => user.name,
     }
   end
@@ -24,12 +23,7 @@ class CampaignDelegate < SimpleDelegator
   end
 
   def tracking
-   %Q|<img src="https://julian.fwd.wf/tp/#{@tracking_pixel.tracking}">|
+   %Q|<img src="#{ENV['TRACKING_URL']}#{tracking_pixel.tracking}">|
   end
-
-  def timing
-   %Q|<img src="https://julian.fwd.wf/tp/#{@tracking_pixel.timing}">|
-  end
-
 
 end

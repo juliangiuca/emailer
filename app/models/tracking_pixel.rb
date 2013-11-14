@@ -11,6 +11,7 @@
 #  views             :integer          default(0)
 #  date_first_viewed :datetime
 #  sent              :datetime
+#  time_viewed       :integer          default(0)
 #
 
 class TrackingPixel < ActiveRecord::Base
@@ -25,7 +26,6 @@ class TrackingPixel < ActiveRecord::Base
     TrackingPixel.create!(
       options.merge({
         tracking: SecureRandom.urlsafe_base64,
-        timing: SecureRandom.urlsafe_base64
       })
     )
   end
