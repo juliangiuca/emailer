@@ -13,13 +13,13 @@ namespace :db do
   end
 
   namespace :create do
-    task :all => :load_config do
+    task :all => :environment do
       ActiveRecord::Tasks::DatabaseTasks.create_all
     end
   end
 
   desc 'Create the database from DATABASE_URL or config/database.yml for the current Rails.env (use db:create:all to create all databases in the config)'
-  task :create => [:load_config] do
+  task :create => [:environment] do
     if ENV['DATABASE_URL']
       ActiveRecord::Tasks::DatabaseTasks.create_database_url
     else
@@ -28,13 +28,13 @@ namespace :db do
   end
 
   namespace :drop do
-    task :all => :load_config do
+    task :all => :environment do
       ActiveRecord::Tasks::DatabaseTasks.drop_all
     end
   end
 
   desc 'Drops the database using DATABASE_URL or the current Rails.env (use db:drop:all to drop all databases)'
-  task :drop => [:load_config] do
+  task :drop => [:environment] do
     if ENV['DATABASE_URL']
       ActiveRecord::Tasks::DatabaseTasks.drop_database_url
     else
