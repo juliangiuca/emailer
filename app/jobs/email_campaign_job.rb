@@ -15,8 +15,11 @@ class EmailCampaignJob
     @queue = :default
 
     def self.perform(campaign_id, user_id)
-      campaign = Campaign.find(campaign_id)
+      campaign = Campaign.includes(:tracked_users).find(campaign_id)
       user = User.find(user_id)
+
+      return if campaign.tracked_users.to_a.include?(user)
+
       tracked_email = CampaignDelegate.new(campaign)
       tracked_email.for_user = user
 
