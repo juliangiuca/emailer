@@ -45,4 +45,4 @@ Mail.defaults do
 
 end
 
-ActiveRecord::Base.logger = Logger.new(File.join(RACK_ROOT, "log", "queries.log"))
+ActiveRecord::Base.logger = Logger.new(File.join(RACK_ROOT, "logs", "queries.log"))
