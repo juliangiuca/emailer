@@ -11,6 +11,10 @@ module Emailer
 
     use ActiveRecord::ConnectionAdapters::ConnectionManagement
 
+    use Rack::Auth::Basic, "Restricted Area" do |username, password|
+      username == 'julian' and password == ENV['BASIC_AUTH']
+    end
+
     before "*", accepted_verbs: ["POST", "PATCH", "PUT"] do
       request.body.rewind
       @request_payload = JSON.parse request.body.read
