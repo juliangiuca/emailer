@@ -60,6 +60,7 @@ GEM
       tilt
     i18n (0.6.5)
     json (1.8.1)
+    kgio (2.8.1)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -71,14 +72,13 @@ GEM
       net-ssh (>= 2.6.5)
     net-ssh (2.7.0)
     pg (0.17.0)
-    polyamorous (0.6.4)
-      activerecord (>= 3.0)
     polyglot (0.3.3)
     rack (1.5.2)
     rack-protection (1.5.1)
       rack
     rack-test (0.6.2)
       rack (>= 1.0)
+    raindrops (0.12.0)
     rake (10.1.0)
     redis (3.0.5)
     redis-namespace (1.3.2)
@@ -103,10 +103,6 @@ GEM
       rack-test
       sinatra (~> 1.4.0)
       tilt (~> 1.3)
-    squeel (1.1.1)
-      activerecord (>= 3.0)
-      activesupport (>= 3.0)
-      polyamorous (~> 0.6.0)
     sshkit (1.2.0)
       net-scp (>= 1.1.2)
       net-ssh
@@ -126,6 +122,10 @@ GEM
       polyglot
       polyglot (>= 0.3.1)
     tzinfo (0.3.38)
+    unicorn (4.7.0)
+      kgio (~> 2.6)
+      rack
+      raindrops (~> 0.7)
 
 PLATFORMS
   ruby
@@ -139,6 +139,7 @@ DEPENDENCIES
   capistrano
   capistrano-bundler
   capistrano-rvm
+  dotenv
   foreman
   haml
   json
@@ -149,5 +150,5 @@ DEPENDENCIES
   sass
   sinatra
   sinatra-contrib
-  squeel
   thin
+  unicorn

@@ -1,25 +1,28 @@
+require "rubygems"
+require "bundler"
+
+require 'dotenv'
+Dotenv.load
+
 RACK_ENV = ENV['RACK_ENV'] || ENV['RAILS_ENV'] || 'development'
 RACK_ROOT = File.expand_path(File.dirname(__FILE__) + '/..')
 
 $LOAD_PATH.unshift File.expand_path(File.dirname(__FILE__))
 
-require "rubygems"
-require "bundler"
 
-
-require 'active_record'
 Bundler.setup
 Bundler.require(:default, RACK_ENV.to_sym)
+
+require_relative "database"
+
 
 require 'sinatra'
 require 'sinatra/base'
 require "sinatra/json"
-require 'squeel'
 require 'sass/plugin/rack'
 require 'redis'
 require 'resque'
 
-require_relative 'database'
 
 use Rack::Logger
 

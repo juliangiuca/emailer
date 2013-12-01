@@ -1,4 +1,5 @@
 # Database connection
+require 'active_record'
 db = URI.parse(ENV['HEROKU_POSTGRESQL_GRAY_URL'] || 'postgres://local:@localhost/emailer_development')
 
 ActiveRecord::Base.establish_connection(

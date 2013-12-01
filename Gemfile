@@ -6,7 +6,6 @@ gem 'haml'
 gem 'pg'
 gem 'activerecord'
 gem 'arel'
-gem 'squeel'
 gem 'mail'
 gem 'thin'
 gem 'json'
@@ -19,6 +18,8 @@ gem "resque", "~> 2.0.0.pre.1", github: "resque/resque"
 gem 'capistrano'
 gem 'capistrano-bundler'
 gem 'capistrano-rvm'
+gem 'unicorn'
+gem 'dotenv'
 
 group :development, :test do
   gem 'byebug'
