@@ -5,9 +5,9 @@ set :stage, :production
 # Supports bulk-adding hosts to roles, the primary
 # server in each group is considered to be the first
 # unless any hosts have the primary property set.
-#role :app, %w{deploy@example.com}
-#role :web, %w{deploy@example.com}
-#role :db,  %w{deploy@example.com}
+#role :app, %w{emailer@innocuous.me}, port: 18500
+#role :web, %w{emailer@innocuous.me}, port: 18500
+#role :db,  %w{emailer@innocuous.me}, port: 18500
 
 # Extended Server Syntax
 # ======================
@@ -15,7 +15,7 @@ set :stage, :production
 # definition into the server list. The second argument
 # something that quacks like a hash can be used to set
 # extended properties on the server.
-server 'innocuous.me', user: 'emailer', roles: %w{web db}, port: 18500
+server 'innocuous.me', user: 'emailer', roles: %w{app web db}, port: 18500
 
 # you can set custom ssh options
 # it's possible to pass any option but you need to keep in mind that net/ssh understand limited list of options
