@@ -9,12 +9,11 @@ RACK_ROOT = File.expand_path(File.dirname(__FILE__) + '/..')
 
 $LOAD_PATH.unshift File.expand_path(File.dirname(__FILE__))
 
-
 Bundler.setup
 Bundler.require(:default, RACK_ENV.to_sym)
 
 require_relative "database"
-
+require_relative "mail"
 
 require 'sinatra'
 require 'sinatra/base'
@@ -34,18 +33,6 @@ Resque.redis = $redis
   Dir.glob(File.join(RACK_ROOT, path, "/**/*.rb")).each do |file|
     require File.join(file)
   end
-end
-
-Mail.defaults do
-  delivery_method :smtp, {
-    :address => "smtp.gmail.com",
-    :port => 587,
-    :domain => 'eggandjam.com',
-    :user_name => ENV["EMAILER_USERNAME"],
-    :password => ENV["EMAILER_PASSWORD"],
-    :authentication => 'plain',
-    :enable_starttls_auto => true }
-
 end
 
 ActiveRecord::Base.logger = Logger.new(File.join(RACK_ROOT, "logs", "queries.log"))
