@@ -7,7 +7,6 @@ gem 'pg'
 gem 'activerecord'
 gem 'arel'
 gem 'squeel'
-gem 'debugger'
 gem 'mail'
 gem 'thin'
 gem 'json'
@@ -19,5 +18,8 @@ gem 'foreman'
 gem "resque", "~> 2.0.0.pre.1", github: "resque/resque"
 gem 'capistrano'
 gem 'capistrano-bundler'
+gem 'capistrano-rvm'
 
-
+group :development, :test do
+  gem 'byebug'
+end
