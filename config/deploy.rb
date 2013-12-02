@@ -23,7 +23,7 @@ namespace :deploy do
     on roles(:app), in: :sequence, wait: 5 do
       # Your restart mechanism here, for example:
       # execute :touch, release_path.join('tmp/restart.txt')
-      sh "kill -USR2 `cat #{shared_path}/tmp/pids/unicorn.pid`"
+      execute "kill -USR2 `cat #{shared_path}/tmp/pids/unicorn.pid`"
     end
   end
 
