@@ -13,7 +13,7 @@ Bundler.setup
 Bundler.require(:default, RACK_ENV.to_sym)
 
 require_relative "database"
-require_relative "mail"
+require_relative "email"
 
 require 'sinatra'
 require 'sinatra/base'
