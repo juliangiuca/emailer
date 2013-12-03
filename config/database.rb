@@ -3,7 +3,6 @@ require 'active_record'
 require_relative "../lib/settings"
 
 db = Settings.database
-byebug
 
 ActiveRecord::Base.establish_connection(
   :adapter  => 'postgresql',

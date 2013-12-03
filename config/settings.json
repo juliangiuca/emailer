@@ -2,7 +2,7 @@
   "tracking_url": "https://julian.fwd.wf:3000/tp/",
   "basic_auth": {
     "username": "julian",
-    "password": ""
+    "password": "pewpew"
   },
   "database": {
     "host": "localhost",
