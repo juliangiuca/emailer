@@ -1,0 +1,19 @@
+{
+  "tracking_url": "https://julian.fwd.wf:3000/tp/",
+  "basic_auth": {
+    "username": "julian",
+    "password": ""
+  },
+  "database": {
+    "host": "localhost",
+    "username": "local",
+    "password": "",
+    "database": "emailer_development"
+  },
+  "email": {
+    "username": "emailer@eggandjam.com",
+    "password": "",
+    "domain": "eggandjam.com"
+  }
+}
+
