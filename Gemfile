@@ -18,9 +18,12 @@ gem "resque", "~> 2.0.0.pre.1", github: "resque/resque"
 gem 'capistrano'
 gem 'capistrano-bundler'
 gem 'capistrano-rvm'
-gem 'unicorn'
-gem 'dotenv'
+
+group :production do
+  gem 'unicorn'
+end
 
 group :development, :test do
   gem 'byebug'
+  gem 'thin'
 end

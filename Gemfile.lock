@@ -139,7 +139,6 @@ DEPENDENCIES
   capistrano
   capistrano-bundler
   capistrano-rvm
-  dotenv
   foreman
   haml
   json

@@ -1,6 +1,3 @@
-require 'dotenv'
-Dotenv.load
-
 # set path to app that will be used to configure unicorn, 
 # note the trailing slash in this example
 @dir = File.expand_path(File.join(__FILE__, "..", ".."))

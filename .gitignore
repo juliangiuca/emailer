@@ -2,5 +2,3 @@
 .env
 .DS_Store
 logs/*.log
-config/database.rb
-config/email.rb
