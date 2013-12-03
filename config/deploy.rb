@@ -14,7 +14,7 @@ set :repo_url, 'git@github.com:juliangiuca/emailer.git'
  set :linked_dirs, %w{bin logs tmp/pids tmp/cache tmp/sockets}
 
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
- set :keep_releases, 3
+set :keep_releases, 3
 
 namespace :deploy do
 
@@ -23,12 +23,17 @@ namespace :deploy do
     on roles(:app), in: :sequence, wait: 5 do
       # Your restart mechanism here, for example:
       # execute :touch, release_path.join('tmp/restart.txt')
-      execute "kill -USR2 `cat #{shared_path}/tmp/pids/unicorn.pid`"
+      if test("[ -f #{shared_path}/tmp/pids/unicorn.pid ]")
+        execute "kill -USR2 `cat #{shared_path}/tmp/pids/unicorn.pid`"
+      else
+        info "No unicorn process found"
+      end
     end
   end
 
   task :pull_down_secret_files do
     on roles(:all) do
+      execute "wget --user=#{ENV['BITBUCKET_USER']} --password='#{ENV['BITBUCKET_PASSWORD']}' -q -N https://bitbucket.org/localtoast/secret-files/raw/master/emailer/settings.production.json -O /data/emailer/shared/config/settings.json"
     end
   end
 
