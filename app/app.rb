@@ -12,6 +12,7 @@ module Emailer
     use ActiveRecord::ConnectionAdapters::ConnectionManagement
 
     use Rack::Auth::Basic, "Restricted Area" do |username, password|
+      puts "username is: #{username}"
       username == Settings.basic_auth.username && password == Settings.basic_auth.password
     end
 
