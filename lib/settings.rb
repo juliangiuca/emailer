@@ -46,6 +46,10 @@ module Settings
       @json
     end
 
+    def to_hash
+      @json
+    end
+
     def keys
       @json.keys
     end
