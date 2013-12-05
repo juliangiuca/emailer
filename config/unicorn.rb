@@ -1,29 +1,29 @@
-# set path to app that will be used to configure unicorn, 
-# note the trailing slash in this example
-@dir = File.expand_path(File.join(__FILE__, "..", ".."))
-
 worker_processes 2
-working_directory @dir
 
+working_directory "/data/emailer/current" # available in 0.94.0+
+
+# listen on both a Unix domain socket and a TCP port,
+# we use a shorter backlog for quicker failover when busy
+#listen "/path/to/.unicorn.sock", :backlog => 64
+listen (ENV["PORT"] || 3000), :tcp_nopush => true
+
+# nuke workers after 30 seconds instead of 60 seconds (the default)
 timeout 30
 
-# Specify path to socket unicorn listens to, 
-# we will use this in our nginx.conf later
-#"#{@dir}/tmp/sockets/unicorn.sock", :backlog => 64
-listen ENV['PORT'] || 3000
+pid "/data/emailer/shared/tmp/pids/unicorn.pid"
 
-# Set process id path
-pid "#{@dir}/tmp/pids/unicorn.pid"
-
-# Set log file paths
-stderr_path "#{@dir}/logs/unicorn.stderr.log"
-stdout_path "#{@dir}/logs/unicorn.stdout.log"
+stderr_path "/data/emailer/shared/logs/unicorn.stderr.log"
+stdout_path "/data/emailer/shared/logs/unicorn.stdout.log"
 
 preload_app true
 GC.respond_to?(:copy_on_write_friendly=) and
   GC.copy_on_write_friendly = true
 
+check_client_connection false
+
 before_fork do |server, worker|
+  defined?(ActiveRecord::Base) and
+    ActiveRecord::Base.connection.disconnect!
 
    old_pid = "#{server.config[:pid]}.oldbin"
    if old_pid != server.pid
@@ -33,5 +33,21 @@ before_fork do |server, worker|
      rescue Errno::ENOENT, Errno::ESRCH
      end
    end
-
 end
+
+after_fork do |server, worker|
+  # per-process listener ports for debugging/admin/migrations
+  # addr = "127.0.0.1:#{9293 + worker.nr}"
+  # server.listen(addr, :tries => -1, :delay => 5, :tcp_nopush => true)
+
+  # the following is *required* for Rails + "preload_app true",
+  defined?(ActiveRecord::Base) and
+    ActiveRecord::Base.establish_connection
+
+  # if preload_app is true, then you may also want to check and
+  # restart any other shared sockets/descriptors such as Memcached,
+  # and Redis.  TokyoCabinet file handles are safe to reuse
+  # between any number of forked children (assuming your kernel
+  # correctly implements pread()/pwrite() system calls)
+end
+
