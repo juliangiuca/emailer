@@ -15,7 +15,7 @@ pid "/data/emailer/shared/tmp/pids/unicorn.pid"
 stderr_path "/data/emailer/shared/logs/unicorn.stderr.log"
 stdout_path "/data/emailer/shared/logs/unicorn.stdout.log"
 
-preload_app true
+#preload_app true
 GC.respond_to?(:copy_on_write_friendly=) and
   GC.copy_on_write_friendly = true
 
@@ -41,8 +41,8 @@ after_fork do |server, worker|
   # server.listen(addr, :tries => -1, :delay => 5, :tcp_nopush => true)
 
   # the following is *required* for Rails + "preload_app true",
-  defined?(ActiveRecord::Base) and
-    ActiveRecord::Base.establish_connection
+  #defined?(ActiveRecord::Base) and
+    #ActiveRecord::Base.establish_connection
 
   # if preload_app is true, then you may also want to check and
   # restart any other shared sockets/descriptors such as Memcached,
