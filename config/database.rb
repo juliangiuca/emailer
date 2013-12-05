@@ -12,6 +12,6 @@ connection = {
 }
 connection.merge!({
   :password => db.password
-}) if RACK_ENV == "production"
+}) if RACK_ENV != "production"
 
 ActiveRecord::Base.establish_connection(connection)
