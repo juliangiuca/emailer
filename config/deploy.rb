@@ -10,7 +10,7 @@ set :repo_url, 'git@github.com:juliangiuca/emailer.git'
 # set :log_level, :debug
 # set :pty, true
 
- set :linked_files, %w{config/database.rb config/email.rb}
+ set :linked_files, %w{config/settings.json}
  set :linked_dirs, %w{bin logs tmp/pids tmp/cache tmp/sockets}
 
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
