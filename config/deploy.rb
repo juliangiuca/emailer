@@ -4,7 +4,7 @@ set :repo_url, 'git@github.com:juliangiuca/emailer.git'
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
 
  set :deploy_to, '/data/emailer'
-# set :scm, :git
+ set :scm, :git
 
 # set :format, :pretty
 # set :log_level, :debug
