@@ -51,7 +51,7 @@ after_fork do |server, worker|
   # server.listen(addr, :tries => -1, :delay => 5, :tcp_nopush => true)
 
   # the following is *required* for Rails + "preload_app true",
-  require_relative "database"
+  require "/data/emailer/current/config/database"
   #defined?(ActiveRecord::Base) and
     #ActiveRecord::Base.establish_connection
 
