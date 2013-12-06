@@ -34,14 +34,15 @@ before_fork do |server, worker|
   #
   # Using this method we get 0 downtime deploys.
 
-  old_pid = '/data/emailer/shared/tmp/pids/unicorn.pid.oldbin'
-  if File.exists?(old_pid) && server.pid != old_pid
+  old_pid_file = '/data/emailer/shared/tmp/pids/unicorn.pid.oldbin'
+  if File.exists?(old_pid_file) && server.pid != old_pid_file
     begin
-      Process.kill("QUIT", File.read(old_pid).to_i)
+      Process.kill(:QUIT, old_pid)
     rescue Errno::ENOENT, Errno::ESRCH
-      # someone else did our job for us
     end
   end
+
+  sleep 1
 end
 
 
