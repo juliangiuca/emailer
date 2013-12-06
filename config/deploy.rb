@@ -13,7 +13,7 @@ set :repo_url, 'git@github.com:juliangiuca/emailer.git'
  set :linked_files, %w{config/settings.json}
  set :linked_dirs, %w{bin logs tmp/pids tmp/cache tmp/sockets}
 
- set :default_env, { path: "/usr/local/rvm/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:$PATH" }
+# set :default_env, { path: "/opt/ruby/bin:$PATH" }
 set :keep_releases, 3
 
 namespace :deploy do
