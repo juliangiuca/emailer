@@ -107,7 +107,7 @@ module Emailer
         :git_committed_at => `git show -s --format="%ci" #{revision}`.chomp,
         :git_commit_message => `git log -1 --pretty=format:"%s"`.chomp,
         :git_remote_branches => `git branch --no-color -r --contains #{revision} | grep -v 'HEAD' | tr -cs "[:print:]" " "`.chomp
-      }
+      }.to_s
     end
 
     #get '/stylesheets/*' do
