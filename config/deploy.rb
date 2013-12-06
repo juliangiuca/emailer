@@ -4,7 +4,7 @@ set :repo_url, 'git@github.com:juliangiuca/emailer.git'
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
 
  set :deploy_to, '/data/emailer'
- set :scm, :git
+# set :scm, :git
 
 # set :format, :pretty
 # set :log_level, :debug
@@ -13,7 +13,7 @@ set :repo_url, 'git@github.com:juliangiuca/emailer.git'
  set :linked_files, %w{config/settings.json}
  set :linked_dirs, %w{bin logs tmp/pids tmp/cache tmp/sockets}
 
-# set :default_env, { path: "/opt/ruby/bin:$PATH" }
+ set :default_env, { path: "/usr/local/rvm/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:$PATH" }
 set :keep_releases, 3
 
 namespace :deploy do
@@ -24,6 +24,7 @@ namespace :deploy do
       # Your restart mechanism here, for example:
       # execute :touch, release_path.join('tmp/restart.txt')
       if test("[ -f #{shared_path}/tmp/pids/unicorn.pid ]")
+        execute "cat #{shared_path}/tmp/pids/unicorn.pid"
         execute "kill -USR2 `cat #{shared_path}/tmp/pids/unicorn.pid`"
       else
         info "No unicorn process found"
