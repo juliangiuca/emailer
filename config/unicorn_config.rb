@@ -38,9 +38,9 @@ before_fork do |server, worker|
   if File.exists?(old_pid_file) && server.pid != old_pid_file
 
     old_pid = File.read(old_pid_file).to_i
-    puts "Killing PID #{old_pid}"
 
     begin
+      puts "Killing PID #{old_pid}"
       Process.kill(:QUIT, old_pid)
     rescue Errno::ENOENT, Errno::ESRCH
     end
