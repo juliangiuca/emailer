@@ -100,8 +100,9 @@ module Emailer
     end
 
     get "/status/info" do
+      revision = `git rev-parse --short --verify HEAD`.chomp
       {
-        :git_revision => `git rev-parse --short --verify HEAD`.chomp,
+        :git_revision => revision,
         :git_local_branch => `git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \\(.*\\)/\\1/'`.chomp,
         :git_committed_at => `git show -s --format="%ci" #{revision}`.chomp,
         :git_commit_message => `git log -1 --pretty=format:"%s"`.chomp,
