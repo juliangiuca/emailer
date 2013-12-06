@@ -99,6 +99,10 @@ module Emailer
       #send_file "public/tracking_pixel.gif"
     end
 
+    get "/status/info" do
+      `git rev-parse --short --verify HEAD`.chomp
+    end
+
     #get '/stylesheets/*' do
       #sass :"sass/#{params[:splat].first.to_sym}", style: :expanded
     #end
