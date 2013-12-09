@@ -1,3 +1,5 @@
+require 'resque/tasks'
+
 namespace :db do
   desc "Migrate the database"
   task(:migrate => :environment) do
@@ -39,6 +41,20 @@ namespace :db do
       ActiveRecord::Tasks::DatabaseTasks.drop_database_url
     else
       ActiveRecord::Tasks::DatabaseTasks.drop_current
+    end
+  end
+end
+
+
+namespace :queue do
+  desc "restart resque workers"
+  task :restart_workers => :environment do
+    pids = Array.new
+    Resque.workers.each do |worker|
+      pids << worker.to_s.split(/:/).second
+    end
+    if pids.size > 0
+      system("kill -QUIT #{pids.join(' ')}")
     end
   end
 end
