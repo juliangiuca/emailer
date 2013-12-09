@@ -46,19 +46,6 @@ namespace :db do
 end
 
 
-namespace :queue do
-  desc "restart resque workers"
-  task :restart_workers => :environment do
-    pids = Array.new
-    Resque.workers.each do |worker|
-      pids << worker.to_s.split(/:/).second
-    end
-    if pids.size > 0
-      system("kill -QUIT #{pids.join(' ')}")
-    end
-  end
-end
-
 task :environment do
   require File.expand_path(File.join(*%w[ config environment ]), File.dirname(__FILE__))
 end
