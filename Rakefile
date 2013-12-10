@@ -45,6 +45,19 @@ namespace :db do
   end
 end
 
+namespace :resque do
+  desc "Quit running Resque workers"
+  task :stop do
+    current_path = File.expand_path(File.dirname(__FILE__))
+    Dir.glob(File.join(current_path, "tmp", "pids", "*.pid")).each do |pid_file|
+      pid = File.read(pid_file).strip
+      puts "Killing #{pid}"
+      `kill -QUIT #{pid}`
+      `rm #{pid_file}`
+    end
+  end
+end
+
 
 task :environment do
   require File.expand_path(File.join(*%w[ config env ]), File.dirname(__FILE__))
