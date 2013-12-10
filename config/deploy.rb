@@ -34,6 +34,7 @@ namespace :deploy do
 
   task :pull_down_secret_files do
     on roles(:all) do
+      execute "mkdir -p /data/emailer/shared/config/"
       execute "wget --user=#{ENV['BITBUCKET_USER']} --password='#{ENV['BITBUCKET_PASSWORD']}' -q -N https://bitbucket.org/localtoast/secret-files/raw/master/emailer/settings.production.json -O /data/emailer/shared/config/settings.json"
       execute "wget --user=#{ENV['BITBUCKET_USER']} --password='#{ENV['BITBUCKET_PASSWORD']}' -q -N https://bitbucket.org/localtoast/secret-files/raw/master/emailer/newrelic.yml -O /data/emailer/shared/config/newrelic.yml"
     end
@@ -49,6 +50,6 @@ namespace :deploy do
   end
 
   after :finishing, 'deploy:cleanup'
-  after :started, 'deploy:pull_down_secret_files'
+  before :starting, 'deploy:pull_down_secret_files'
 
 end
