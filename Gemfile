@@ -19,6 +19,7 @@ gem 'capistrano'
 gem 'capistrano-bundler'
 gem 'capistrano-rvm'
 gem 'capistrano-rails'
+gem 'newrelic_rpm'
 
 group :production do
   gem 'unicorn'

@@ -74,6 +74,7 @@ GEM
     net-scp (1.1.2)
       net-ssh (>= 2.6.5)
     net-ssh (2.7.0)
+    newrelic_rpm (3.7.0.177)
     pg (0.17.0)
     polyglot (0.3.3)
     rack (1.5.2)
@@ -148,6 +149,7 @@ DEPENDENCIES
   haml
   json
   mail
+  newrelic_rpm
   pg
   resque (~> 2.0.0.pre.1)!
   rspec

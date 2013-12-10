@@ -18,6 +18,7 @@ require "sinatra/json"
 require 'sass/plugin/rack'
 require 'redis'
 require 'resque'
+require 'newrelic_rpm'
 
 
 use Rack::Logger
