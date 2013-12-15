@@ -14,6 +14,7 @@ require_relative "email"
 
 require 'sinatra'
 require 'sinatra/base'
+require 'sinatra/advanced_routes'
 require "sinatra/json"
 require 'sass/plugin/rack'
 require 'redis'
@@ -23,7 +24,7 @@ require 'newrelic_rpm'
 
 use Rack::Logger
 
-uri = URI.parse(ENV["REDISCLOUD_URL"] || "redis://local@localhost:6379")
+uri = URI.parse("redis://local@localhost:6379")
 $redis = Redis.new(:host => uri.host, :port => uri.port, :password => uri.password)
 Resque.redis = $redis
 
