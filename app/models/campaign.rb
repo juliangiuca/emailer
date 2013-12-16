@@ -12,10 +12,7 @@
 
 class Campaign < ActiveRecord::Base
   has_many :tracking_pixels
-  has_many :tracked_users, through: :tracking_pixels, source: :user
-
-  has_many :campaign_users, dependent: :destroy
-  has_many :users, through: :campaign_users
+  has_many :users, through: :tracking_pixels, source: :user
 
   def deliver
     Resque.enqueue(EmailCampaignJob, self.id)

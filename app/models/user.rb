@@ -11,8 +11,7 @@
 
 class User < ActiveRecord::Base
   has_many :tracking_pixels
-  has_many :campaign_users, dependent: :destroy
-  has_many :campaigns, through: :campaign_users
+  has_many :campaigns, through: :tracking_pixels
 
   validates_presence_of :email
   validates_uniqueness_of :email

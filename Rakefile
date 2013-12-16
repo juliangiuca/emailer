@@ -51,7 +51,7 @@ namespace :resque do
     current_path = File.expand_path(File.dirname(__FILE__))
     Dir.glob(File.join(current_path, "tmp", "pids", "*.pid")).each do |pid_file|
       pid = File.read(pid_file).strip
-      puts "Killing #{pid}"
+      puts "Killing resque worker with PID of #{pid}"
       `kill -QUIT #{pid}`
       `rm #{pid_file}`
     end
