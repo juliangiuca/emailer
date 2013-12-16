@@ -23,7 +23,7 @@ class CampaignDelegate < SimpleDelegator
   end
 
   def tracking
-   %Q|<img src="#{ENV['TRACKING_URL']}#{tracking_pixel.tracking}">|
+   %Q|<img src="#{Settings.tracking_url}#{tracking_pixel.tracking}">|
   end
 
 end

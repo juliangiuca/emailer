@@ -20,7 +20,7 @@ gem 'capistrano-bundler'
 gem 'capistrano-rvm'
 gem 'capistrano-rails'
 gem 'newrelic_rpm'
-gem 'sinatra-advanced-routes', :require => 'sinatra/advanced_routes'
+gem 'sinatra-advanced-routes', require: 'sinatra/advanced_routes'
 
 group :production do
   gem 'unicorn'
