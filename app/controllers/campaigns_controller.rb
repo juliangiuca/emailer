@@ -27,7 +27,9 @@ module Emailer
 
       base.post '/campaigns/:campaign_id/users' do
         campaign = Campaign.find(params[:campaign_id])
-        user = User.where(email: @request_payload["email"]).includes(:campaigns).references(:campaigns).first
+        # We use references here to force a join - it's needed for the includes
+        # Find the user with this email address, and return their campaigns too
+        user = User.where(email: @request_payload["email"]).includes(:campaigns).references(:campaigns).first_or_create
         if !user.campaigns.include?(campaign)
           campaign.users << user
         end

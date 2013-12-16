@@ -14,30 +14,17 @@ emailer.controller("CampaignShowCtrl", ["$scope", "$routeParams", "$modal", "$lo
   $scope.campaign = Campaign.get({campaignId: $routeParams.campaignId});
   $scope.emails = [];
 
-  $scope.editName = function () {
-    $scope.editing = true
-    $scope.editingName = true
-  }
 
-  $scope.editBody = function () {
-    $scope.editing = true
-    $scope.editingBody = true
-  }
-
-  $scope.doneEditingName = function () {
-    $scope.editing = null
-    $scope.editingName = null;
+  $scope.saveName = function () {
     $scope.campaign.$update({changed: "name"})
-  };
-
-  $scope.doneEditingBody = function () {
-    $scope.editingBody = null;
-    $scope.saveBody()
   }
 
   $scope.saveBody = function () {
-    $scope.editing = null
     $scope.campaign.$update({changed: "body"})
+  };
+
+  $scope.doneEditing = function () {
+    $scope.editing = null;
   };
 
   $scope.showModal = function () {

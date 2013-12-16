@@ -9,6 +9,9 @@ emailer.controller("CampaignEmailCtrl", ["$scope", "$routeParams", "User", "Camp
 
 
   $scope.addToCampaign = function (email) {
+    if (_.isEmpty(email)) { return }
+    // Find the user from the list of people already on the campaign
+    // Do nothing if the user is already on the campaign
     var found = _.find($scope.campaignUsers, function (user) { return user.email === email })
 
     if (!found) {
