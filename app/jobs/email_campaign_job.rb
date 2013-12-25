@@ -18,7 +18,7 @@ class EmailCampaignJob
       campaign = Campaign.includes(:tracked_users).find(campaign_id)
       user = User.find(user_id)
 
-      return if campaign.tracked_users.to_a.include?(user)
+      return if campaign.users.to_a.include?(user)
 
       tracked_email = CampaignDelegate.new(campaign)
       tracked_email.for_user = user

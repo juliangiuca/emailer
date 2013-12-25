@@ -6,7 +6,6 @@ module Emailer
         Dir.glob(File.join(RACK_ROOT, "app", "controllers", "*_controller.rb")).each do |file|
           require file
           basename = File.basename(file, ".rb")
-          puts basename
           klass.send(:include, "Emailer::#{basename.classify}".constantize)
         end
       end

@@ -19,7 +19,7 @@ class TrackingPixel < ActiveRecord::Base
   belongs_to :campaign
   has_many :user_agents
 
-  validates_uniqueness_of :tracking
+  validates_uniqueness_of :tracking, allow_nil: true
   validates_presence_of :user_id
   validates_presence_of :campaign_id
 

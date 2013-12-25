@@ -30,4 +30,5 @@ group :development, :test do
   gem 'byebug'
   gem 'thin'
   gem 'dotenv'
+  gem 'rspec'
 end
