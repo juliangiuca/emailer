@@ -1,12 +1,9 @@
 # Database connection
+require 'logger'
+require "active_record"
 require_relative "../lib/settings"
 
-connection = {
-  :encoding => 'utf8'
-}
+db = Settings.database[RACK_ENV]
+ActiveRecord::Base.establish_connection(db)
 
-db = Settings.database
-connection = db.to_hash.inject(connection) do |co, (key, value)|
-  co[key] = value; co
-end
-
+#ActiveRecord::Base.logger = Logger.new(File.join(RACK_ROOT, "logs", "queries.log"))
