@@ -1,5 +1,4 @@
 # Database connection
-require 'logger'
 require "active_record"
 require_relative "../lib/settings"
 

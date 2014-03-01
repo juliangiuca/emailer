@@ -5,7 +5,7 @@ RACK_ROOT ||= File.expand_path(File.dirname(__FILE__) + '/..')
 
 require "bundler"
 Bundler.setup
-Bundler.require(:default, RACK_ENV.to_sym)
+#Bundler.require(:default, RACK_ENV.to_sym)
 
 require_relative "./database"
 require_relative "./email"
