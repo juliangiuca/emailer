@@ -1,5 +1,5 @@
-class AddBodyToCampaigns < ActiveRecord::Migration
+Sequel.migration do
   def change
-    add_column :campaigns, :body, :text
+    add_column :campaigns, :body, String, text: true
   end
 end

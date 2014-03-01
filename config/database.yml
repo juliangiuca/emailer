@@ -1,0 +1,18 @@
+development: &development
+  adapter: postgresql
+  encoding: unicode
+  database: bindislist_development
+  pool: 5
+  username: local
+  password:
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: bindislist_test
+  pool: 5
+  username: local
+  password:
+
+production:
+  <<: *development

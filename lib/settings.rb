@@ -25,12 +25,14 @@ module Settings
     @json_obj ||= JsonObj.new(config)
   end
 
-  class JsonObj
-    def initialize(json_hash)
+  class JsonObj < Hash
 
+    def initialize(json_hash)
       @json = {}
+      defaults = {}
       json_hash.each_pair do |key, value|
-        @json[key] = value.is_a?(Hash) ? JsonObj.new(value) : value
+        defaults = value if key == "defaults"
+        @json[key] = value.is_a?(Hash) ? JsonObj.new(defaults.merge(value)) : value
 
         define_singleton_method(key) do
           @json[key]
@@ -39,7 +41,7 @@ module Settings
     end
 
     def [](key)
-      @json[key]
+      @json[key].is_a?(Hash) ? @json[key].to_hash : @json[key]
     end
 
     def inspect
@@ -53,6 +55,5 @@ module Settings
     def keys
       @json.keys
     end
-
   end
 end

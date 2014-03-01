@@ -13,7 +13,7 @@ module Emailer
 
     use Sass::Plugin::Rack
 
-    use ActiveRecord::ConnectionAdapters::ConnectionManagement
+    #use ActiveRecord::ConnectionAdapters::ConnectionManagement
 
     use Rack::Auth::Basic, "Restricted Area" do |username, password|
       username == Settings.basic_auth.username && password == Settings.basic_auth.password

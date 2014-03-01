@@ -1,13 +1,13 @@
-class CreateCampaigns < ActiveRecord::Migration
-  def self.up
+Sequel.migration do
+  up do
     create_table :campaigns do |t|
-      t.string :name
-      t.timestamps
+      String :name
+      DateTime :created_at
+      DateTime :updated_at
     end
-
   end
 
-  def self.down
+  down do
     drop_table :campaigns
   end
 end

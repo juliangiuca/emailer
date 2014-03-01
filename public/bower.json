@@ -17,11 +17,12 @@
   "dependencies": {
     "angular-route": "~1.2.0",
     "angular-resource": "~1.2.0",
-    "angular": "1.2.0",
+    "angular": "~1.2.0",
     "bootstrap": "~3.0.0",
     "underscore": "~1.5.2",
     "angular-bootstrap": "*",
-    "angular-highlightjs": "*"
+    "angular-highlightjs": "*",
+    "ace": "*"
 
   }
 }

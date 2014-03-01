@@ -1,15 +1,16 @@
-class CreateTrackingPixels < ActiveRecord::Migration
-  def self.up
+Sequel.migration do
+  up do
     create_table :tracking_pixels do |t|
-      t.string :tracking
-      t.integer :user_id
-      t.integer :campaign_id
-      t.timestamps
+      String :tracking
+      Integer :user_id
+      Integer :campaign_id
+      DateTime :created_at
+      DateTime :updated_at
     end
 
   end
 
-  def self.down
+  down do
     drop_table :tracking_pixels
   end
 end

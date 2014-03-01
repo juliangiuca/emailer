@@ -1,16 +1,14 @@
 source 'https://rubygems.org'
 
-gem 'sinatra'
-gem 'rspec'
+gem 'sinatra', require: false
 gem 'haml'
 gem 'pg'
 gem 'activerecord'
-gem 'arel'
 gem 'mail'
 gem 'thin'
 gem 'json'
 gem 'active_model_serializers'
-gem 'sinatra-contrib'
+gem 'sinatra-contrib', require: false
 gem 'sass'
 gem 'annotate'
 gem 'foreman'
@@ -28,7 +26,6 @@ end
 
 group :development, :test do
   gem 'byebug'
-  gem 'thin'
   gem 'dotenv'
   gem 'rspec'
 end

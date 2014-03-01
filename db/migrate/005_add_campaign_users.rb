@@ -1,14 +1,14 @@
-class AddCampaignUsers < ActiveRecord::Migration
-  def self.up
+Sequel.migration do
+  up do
     create_table :campaign_users do |t|
-      t.integer :user_id
-      t.integer :campaign_id
-      t.timestamps
+      Integer :user_id
+      Integer :campaign_id
+      DateTime :created_at
+      DateTime :updated_at
     end
-
   end
 
-  def self.down
+  down do
     drop_table :campaign_users
   end
 end

@@ -1,14 +1,15 @@
-class CreateUsers < ActiveRecord::Migration
-  def self.up
+Sequel.migration do
+  up do
     create_table :users do |t|
-      t.string :name
-      t.string :email
-      t.timestamps
+      String :name
+      String :email
+      DateTime :created_at
+      DateTime :updated_at
     end
 
   end
 
-  def self.down
+  down do
     drop_table :users
   end
 end
