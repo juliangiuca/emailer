@@ -6,7 +6,15 @@
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RACK_ENV ||= ENV['RACK_ENV'] || 'test'
 require_relative "../config/boot"
+require 'factory_girl'
+
+Dir.glob(File.join(RACK_ROOT, "spec", "factories", "*")).each do |factory|
+  require factory
+end
+
 RSpec.configure do |config|
+  config.include FactoryGirl::Syntax::Methods
+
   config.treat_symbols_as_metadata_keys_with_true_values = true
   config.run_all_when_everything_filtered = true
   config.filter_run :focus

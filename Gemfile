@@ -18,6 +18,7 @@ gem 'capistrano-bundler'
 gem 'capistrano-rvm'
 gem 'capistrano-rails'
 gem 'newrelic_rpm'
+gem 'factory_girl'
 gem 'sinatra-advanced-routes', require: 'sinatra/advanced_routes'
 
 group :production do
