@@ -12,9 +12,11 @@ emailer.config(['$routeProvider', function ($routeProvider) {
       templateUrl: 'ngView/users/index',
       controller: 'UserCtrl'
     }).
-    //when('/campaigns/new', {
-    //}).
+    when('/emails/new', {
+      templateUrl: 'ngView/emails/new',
+      controller: 'EmailsCtrl'
+    }).
     otherwise({
-      redirectTo: '/campaigns'
+      redirectTo: '/emails/new'
     });
 }])

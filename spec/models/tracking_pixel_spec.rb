@@ -24,7 +24,6 @@ describe TrackingPixel do
   subject(:tracking_pixel) { create(:tracking_pixel) }
 
   it "should not have a tracking pixel on creation" do
-    byebug
     expect(tracking_pixel.tracking).to be_nil
   end
 end

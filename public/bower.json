@@ -22,7 +22,7 @@
     "underscore": "~1.5.2",
     "angular-bootstrap": "*",
     "angular-highlightjs": "*",
-    "ace": "*"
+    "textAngular": "*"
 
   }
 }
