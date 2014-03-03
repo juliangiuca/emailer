@@ -1,2 +1,2 @@
-var emailer = angular.module('emailer', ['ngResource', 'ngRoute', 'ui.bootstrap', 'ui.bootstrap.modal', 'hljs']);
+var emailer = angular.module('emailer', ['ngResource', 'ngRoute', 'ui.bootstrap', 'ui.bootstrap.modal', 'textAngular']);
 

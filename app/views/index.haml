@@ -13,7 +13,6 @@
     %script{:src => "bower_components/angular-highlightjs/angular-highlightjs.min.js"}
     %link{:href => "bower_components/bootstrap/dist/css/bootstrap.min.css", :rel => "stylesheet"}/
     %link{:href => "stylesheets/campaign.css", :rel => "stylesheet"}/
-    %link{:href => "bower_components/highlightjs/styles/github.css", :rel => "stylesheet"}/
     %script{:src => "app/app.js", :type => "text/javascript"}
     - %w(routes services directives controllers).each do |type|
       - Dir.glob(File.join(RACK_ROOT, "public", "app", type, "*.js")).each do |file|
