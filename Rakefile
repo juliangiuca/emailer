@@ -53,9 +53,20 @@ end
 #end
 
 
+dbt = ActiveRecord::Tasks::DatabaseTasks
+dbt.env                    = RACK_ENV
+dbt.db_dir                 = File.join(RACK_ROOT, "db")
+dbt.fixtures_path          = File.join(RACK_ROOT, "spec", "fixtures")
+dbt.migrations_paths       = [File.join(RACK_ROOT, "db", "migrations")]
+dbt.root                   = RACK_ROOT
+
+dbt.database_configuration = Settings.database
+
 task :environment do
 end
+
 task :environment, [:env] => 'bundler:setup' do |cmd, args|
   ENV["RACK_ENV"] = args[:env] || "development"
   require File.expand_path(File.join(*%w[ config env ]), File.dirname(__FILE__))
+
 end

@@ -1,4 +1,5 @@
 require 'json'
+require 'active_support/core_ext/hash/indifferent_access'
 
 module Settings
   extend self
@@ -49,11 +50,21 @@ module Settings
     end
 
     def to_hash
-      @json
+      @json.with_indifferent_access
     end
 
     def keys
       @json.keys
+    end
+
+    def fetch(key)
+      self[key]
+    end
+
+    def values_at(*args)
+      args.map  do |arg|
+        self[arg]
+      end
     end
   end
 end

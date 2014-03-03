@@ -1,4 +1,8 @@
-
+require 'sinatra'
+require 'sinatra/base'
+require 'sinatra/advanced_routes'
+require "sinatra/json"
+require 'haml'
 require_relative "boot/controllers"
 
 module Emailer

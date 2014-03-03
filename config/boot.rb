@@ -1,4 +1,5 @@
 require "rubygems"
+require 'byebug'
 
 RACK_ENV ||= ENV['RACK_ENV'] || ENV['RAILS_ENV'] || 'development'
 RACK_ROOT ||= File.expand_path(File.dirname(__FILE__) + '/..')
@@ -11,11 +12,6 @@ require_relative "./database"
 require_relative "./email"
 require_relative "./redis"
 
-
-require 'sinatra'
-require 'sinatra/base'
-require 'sinatra/advanced_routes'
-require "sinatra/json"
 require 'sass/plugin/rack'
 require 'newrelic_rpm'
 
