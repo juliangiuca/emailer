@@ -1,14 +1,15 @@
-%ul.list-unstyled
-  %li{"ng-repeat" => "user in users"}
-    %a{href: "#/users/{{user.id}}"} {{user.email}}
+.users
+  %ul.list-unstyled
+    %li{"ng-repeat" => "user in users"}
+      %a{href: "#/users/{{user.id}}"} {{user.email}}
 
-%form.form-inline{:role => "form"}
-  .form-group
-    %input.form-control.input-lg{"ng-model" => "newUser.email", :type => "text"}/
-  .form-group
-    %button.btn.btn-primary.form-control.input-lg{"ng-click" => "addUser()"}
-      %span.glyphicon.glyphicon-plus-sign
-      Add
+  %form.form-inline{:role => "form"}
+    .form-group
+      %input.form-control.input-lg{"ng-model" => "newUser.email", :type => "text"}/
+    .form-group
+      %button.btn.btn-primary.form-control.input-lg{"ng-click" => "addUser()"}
+        %span.glyphicon.glyphicon-plus-sign
+        Add
 
-%a{href: "#/campaigns"}
-  Back
+  %a{href: "#/campaigns"}
+    Back

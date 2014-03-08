@@ -1,12 +1,11 @@
-.body .editing .view, .name .editing .view {
+.campaign .body .editing .view, .campaign .name .editing .view {
   display: none; }
-.body .editing .edit, .name .editing .edit {
+.campaign .body .editing .edit, .campaign .name .editing .edit {
   display: block;
   padding: 13px 17px 12px 17px;
   margin: 0 0 0 43px; }
-  .body .editing .edit textarea, .name .editing .edit textarea {
+  .campaign .body .editing .edit textarea, .campaign .name .editing .edit textarea {
     width: 90%;
     height: 70%; }
-
-.edit {
+.campaign .edit {
   display: none; }
