@@ -8,8 +8,8 @@ require_relative "boot/controllers"
 module Emailer
   class App < Sinatra::Base
     helpers Sinatra::JSON
-
     register Sinatra::AdvancedRoutes
+    enable :sessions
 
     set :public_folder, File.join(File.dirname(__FILE__), "..", '/public')
     set(:accepted_verbs) { |*verbs| condition { verbs.any?{|v| v == request.request_method }  } }
@@ -17,7 +17,7 @@ module Emailer
 
     use Sass::Plugin::Rack
 
-    #use ActiveRecord::ConnectionAdapters::ConnectionManagement
+    use ActiveRecord::ConnectionAdapters::ConnectionManagement
 
     use Rack::Auth::Basic, "Restricted Area" do |username, password|
       username == Settings.basic_auth.username && password == Settings.basic_auth.password
@@ -26,8 +26,11 @@ module Emailer
     Emailer::Boot::Controller.include_controllers!(self)
 
     before "*", accepted_verbs: ["POST", "PATCH", "PUT"] do
-      request.body.rewind
-      @request_payload = JSON.parse request.body.read
+      @request_payload = JSON.load(request.body)
+    end
+
+    def current_user
+      User.find(1)
     end
 
     get '/' do

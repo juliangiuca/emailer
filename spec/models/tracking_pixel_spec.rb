@@ -4,8 +4,8 @@
 #
 #  id                :integer          not null, primary key
 #  tracking          :string(255)
-#  user_id           :integer
-#  campaign_id       :integer
+#  contact_id        :integer
+#  email_id          :integer
 #  created_at        :datetime
 #  updated_at        :datetime
 #  views             :integer          default(0)
@@ -21,7 +21,7 @@ require_relative "../../app/models/tracking_pixel"
 describe TrackingPixel do
   let(:user) { double(id: 1) }
   let(:campaign) { double(id: 1) }
-  subject(:tracking_pixel) { create(:tracking_pixel) }
+  subject(:tracking_pixel) { create(:tracking_pixel, user_id: 1) }
 
   it "should not have a tracking pixel on creation" do
     expect(tracking_pixel.tracking).to be_nil

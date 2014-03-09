@@ -4,8 +4,8 @@
 #
 #  id                :integer          not null, primary key
 #  tracking          :string(255)
-#  user_id           :integer
-#  campaign_id       :integer
+#  contact_id        :integer
+#  email_id          :integer
 #  created_at        :datetime
 #  updated_at        :datetime
 #  views             :integer          default(0)
@@ -15,9 +15,8 @@
 #
 
 class TrackingPixel < ActiveRecord::Base
-  belongs_to :user
-  belongs_to :campaign
-  has_many :user_agents
+  belongs_to :email
+  #belongs_to :recipient, source: :contact
 
   validates_uniqueness_of :tracking, allow_nil: true
   validates_presence_of :user_id

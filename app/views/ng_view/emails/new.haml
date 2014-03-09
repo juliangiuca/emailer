@@ -1,23 +1,23 @@
 -#%text-angular{"ng-model"        => "subject",
   -#"placeholder"     => "subject"}
 
-.email
+.email{"ng-controller" => "EmailsCtrl"}
 
   %div.drawers
     %snap-drawer.left-draw
       .container
         %nav.navbar.navbar-inverse.navbar-fixed-top
-          %span.navbar-brand Users
-        .users{"ng-controller" => "UserCtrl"}
+          %span.navbar-brand Recipients
+        .contacts{"ng-controller" => "RecipientsCtrl"}
           %ul.list-unstyled
-            %li{"ng-repeat" => "user in users"}
-              %a{href: "#/users/{{user.id}}", title: "{{user.email}}"} {{user.name || user.email}}
+            %li{"ng-repeat" => "recipient in recipients"}
+              %a{href: "#/contacts/{{contact.id}}", title: "{{contact.email}}"} {{contact.name || contact.email}}
 
           %form.form-inline{:role => "form"}
             .form-group
-              %input.form-control.input-lg{"ng-model" => "newUser.email", :type => "text"}/
+              %input.form-control.input-lg{"ng-model" => "newContact.email", :type => "text"}/
             .form-group
-              %button.btn.btn-primary.form-control.input-lg{"ng-click" => "addUser()"}
+              %button.btn.btn-primary.form-control.input-lg{"ng-click" => "addContact()"}
                 %span.glyphicon.glyphicon-plus-sign
                 Add
 
@@ -33,14 +33,14 @@
         %text-angular-toolbar{name: "toolbar"}
 
         %div{"text-angular"      => true,
-          "ng-model"             => "subject",
+          "ng-model"             => "email.subject",
           "ta-target-toolbars"   => 'toolbar',
           "ta-text-editor-class" => "textAngular subject",
           "ta-html-editor-class" => "textAngular subject",
           "ta-focussed-class" => "focussed"}
 
         %div{"text-angular"      => true,
-          "ng-model"             => "body",
+          "ng-model"             => "email.body",
           "ta-target-toolbars"   => 'toolbar',
           "ta-text-editor-class" => "textAngular body",
           "ta-html-editor-class" => "textAngular body",

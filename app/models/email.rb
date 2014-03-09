@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: campaigns
+# Table name: emails
 #
 #  id         :integer          not null, primary key
 #  name       :string(255)
@@ -8,11 +8,14 @@
 #  updated_at :datetime
 #  body       :text
 #  sent       :boolean
+#  user_id    :integer
 #
 
-class Campaign < ActiveRecord::Base
+class Email < ActiveRecord::Base
+  belongs_to :user
+
   has_many :tracking_pixels
-  has_many :users, through: :tracking_pixels, source: :user
+  has_many :recipients, through: :tracking_pixels
 
   def deliver
     Resque.enqueue(EmailCampaignJob, self.id)
