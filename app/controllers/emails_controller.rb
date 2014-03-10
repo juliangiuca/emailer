@@ -3,9 +3,9 @@ module Emailer
     def self.included(base)
 
       base.patch '/emails/:id' do
-        email = current_user.emails.find(params[:campaign_id])
+        email = current_user.emails.find(params[:id])
         attr = params[:changed]
-        raise unless ["name", "body"].include?(attr)
+        raise unless ["subject", "body"].include?(attr)
 
         email.update_attribute(attr, @request_payload[attr])
         json email
