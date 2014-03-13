@@ -1,12 +1,18 @@
 emailer.controller("RecipientsCtrl", ["$scope", "$http", "Contact", "Recipient", function RecipientsCtrl ($scope, $http, Contact, Recipient) {
-  //$scope.recipients = Recipient.query({"emailId": $scope.email.id});
   $scope.contacts = Contact.query()
   $scope.selected = undefined;
 
   $scope.addRecipientOrContact = function() {
-    debugger
-    i=0
-    i+=1
+    var recipient = new Recipient();
+    recipient.$save(
+      {
+        emailId: $scope.email.id,
+        contactId: $scope.selected.id
+      },
+      function (res) {
+        $scope.recipients.push($scope.selected);
+        $scope.selected = undefined;
+      })
   };
 
   //$scope.getLocation = function(val) {

@@ -16,14 +16,15 @@ module Emailer
         json email
       end
 
-      base.get '/emails/:id' do
-        email = current_user.emails.find(params[:id])
-        json campaign.users
+      base.get '/emails/:id.?:format?' do
+        email = Email.where(user_id: current_user.id, id: params[:id]).first
+        json email
       end
 
       base.get '/emails.?:format?' do
-        json current_user.emails.all
+        json current_user.emails.to_a
       end
+
     end
   end
 end

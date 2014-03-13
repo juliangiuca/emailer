@@ -15,7 +15,7 @@ class Email < ActiveRecord::Base
   belongs_to :user
 
   has_many :tracking_pixels
-  has_many :recipients, through: :tracking_pixels
+  has_many :recipients, through: :tracking_pixels, source: :contact
 
   def deliver
     Resque.enqueue(EmailCampaignJob, self.id)

@@ -11,7 +11,7 @@
         .contacts{"ng-controller" => "RecipientsCtrl"}
           %ul.list-unstyled
             %li{"ng-repeat" => "recipient in recipients"}
-              %a{href: "#/contacts/{{contact.id}}", title: "{{contact.email}}"} {{contact.name || contact.email}}
+              %a{href: "#/contacts/{{recipient.id}}", title: "{{recipient.email}}"} {{recipient.name || recipient.email}}
 
           %form.form-inline{:role => "form"}
             .form-group
@@ -19,7 +19,7 @@
               %input.form-control.input-lg{"ng-model" => "selected", 
                 "typeahead" => "contact as contact.email for contact in contacts | filter:$viewValue", 
                 type: "text",
-                "typeahead-on-select" => "addToEmail(selected)" }
+                "typeahead-on-select" => "addRecipientOrContact(selected)" }
             .form-group
               %button.btn.btn-primary.form-control.input-lg{"ng-click" => "addRecipientOrContact()"}
                 %span.glyphicon.glyphicon-plus-sign
@@ -51,5 +51,5 @@
           "ta-focussed-class" => "focussed"}
 
         %button{ :class => "btn btn-primary btn-small", "snap-toggle" => "left"}
-          click me
+          Recipients ->
 

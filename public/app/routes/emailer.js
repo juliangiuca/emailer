@@ -14,7 +14,11 @@ emailer.config(['$routeProvider', function ($routeProvider) {
     }).
     when('/emails/new', {
       templateUrl: 'ngView/emails/new',
-      controller: 'EmailsCtrl'
+      controller: 'NewEmailsCtrl'
+    }).
+    when('/emails/:emailId', {
+      templateUrl: 'ngView/emails/new',
+      controller: 'ShowEmailsCtrl'
     }).
     otherwise({
       redirectTo: '/emails/new'

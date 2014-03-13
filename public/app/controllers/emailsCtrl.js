@@ -1,10 +1,16 @@
-emailer.controller("EmailsCtrl", ["$scope", "Email", function EmailsCtrl ($scope, Email) {
-  var email = $scope.email = Email.save();
+emailer.controller("EmailsCtrl", ["$scope", "$routeParams", "Email", "Recipient", function EmailsCtrl ($scope, $routeParams, Email, Recipient) {
 
   $scope.$watch("email.body", function(a,b) {
-    $scope.email.$update({"changed": "body"})
+    if (a != b) {
+      $scope.email.$update({"changed": "body"})
+    }
+  });
 
-  }, true);
+  $scope.$watch("email.subject", function(a,b) {
+    if (a != b && b != undefined) {
+      $scope.email.$update({"changed": "subject"})
+    }
+  });
 
 }])
 
