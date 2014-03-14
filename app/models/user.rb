@@ -13,6 +13,6 @@ class User < ActiveRecord::Base
   has_many :emails
   has_many :contacts
 
-  validates_presence_of :email
-  validates_uniqueness_of :email
+  validates_presence_of :email_address
+  validates_uniqueness_of :email_address
 end

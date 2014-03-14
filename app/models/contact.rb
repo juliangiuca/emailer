@@ -13,6 +13,6 @@
 class Contact < ActiveRecord::Base
   belongs_to :user
 
-  validates_presence_of :email
-  validates_uniqueness_of :email, scope: :user_id
+  validates_presence_of :email_address
+  validates_uniqueness_of :email_address, scope: :user_id
 end

@@ -19,11 +19,23 @@ require_relative "../spec_helper"
 require_relative "../../app/models/tracking_pixel"
 
 describe TrackingPixel do
-  let(:user) { double(id: 1) }
-  subject(:tracking_pixel) { create(:tracking_pixel, user_id: 1) }
+  subject(:tracking_pixel) { create(:tracking_pixel, contact_id: 1) }
 
   it "should not have a tracking pixel on creation" do
     expect(tracking_pixel.tracking).to be_nil
+  end
+
+  describe "generate_token" do
+    let(:user) { create(:user_with_email_and_contacts) }
+    let(:email) { user.emails.first }
+    let(:contact) { user.contacts.first }
+    let(:tp_params) { {email_id: email.id, contact_id: contact.id} }
+    subject(:generate_token) { TrackingPixel.generate_token(tp_params) }
+
+    it "should generate a tracking token" do
+      expect( generate_token.tracking ).to be_present
+    end
+    it "should merge with the existing options"
   end
 end
 

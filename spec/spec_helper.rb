@@ -5,8 +5,13 @@
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RACK_ENV ||= ENV['RACK_ENV'] || 'test'
+RAILS_ENV = RACK_ENV
+
 require_relative "../config/boot"
+require 'database_cleaner'
 require 'factory_girl'
+
+DatabaseCleaner.strategy = :transaction
 
 Dir.glob(File.join(RACK_ROOT, "spec", "factories", "*")).each do |factory|
   require factory
@@ -28,4 +33,11 @@ RSpec.configure do |config|
   #config.around(:each) do |example|
     #DB.transaction(:rollback=>:always){example.run}
   #end
+  #
+
+  config.around(:each) do |example|
+    DatabaseCleaner.start
+    example.run
+    DatabaseCleaner.clean
+  end
 end

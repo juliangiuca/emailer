@@ -29,4 +29,5 @@ group :development, :test do
   gem 'byebug'
   gem 'dotenv'
   gem 'rspec'
+  gem 'database_cleaner'
 end

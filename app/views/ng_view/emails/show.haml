@@ -11,13 +11,13 @@
         .contacts{"ng-controller" => "RecipientsCtrl"}
           %ul.list-unstyled
             %li{"ng-repeat" => "recipient in recipients"}
-              %a{href: "#/contacts/{{recipient.id}}", title: "{{recipient.email}}"} {{recipient.name || recipient.email}}
+              %a{href: "#/contacts/{{recipient.id}}", title: "{{recipient.email_address}}"} {{recipient.name || recipient.email_address}}
 
           %form.form-inline{:role => "form"}
             .form-group
               -#%input.form-control.input-lg{"ng-model" => "newContact.email", :type => "text"}/
               %input.form-control.input-lg{"ng-model" => "selected", 
-                "typeahead" => "contact as contact.email for contact in contacts | filter:$viewValue", 
+                "typeahead" => "contact as contact.email_address for contact in contacts | filter:$viewValue", 
                 type: "text",
                 "typeahead-on-select" => "addRecipientOrContact(selected)" }
             .form-group
