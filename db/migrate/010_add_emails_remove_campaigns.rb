@@ -1,5 +1,5 @@
 class AddEmailsRemoveCampaigns < ActiveRecord::Migration
-  def self.up
+  def up
     rename_table :campaigns, :emails
     add_column :emails, :user_id, :integer
 
@@ -7,7 +7,7 @@ class AddEmailsRemoveCampaigns < ActiveRecord::Migration
     rename_column :tracking_pixels, :campaign_id, :email_id
   end
 
-  def self.down
+  def down
     rename_column :tracking_pixels, :email_id, :campaign_id
     rename_column :tracking_pixels, :contact_id, :user_id
 

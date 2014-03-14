@@ -20,7 +20,6 @@ require_relative "../../app/models/tracking_pixel"
 
 describe TrackingPixel do
   let(:user) { double(id: 1) }
-  let(:campaign) { double(id: 1) }
   subject(:tracking_pixel) { create(:tracking_pixel, user_id: 1) }
 
   it "should not have a tracking pixel on creation" do
