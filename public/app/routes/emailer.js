@@ -17,7 +17,7 @@ emailer.config(['$routeProvider', function ($routeProvider) {
       controller: 'NewEmailsCtrl'
     }).
     when('/emails/:emailId', {
-      templateUrl: 'ngView/emails/new',
+      templateUrl: 'ngView/emails/show',
       controller: 'ShowEmailsCtrl'
     }).
     otherwise({

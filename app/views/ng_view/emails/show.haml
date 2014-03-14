@@ -53,3 +53,17 @@
         %button{ :class => "btn btn-primary btn-small", "snap-toggle" => "left"}
           Recipients ->
 
+        .send
+          %button.btn.btn-success{"ng-click" => "showConfirmationPopup()"}
+            Send
+            %span.glyphicon.glyphicon-send
+
+        %script{type: "text/ng-template", id: "confirmationDialog"}
+          .modal-header
+            %h3 Send {{email.subject || "Email"}}?
+          .modal-body
+            You will email all the peoples, and there is no undo. Do you want to proceed?
+          .modal-footer
+            %button.btn.btn-primary{"ng-click" => "ok()"} Oh Hells Yes
+            %button.btn.btn-warning{"ng-click" => "cancel()"} Not yet...
+
