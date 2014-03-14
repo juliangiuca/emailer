@@ -35,7 +35,10 @@ describe TrackingPixel do
     it "should generate a tracking token" do
       expect( generate_token.tracking ).to be_present
     end
-    it "should merge with the existing options"
+
+    it "should merge with the existing options" do
+      expect( generate_token.contact_id ).to eq(contact.id)
+    end
   end
 end
 
