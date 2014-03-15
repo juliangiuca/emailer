@@ -7,10 +7,10 @@ emailer.controller("RecipientsCtrl", ["$scope", "$http", "Contact", "Recipient",
     recipient.$save(
       {
         emailId: $scope.email.id,
-        contactId: $scope.selected.id
+        contactEmail: $scope.selected
       },
       function (res) {
-        $scope.recipients.push($scope.selected);
+        $scope.recipients.push(res);
         $scope.selected = undefined;
       })
   };

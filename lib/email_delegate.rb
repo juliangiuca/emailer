@@ -1,14 +1,14 @@
-class CampaignDelegate < SimpleDelegator
-  attr_reader :user
+class EmailDelegate < SimpleDelegator
+  attr_reader :recipient
 
-  def for_user=(user)
-    @user = user
+  def for_recipient=(recipient)
+    @recipient = recipient
   end
 
   def mappings
     {
       "%pixel" => tracking,
-      "%name" => user.name,
+      "%name" => recipient.name,
     }
   end
 

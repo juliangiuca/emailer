@@ -1,1 +1,1 @@
-require_relative 'email_campaign_job'
+require_relative 'email_job'

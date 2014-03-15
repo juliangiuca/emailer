@@ -1,0 +1,41 @@
+emailer.controller("NewEmailsCtrl", ["$scope", "$cookies", "$location", "$q", "Email", "Recipient", function NewEmailsCtrl ($scope, $cookies, $location, $q, Email, Recipient) {
+
+  goToEmail = function() {
+    $location.path("/email/" + $cookies.unsentEmailId)
+  }
+
+  setNewEmailCookie = function(emailId) {
+    $cookies.unsentEmailId = emailId;
+  }
+
+  fetchRecipients = function(emailId) {
+    $scope.recipients = Recipient.query({"emailId": emailId});
+  }
+
+  createEmail = function() {
+    var deferred = $q.defer();
+
+    Email.save(function(resp) {
+      $scope.email = resp;
+      deferred.resolve(resp.id)
+    });
+
+    return deferred.promise;
+  }
+
+  if ($cookies.unsentEmail) {
+    goToEmail();
+  } else {
+    createEmail().then(function(resp) {
+      fetchRecipients(resp.id)
+      return resp
+    }).then(function(resp) {
+      setNewEmailCookie(resp.id);
+    }).then(function() {
+      goToEmail();
+    });
+  }
+
+
+}])
+

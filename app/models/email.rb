@@ -18,6 +18,6 @@ class Email < ActiveRecord::Base
   has_many :recipients, through: :tracking_pixels, source: :contact
 
   def deliver
-    Resque.enqueue(EmailCampaignJob, self.id)
+    Resque.enqueue(EmailJob, self.id)
   end
 end
