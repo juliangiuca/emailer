@@ -1,9 +1,5 @@
 class EmailDelegate < SimpleDelegator
-  attr_reader :recipient
-
-  def for_recipient=(recipient)
-    @recipient = recipient
-  end
+  attr_accessor :tracking_pixel
 
   def mappings
     {
@@ -18,8 +14,8 @@ class EmailDelegate < SimpleDelegator
   end
 
   private
-  def tracking_pixel
-   @tracking_pixel ||= TrackingPixel.generate_tokens(campaign_id: self.id, user_id: user.id, sent: Date.today)
+  def recipient
+    @recipient ||= tracking_pixel.contact
   end
 
   def tracking

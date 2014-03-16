@@ -6,6 +6,7 @@ emailer.controller("NewEmailsCtrl", ["$scope", "$cookieStore", "$location", "$q"
 
   setNewEmailCookie = function(emailId) {
     $cookieStore.put('unsentEmailId', emailId);
+    return emailId;
   }
 
   getNewEmailCookie = function() {
@@ -31,12 +32,11 @@ emailer.controller("NewEmailsCtrl", ["$scope", "$cookieStore", "$location", "$q"
     goToEmail();
   } else {
     createEmail().then(function(emailId) {
-      fetchRecipients(emailId)
-      return emailId
+      return setNewEmailCookie(emailId);
     }).then(function(emailId) {
-      setNewEmailCookie(emailId);
+      return fetchRecipients(emailId)
     }).then(function() {
-      goToEmail();
+      return goToEmail();
     });
   }
 

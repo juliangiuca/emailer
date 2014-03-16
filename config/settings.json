@@ -8,8 +8,7 @@
     "defaults": {
       "port": 6379,
       "host": "localhost",
-      "user": "local",
-      "password": ""
+      "user": "local"
     },
     "development": {},
     "test": {}
@@ -34,8 +33,7 @@
   },
   "email": {
     "username": "emailer@eggandjam.com",
-    "password": "",
+    "password": "Z73HANXYdBiXdU",
     "domain": "eggandjam.com"
   }
 }
-

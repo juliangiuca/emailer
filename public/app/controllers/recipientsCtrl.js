@@ -3,17 +3,34 @@ emailer.controller("RecipientsCtrl", ["$scope", "$http", "Contact", "Recipient",
   $scope.selected = undefined;
 
   $scope.addRecipientOrContact = function() {
+    var emailAddress;
+    var isAnObj = angular.isObject($scope.selected);
+
+    if (isAnObj)      emailAddress = $scope.selected.email_address
+    else              emailAddress = $scope.selected
+
     var recipient = new Recipient();
     recipient.$save(
       {
         emailId: $scope.email.id,
-        contactEmail: $scope.selected
+        contactEmail: emailAddress
       },
       function (res) {
         $scope.recipients.push(res);
         $scope.selected = undefined;
       })
   };
+
+  $scope.removeRecipient = function(recipient) {
+    recipient.$delete(
+      {
+        emailId: $scope.email.id,
+        recipientId: recipient.id
+      },
+      function (res) {
+      $scope.recipients = _.filter($scope.recipients, function (r) { return r != res })
+    });
+  }
 
   //$scope.getLocation = function(val) {
     //return $http.get('/contacts/search/' + val).then(function(res){
@@ -36,4 +53,3 @@ emailer.controller("RecipientsCtrl", ["$scope", "$http", "Contact", "Recipient",
     //});
   //}
 }])
-

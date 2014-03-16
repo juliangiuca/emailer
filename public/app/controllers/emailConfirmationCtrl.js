@@ -1,5 +1,5 @@
-emailer.controller("EmailConfirmationCtrl", ["$scope", "$modalInstance", "campaign", function EmailConfirmationCtrl ($scope, $modalInstance, campaign) {
-  $scope.campaign = campaign;
+emailer.controller("EmailConfirmationCtrl", ["$scope", "$modalInstance", "email", function EmailConfirmationCtrl ($scope, $modalInstance, email) {
+  $scope.email = email;
 
   $scope.ok = function () {
     $modalInstance.close();

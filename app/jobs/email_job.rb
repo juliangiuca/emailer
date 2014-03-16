@@ -16,12 +16,12 @@ class EmailJob
 
     def self.perform(email_id, tracking_pixel_id)
       email          = Email.find(email_id)
-      tracking_pixel = TrackingPixel.find(tracking_pixel_id)
+      tracking_pixel = TrackingPixel.includes(:contact).find(tracking_pixel_id)
 
       return if tracking_pixel.sent?
 
       tracked_email = EmailDelegate.new(email)
-      tracked_email.for_recipient = recipient
+      tracked_email.tracking_pixel = tracking_pixel
 
       mail = Mail.new do
         content_type 'text/html; charset=UTF-8'
@@ -31,6 +31,7 @@ class EmailJob
         body    tracked_email.parsed_body
       end
       mail.deliver!
+      email.update(sent: true)
     end
   end
 end
