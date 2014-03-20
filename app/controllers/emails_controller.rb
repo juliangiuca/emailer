@@ -16,8 +16,8 @@ module Emailer
 
       base.post '/emails.?:format?' do
         status 201
-        email_from_id = current_user.emails.create!()
-        json zemail
+        email = current_user.emails.create!()
+        json email
       end
 
       base.get '/emails/:id.?:format?' do

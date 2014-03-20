@@ -12,6 +12,7 @@
 class User < ActiveRecord::Base
   has_many :emails
   has_many :contacts
+  has_many :groups
 
   validates_presence_of :email_address
   validates_uniqueness_of :email_address

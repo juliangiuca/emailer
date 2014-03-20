@@ -10,7 +10,7 @@ module Emailer
       end
 
       base.get '/contacts/:contact_id' do
-        haml "views/users/show"
+        # haml "views/users/show"
       end
 
     end

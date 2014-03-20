@@ -1,0 +1,21 @@
+.groups
+  .container
+    %nav.navbar.navbar-default.navbar-fixed-top{:role => "navigation"}
+      %span.navbar-brand {{group.name}}
+
+    %div{"ng-controller" => "typeaheadGroupMemberCtrl"}
+      %form.form-inline{:role => "form"}
+        .form-group
+          -#%input.form-control.input-lg{"ng-model" => "newContact.email", :type => "text"}/
+          %input.form-control.input-lg{"ng-model" => "selected",
+            "typeahead" => "contact as contact.email_address for contact in contacts | filter:$viewValue",
+            type: "text",
+            "typeahead-on-select" => "addContact(selected)" }
+        .form-group
+          %button.btn.btn-primary.form-control.input-lg{"ng-click" => "addContact()"}
+            %span.glyphicon.glyphicon-plus-sign
+            Add
+
+    %div{"ng-repeat" => "member in members"}
+      %span.glyphicon.glyphicon-minus-sign{"ng-click" => "removeMember(member)"}
+      %a{href: "/contacts/{{member.id}}"} {{member.name || member.email_address}}

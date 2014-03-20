@@ -8,7 +8,7 @@
       .container
         %nav.navbar.navbar-inverse.navbar-fixed-top
           %span.navbar-brand Recipients
-        .contacts{"ng-controller" => "RecipientsCtrl"}
+        .contacts{"ng-controller" => "typeaheadRecipientsCtrl"}
           %ul.list-unstyled
             %li{"ng-repeat" => "recipient in recipients"}
               %span.glyphicon.glyphicon-minus-sign{"ng-click" => "removeRecipient(recipient)"}

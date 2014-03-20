@@ -1,4 +1,13 @@
-emailer.controller("ShowEmailsCtrl", ["$scope", "$routeParams", "$modal", "Email", "Recipient", function ShowEmailsCtrl ($scope, $routeParams, $modal, Email, Recipient) {
+emailer.controller("EmailsShowCtrl",
+                    [
+                      "$scope",
+                      "$routeParams",
+                      "$modal",
+                      "$cookieStore",
+                      "$location",
+                      "Email",
+                      "Recipient",
+                      function ShowEmailsCtrl ($scope, $routeParams, $modal, $cookieStore, $location, Email, Recipient) {
   Email.get(
     {
       emailId: $routeParams.emailId
@@ -6,6 +15,9 @@ emailer.controller("ShowEmailsCtrl", ["$scope", "$routeParams", "$modal", "Email
     function(resp) {
       $scope.recipients = Recipient.query({"emailId": resp.id});
       $scope.email = resp;
+    }, function(err) {
+      $cookieStore.remove('unsentEmailId');
+      $location.path("/emails/new")
     });
 
   $scope.$watch("email.body", function(a,b) {
@@ -41,4 +53,3 @@ emailer.controller("ShowEmailsCtrl", ["$scope", "$routeParams", "$modal", "Email
   }
 
 }])
-
