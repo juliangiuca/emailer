@@ -1,24 +1,42 @@
-emailer.controller("typeaheadRecipientsCtrl", ["$scope", "$http", "Contact", "Recipient", function typeaheadRecipientsCtrl ($scope, $http, Contact, Recipient) {
-  $scope.contacts = Contact.query()
-  $scope.selected = undefined;
+emailer.controller("typeaheadRecipientsCtrl", ["$scope", "$http", "$q", "Contact", "Recipient", "Group", "GroupMember", function typeaheadRecipientsCtrl ($scope, $http, $q, Contact, Recipient, Group, GroupMember) {
+  $scope.contacts = $scope.groups = $scope.selected = undefined
+
+  var getRecipients = function() {
+    Recipient.query({emailId: $scope.email.id},
+      function (recipients) {
+        if ($scope.recipients != recipients)
+          $scope.recipients = recipients
+      });
+  }
+
+  $q.all([
+    Contact.query().$promise,
+    Group.query().$promise
+  ]).then(function (results) {
+    $scope.contactsOrGroups = _.union(results[0], results[1])
+  })
 
   $scope.addRecipientOrContact = function() {
-    var emailAddress;
-    var isAnObj = angular.isObject($scope.selected);
+    var userPicked = _.clone($scope.selected);
+    var isAnObj = angular.isObject(userPicked);
 
-    if (isAnObj)      emailAddress = $scope.selected.email_address
-    else              emailAddress = $scope.selected
+    if (!isAnObj)
+      userPicked = new Recipient({emailAddress: userPicked})
 
-    var recipient = new Recipient();
-    recipient.$save(
+    var picked = userPicked.$addToEmail(
       {
         emailId: $scope.email.id,
-        contactEmail: emailAddress
-      },
-      function (res) {
-        $scope.recipients.push(res);
-        $scope.selected = undefined;
-      })
+      });
+
+    picked.then(function(data) {
+      console.log($scope.contactsOrGroups)
+      $scope.selected = undefined;
+      getRecipients();
+    }, function(err) {
+      $scope.selected = undefined;
+    })
+
+    return {hi: "lo"};
   };
 
   $scope.removeRecipient = function(recipient) {
@@ -28,7 +46,7 @@ emailer.controller("typeaheadRecipientsCtrl", ["$scope", "$http", "Contact", "Re
         recipientId: recipient.id
       },
       function (res) {
-      $scope.recipients = _.filter($scope.recipients, function (r) { return r != res })
+        getRecipients();
     });
   }
 

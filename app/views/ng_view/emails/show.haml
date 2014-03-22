@@ -18,9 +18,9 @@
             .form-group
               -#%input.form-control.input-lg{"ng-model" => "newContact.email", :type => "text"}/
               %input.form-control.input-lg{"ng-model" => "selected",
-                "typeahead" => "contact as contact.email_address for contact in contacts | filter:$viewValue",
+                "typeahead" => "contactOrGroup as (contactOrGroup.email_address || contactOrGroup.name) for contactOrGroup in contactsOrGroups | filter:$viewValue",
                 type: "text",
-                "typeahead-on-select" => "addRecipientOrContact(selected)" }
+                "typeahead-on-select" => "addRecipientOrContact()" }
             .form-group
               %button.btn.btn-primary.form-control.input-lg{"ng-click" => "addRecipientOrContact()"}
                 %span.glyphicon.glyphicon-plus-sign
