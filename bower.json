@@ -1,0 +1,32 @@
+{
+  "name": "emailer",
+  "version": "0.0.1",
+  "authors": [
+    "localTOAST <localtoast@eggandjam.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-route": "~1.3.0",
+    "angular-resource": "~1.3.0",
+    "angular-cookies": "~1.3.0",
+    "angular": "~1.3.0",
+    "bootstrap": "~3.1.1",
+    "underscore": "~1.5.2",
+    "angular-bootstrap": "*",
+    "angular-sanitize": "*",
+    "textAngular": "*",
+    "Font-Awesome": "*",
+    "rangy": "*",
+    "angular-snap": "*"
+
+  }
+}

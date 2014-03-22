@@ -1,0 +1,25 @@
+{
+  "name": "angular-snap",
+  "version": "1.4.0",
+  "main": [
+    "angular-snap.js",
+    "angular-snap.css"
+  ],
+  "ignore": [
+    "README.md"
+  ],
+  "dependencies": {
+    "angular": "~1.2.4",
+    "snapjs": "latest"
+  },
+  "homepage": "https://github.com/jtrussell/angular-snap.js-bower",
+  "_release": "1.4.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.4.0",
+    "commit": "be85afc7abb914eda1582c3d0fa70cbf495e4267"
+  },
+  "_source": "git://github.com/jtrussell/angular-snap.js-bower.git",
+  "_target": "*",
+  "_originalSource": "angular-snap"
+}
