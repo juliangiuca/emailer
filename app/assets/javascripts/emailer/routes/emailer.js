@@ -1,35 +1,35 @@
 emailer.config(['$routeProvider', function ($routeProvider) {
   $routeProvider.
     when('/campaigns/:campaignId', {
-      templateUrl: 'ngView/campaigns/show',
+      templateUrl: 'ngViews/campaigns/show',
       //controller: 'CampaignShowCtrl',
     }).
     when('/campaigns', {
-      templateUrl: 'ngView/campaigns/index',
+      templateUrl: 'ngViews/campaigns/index',
       controller: 'CampaignCtrl',
     }).
     when('/users', {
-      templateUrl: 'ngView/users/index',
+      templateUrl: 'ngViews/users/index',
       controller: 'UserCtrl'
     }).
     when('/emails/new', {
-      templateUrl: 'ngView/emails/new',
+      templateUrl: 'ngViews/emails/new',
       controller: 'EmailsNewCtrl'
     }).
     when('/emails/:emailId', {
-      templateUrl: 'ngView/emails/show',
+      templateUrl: 'ngViews/emails/show',
       controller: 'EmailsShowCtrl'
     }).
     when('/groups', {
-      templateUrl: 'ngView/groups/index',
+      templateUrl: 'ngViews/groups/index',
       controller: 'GroupsIndexCtrl'
     }).
     when('/groups/new', {
-      templateUrl: 'ngView/groups/new',
+      templateUrl: 'ngViews/groups/new',
       controller: 'GroupsShowCtrl'
     }).
     when('/groups/:groupId', {
-      templateUrl: 'ngView/groups/show',
+      templateUrl: 'ngViews/groups/show',
       controller: 'GroupsShowCtrl'
     }).
     otherwise({

@@ -3,7 +3,7 @@ Emailer::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'email#index'
+  root 'emails#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
@@ -53,6 +53,12 @@ Emailer::Application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
+  get     'ngViews/*url',  to: 'ng_views#get'
+  put     'ngViews/*url',  to: 'ng_views#put'
+  delete  'ngViews/*url',  to: 'ng_viesw#delete'
+  post    'ngViews/*url',  to: 'ng_views#post'
+
   resources :contacts
 
   resources :emails do

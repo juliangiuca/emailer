@@ -1,0 +1,2 @@
+module NgViewsHelper
+end

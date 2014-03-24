@@ -1,0 +1,69 @@
+-#%text-angular{"ng-model"        => "subject",
+  -#"placeholder"     => "subject"}
+
+.email
+
+  %div.drawers
+    %snap-drawer.left-draw
+      .container
+        %nav.navbar.navbar-inverse.navbar-fixed-top
+          %span.navbar-brand Recipients
+        .contacts{"ng-controller" => "typeaheadRecipientsCtrl"}
+          %ul.list-unstyled
+            %li{"ng-repeat" => "recipient in recipients"}
+              %span.glyphicon.glyphicon-minus-sign{"ng-click" => "removeRecipient(recipient)"}
+              %a{href: "#/contacts/{{recipient.id}}", title: "{{recipient.email_address}}"} {{recipient.name || recipient.email_address}}
+
+          %form.form-inline{:role => "form"}
+            .form-group
+              -#%input.form-control.input-lg{"ng-model" => "newContact.email", :type => "text"}/
+              %input.form-control.input-lg{"ng-model" => "selected",
+                "typeahead" => "contactOrGroup as (contactOrGroup.email_address || contactOrGroup.name) for contactOrGroup in contactsOrGroups | filter:$viewValue",
+                type: "text",
+                "typeahead-on-select" => "addRecipientOrContact()" }
+            .form-group
+              %button.btn.btn-primary.form-control.input-lg{"ng-click" => "addRecipientOrContact()"}
+                %span.glyphicon.glyphicon-plus-sign
+                Add
+
+
+  %div.content
+    %snap-content{id: "content", "snap-options" => "{maxPosition: 400}"}
+      .container
+        %nav.navbar.navbar-default.navbar-fixed-top{:role => "navigation"}
+          %span.navbar-brand Email.
+
+        %br
+        %br
+        %text-angular-toolbar{name: "toolbar"}
+
+        %div{"text-angular"      => true,
+          "ng-model"             => "email.subject",
+          "ta-target-toolbars"   => 'toolbar',
+          "ta-text-editor-class" => "textAngular subject",
+          "ta-html-editor-class" => "textAngular subject",
+          "ta-focussed-class" => "focussed"}
+
+        %div{"text-angular"      => true,
+          "ng-model"             => "email.body",
+          "ta-target-toolbars"   => 'toolbar',
+          "ta-text-editor-class" => "textAngular body",
+          "ta-html-editor-class" => "textAngular body",
+          "ta-focussed-class" => "focussed"}
+
+        %button{ :class => "btn btn-primary btn-small", "snap-toggle" => "left"}
+          Recipients ->
+
+        .send
+          %button.btn.btn-success{"ng-click" => "showConfirmationPopup()"}
+            Send
+            %span.glyphicon.glyphicon-send
+
+        %script{type: "text/ng-template", id: "confirmationDialog"}
+          .modal-header
+            %h3 Send {{email.subject || "Email"}}?
+          .modal-body
+            You will email all the peoples, and there is no undo. Do you want to proceed?
+          .modal-footer
+            %button.btn.btn-primary{"ng-click" => "ok()"} Oh Hells Yes
+            %button.btn.btn-warning{"ng-click" => "cancel()"} Not yet...
