@@ -56,6 +56,7 @@ group :development, :test do
   gem 'byebug'
   gem 'dotenv'
   gem 'rspec'
+  gem 'rspec-rails'
   gem 'database_cleaner'
   gem 'factory_girl'
 end
