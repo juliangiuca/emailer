@@ -1,4 +1,4 @@
-// This is a manifest file that'll be compiled into application.js, which will include all the files
+// This is a manifest file that'll be compiled into application, which will include all the files
 // listed below.
 //
 // Any JavaScript/Coffee file within this directory, lib/assets/javascripts, vendor/assets/javascripts,
@@ -14,17 +14,17 @@
 // require jquery_ujs
 // require turbolinks
 //
-//= angular/angular
-//= angular-resource/angular-resource
-//= angular-route/angular-route
-//= angular-sanitize/angular-sanitize
-//= angular-cookies/angular-cookies
-//= angular-bootstrap/ui-bootstrap.min
-//= angular-bootstrap/ui-bootstrap-tpls.min
-//= underscore/underscore-min
-//= textAngular/textAngular
-//= snapjs/snap
-//= angular-snap/angular-snap
+//= require angular/angular
+//= require angular-resource/angular-resource
+//= require angular-route/angular-route
+//= require angular-sanitize/angular-sanitize
+//= require angular-cookies/angular-cookies
+//= require angular-bootstrap/ui-bootstrap.min
+//= require angular-bootstrap/ui-bootstrap-tpls.min
+//= require underscore/underscore-min
+//= require textAngular/textAngular
+//= require snapjs/snap
+//= require angular-snap/angular-snap
 //
-//= require ./emailer/app.js
+//= require ./emailer/app
 //= require_tree ./emailer

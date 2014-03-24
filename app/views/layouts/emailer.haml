@@ -3,8 +3,10 @@
   %head
     %title Emailer
     %meta{name: "viewport", content: "width=device-width, initial-scale=1.0"}
-    = javascript_link_tag :emailer
+    = javascript_include_tag :emailer
     = stylesheet_link_tag :emailer
+    = csrf_meta_tags
+
 
     :css
       body { padding-top: 70px; }

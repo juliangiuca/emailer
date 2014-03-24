@@ -14,5 +14,5 @@
  *= bootstrap/dist/css/bootstrap.min.css
  *= Font-Awesome/css/font-awesome.min.css
  *= angular-snap/angular-snap.min.css
- *= require_tree emailer
+ *= require_tree ./emailer
  */
