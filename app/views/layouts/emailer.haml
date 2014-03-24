@@ -1,0 +1,49 @@
+!!!
+%html{"data-framework" => "angularjs", :lang => "en", "ng-app" => "emailer"}
+  %head
+    %title todo
+    %meta{name: "viewport", content: "width=device-width, initial-scale=1.0"}
+    %script{:src => "app/bower_components/angular/angular.js"}
+    %script{:src => "app/bower_components/angular-resource/angular-resource.js"}
+    %script{:src => "app/bower_components/angular-route/angular-route.js"}
+    %script{:src => "app/bower_components/angular-sanitize/angular-sanitize.js"}
+    %script{:src => "app/bower_components/angular-cookies/angular-cookies.js"}
+    %script{:src => "app/bower_components/angular-bootstrap/ui-bootstrap.min.js"}
+    %script{:src => "app/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"}
+    %script{:src => "app/bower_components/underscore/underscore-min.js"}
+    %script{:src => "app/bower_components/textAngular/textAngular.js"}
+    %script{:src => "app/bower_components/snapjs/snap.js"}
+    %script{:src => "app/bower_components/angular-snap/angular-snap.js"}
+    %link{:href => "app/bower_components/bootstrap/dist/css/bootstrap.min.css", :rel => "stylesheet"}/
+    %link{:href => "app/bower_components/Font-Awesome/css/font-awesome.min.css", :rel => "stylesheet"}/
+    %link{:href => "app/bower_components/angular-snap/angular-snap.min.css", :rel => "stylesheet"}/
+    %link{:href => "stylesheets/campaign.css", :rel => "stylesheet"}/
+    %link{:href => "stylesheets/email.css", :rel => "stylesheet"}/
+    %script{:src => "app/app.js", :type => "text/javascript"}
+    - %w(routes services directives controllers).each do |type|
+      - Dir.glob(File.join(RACK_ROOT, "public", "app", type, "*.js")).each do |file|
+        %script{:src => "app/#{type}/#{File.basename(file)}", :type => "text/javascript"}
+
+    :css
+      body { padding-top: 70px; }
+      .nav, .pagination, .carousel a { cursor: pointer; }
+      .modal {
+        display: block;
+        height: 0;
+        overflow: visible;
+      }
+      .hide {
+        display: none;
+      }
+      .modal-body:before,
+      .modal-body:after {
+        display: table;
+        content: " ";
+      }
+      .modal-header:before,
+      .modal-header:after {
+        display: table;
+        content: " ";
+      }
+  %body
+    %ng-view

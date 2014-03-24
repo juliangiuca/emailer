@@ -53,4 +53,14 @@ Emailer::Application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+  resources :contacts
+
+  resources :emails do
+    resources :recipients
+  end
+
+  resources :groups do
+    resources :members
+  end
+
 end
