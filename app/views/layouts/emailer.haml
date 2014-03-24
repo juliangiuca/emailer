@@ -4,11 +4,7 @@
     %title Emailer
     %meta{name: "viewport", content: "width=device-width, initial-scale=1.0"}
     = javascript_link_tag :emailer
-    %link{:href => "app/bower_components/bootstrap/dist/css/bootstrap.min.css", :rel => "stylesheet"}/
-    %link{:href => "app/bower_components/Font-Awesome/css/font-awesome.min.css", :rel => "stylesheet"}/
-    %link{:href => "app/bower_components/angular-snap/angular-snap.min.css", :rel => "stylesheet"}/
-    %link{:href => "stylesheets/campaign.css", :rel => "stylesheet"}/
-    %link{:href => "stylesheets/email.css", :rel => "stylesheet"}/
+    = stylesheet_link_tag :emailer
 
     :css
       body { padding-top: 70px; }

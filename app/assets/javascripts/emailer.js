@@ -13,7 +13,7 @@
 // require jquery
 // require jquery_ujs
 // require turbolinks
-
+//
 //= angular/angular
 //= angular-resource/angular-resource
 //= angular-route/angular-route
@@ -25,6 +25,6 @@
 //= textAngular/textAngular
 //= snapjs/snap
 //= angular-snap/angular-snap
-
+//
 //= require ./emailer/app.js
 //= require_tree ./emailer
