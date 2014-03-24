@@ -10,8 +10,21 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
-//= require jquery_ujs
-//= require turbolinks
+// require jquery
+// require jquery_ujs
+// require turbolinks
+
+//= angular/angular
+//= angular-resource/angular-resource
+//= angular-route/angular-route
+//= angular-sanitize/angular-sanitize
+//= angular-cookies/angular-cookies
+//= angular-bootstrap/ui-bootstrap.min
+//= angular-bootstrap/ui-bootstrap-tpls.min
+//= underscore/underscore-min
+//= textAngular/textAngular
+//= snapjs/snap
+//= angular-snap/angular-snap
+
 //= require ./emailer/app.js
 //= require_tree ./emailer
