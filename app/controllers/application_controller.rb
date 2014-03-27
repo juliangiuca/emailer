@@ -6,4 +6,8 @@ class ApplicationController < ActionController::Base
   def current_user
     User.first
   end
+
+  def request_body
+    @request_body ||= JSON.load(request.body)
+  end
 end

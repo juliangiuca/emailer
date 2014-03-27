@@ -11,8 +11,8 @@
  * require_self
  * require_tree .
  *
- *= bootstrap/dist/css/bootstrap.min.css
- *= Font-Awesome/css/font-awesome.min.css
- *= angular-snap/angular-snap.min.css
+ *= require bootstrap/dist/css/bootstrap.min.css
+ *= require Font-Awesome/css/font-awesome.min.css
+ *= require angular-snap/angular-snap.min.css
  *= require_tree ./emailer
  */
