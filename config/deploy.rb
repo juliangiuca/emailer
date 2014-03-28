@@ -30,7 +30,6 @@ namespace :deploy do
       # Your restart mechanism here, for example:
       # execute :touch, release_path.join('tmp/restart.txt')
       if test("[ -f #{shared_path}/tmp/pids/unicorn.pid ]")
-        execute "cat #{shared_path}/tmp/pids/unicorn.pid"
         execute "kill -USR2 `cat #{shared_path}/tmp/pids/unicorn.pid`"
       else
         info "No unicorn process found"

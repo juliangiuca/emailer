@@ -33,6 +33,7 @@ gem 'haml'
 gem 'mail'
 gem 'json'
 gem 'active_model_serializers'
+gem 'execjs'
 
 
 group :doc do
@@ -47,7 +48,7 @@ end
 group :development do
   gem 'capistrano'
   gem 'capistrano-bundler'
-  gem 'capistrano-rvm'
+  gem 'capistrano-rbenv'
   gem 'capistrano-rails'
   gem 'newrelic_rpm'
 end
