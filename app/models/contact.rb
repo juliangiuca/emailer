@@ -12,7 +12,8 @@
 
 class Contact < ActiveRecord::Base
   belongs_to :user
-  has_and_belongs_to_many :groups
+  has_many :memberships
+  has_many :groups, through: :memberships
 
   validates_presence_of :email_address
   validates_uniqueness_of :email_address, scope: :user_id

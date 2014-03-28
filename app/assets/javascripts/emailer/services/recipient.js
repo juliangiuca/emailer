@@ -7,7 +7,7 @@ emailer.factory('Recipient', ['$resource', function($resource) {
     },
     {
       update: {method: 'PATCH'},
-      addToEmail: {method: 'POST', url: "/emails/:emailId/recipients?email=:emailAddress"}
+      addToEmail: {method: 'POST', url: "/emails/:emailId/recipients?emailAddress=:emailAddress"}
     }
   )
 }])

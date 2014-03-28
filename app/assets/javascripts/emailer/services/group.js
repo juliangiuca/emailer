@@ -6,7 +6,7 @@ emailer.factory('Group', ['$resource', function($resource) {
     },
     {
       update: {method: 'PATCH'},
-      addToEmail: {method: 'POST', url: "/emails/:emailId/groups/:groupId"}
+      addToEmail: {method: 'POST', url: "/emails/:emailId/recipients/?groupId=:groupId"}
     }
   )
 }])

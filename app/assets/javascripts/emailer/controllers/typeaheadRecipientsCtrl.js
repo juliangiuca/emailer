@@ -20,9 +20,11 @@ emailer.controller("typeaheadRecipientsCtrl", ["$scope", "$http", "$q", "Contact
     var userPicked = _.clone($scope.selected);
     var isAnObj = angular.isObject(userPicked);
 
+    //Create the recipient if it's only an email address
     if (!isAnObj)
       userPicked = new Recipient({emailAddress: userPicked})
 
+    //Add the user to an email
     var picked = userPicked.$addToEmail(
       {
         emailId: $scope.email.id,

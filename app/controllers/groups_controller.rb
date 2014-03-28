@@ -15,6 +15,6 @@ class GroupsController < ApiController
 
   private
   def group
-    current_user.groups.find(params[:id])
+    @group ||= current_user.groups.find(params[:id])
   end
 end
