@@ -33,8 +33,7 @@ gem 'haml'
 gem 'mail'
 gem 'json'
 gem 'active_model_serializers'
-gem 'execjs'
-
+gem 'therubyracer', platforms: :ruby
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
