@@ -23,6 +23,9 @@ emailer.controller("EmailsNewCtrl", ["$scope", "$cookieStore", "$location", "$q"
     Email.save(function(resp) {
       $scope.email = resp;
       deferred.resolve(resp.id)
+    }, function(err) {
+      console.log("Save failed. " + err);
+      deferred.reject(err);
     });
 
     return deferred.promise;
@@ -32,9 +35,18 @@ emailer.controller("EmailsNewCtrl", ["$scope", "$cookieStore", "$location", "$q"
     goToEmail();
   } else {
     createEmail().then(function(emailId) {
+      console.log("email ID is: " + emailId);
       return setNewEmailCookie(emailId);
+    }, function(err) {
+      console.log("couldn't create email");
+      debugger
+      var i=0
     }).then(function(emailId) {
       return fetchRecipients(emailId)
+    }, function (err) {
+      console.log("what.")
+      debugger
+      var i=0
     }).then(function() {
       return goToEmail();
     });

@@ -5,13 +5,16 @@ class EmailsController < ApiController
   end
 
   def create
-    byebug
     email = current_user.emails.create!
     render json: email, status: :created
   end
 
   def show
+
     render json: email
+
+  rescue NoMethodError, ActiveRecord::RecordNotFound => e
+    render nothing: true, status: :not_found
   end
 
   def update
