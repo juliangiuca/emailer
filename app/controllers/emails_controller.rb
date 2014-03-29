@@ -5,6 +5,7 @@ class EmailsController < ApiController
   end
 
   def create
+    byebug
     email = current_user.emails.create!
     render json: email, status: :created
   end
