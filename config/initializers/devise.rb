@@ -233,7 +233,8 @@ Devise.setup do |config|
   config.omniauth :google_oauth2, ENV["GOOGLE_CLIENT_ID"], ENV["GOOGLE_CLIENT_SECRET"], 
     {
       prompt: "consent",
-      access_type: "offline"
+      access_type: "offline",
+      scope: "https://mail.google.com/"
     }
 
 

@@ -2,16 +2,18 @@
 #
 # Table name: users
 #
-#  id               :integer          not null, primary key
-#  name             :string(255)
-#  email_address    :string(255)
-#  first_name       :string(255)
-#  last_name        :string(255)
-#  uid              :string(255)
-#  refresh_token    :string(255)
-#  token            :string(255)
-#  token_expires_at :datetime
-#  image            :string(255)
+#  id                      :integer          not null, primary key
+#  name                    :string(255)
+#  email_address           :string(255)
+#  first_name              :string(255)
+#  last_name               :string(255)
+#  uid                     :string(255)
+#  refresh_token           :string(255)
+#  access_token            :string(255)
+#  access_token_expires_at :datetime
+#  expires                 :boolean
+#  image                   :string(255)
+#  provider                :string(255)
 #
 
 class User < ActiveRecord::Base

@@ -1,6 +1,6 @@
 class WelcomeController < ApplicationController
 
-  layout "emailer"
+  layout "welcome"
 
   def index
     if !user_signed_in?

@@ -23,7 +23,9 @@ function AuthenticationInterceptor($q){
 
     // optional method
     'responseError': function(rejection) {
-      document.location = "/"
+      if (rejection.status === 401) {
+        document.location = "/"
+      }
       // do something on error
       //if (canRecover(rejection)) {
         //return responseOrNewPromise

@@ -37,6 +37,9 @@ gem 'therubyracer', platforms: :ruby
 gem 'omniauth'
 gem 'devise'
 gem 'omniauth-google-oauth2'
+gem 'gmail_xoauth'
+gem 'rest-client'
+gem 'google-api-client'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

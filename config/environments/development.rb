@@ -28,4 +28,13 @@ Emailer::Application.configure do
   config.assets.debug = true
 
   config.action_mailer.default_url_options = { host: 'localhost:3000' }
+  config.asset_host = 'http://localhost:3000'
+  IMAGE_LOCATION = "http://localhost:3000/i/"
+
+  Mail.defaults do
+     delivery_method :smtp, { :address              => "smtp.gmail.com",
+                              :port                 => 587,
+                              :authentication       => 'XOAUTH2',
+                              :enable_starttls_auto => true  }
+ end
 end

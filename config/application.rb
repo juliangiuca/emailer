@@ -29,6 +29,7 @@ module Emailer
     # config.i18n.default_locale = :de
 
     config.assets.paths << Rails.root.join('vendor', 'assets', 'components')
-    
+
+    config.autoload_paths += %W(#{config.root}/app/jobs)
   end
 end

@@ -37,8 +37,6 @@ emailer.controller("typeaheadRecipientsCtrl", ["$scope", "$http", "$q", "Contact
     }, function(err) {
       $scope.selected = undefined;
     })
-
-    return {hi: "lo"};
   };
 
   $scope.removeRecipient = function(recipient) {

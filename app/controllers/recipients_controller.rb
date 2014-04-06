@@ -5,8 +5,12 @@ class RecipientsController < ApiController
   end
 
   def create
-
     add_recipient_by_email || add_recipient_by_id || add_recipient_by_group
+  end
+
+  def destroy
+    TrackingPixel.where(email_id: email.id, contact_id: params[:id]).destroy_all
+    render json nil, status: :deleted
   end
 
   private
