@@ -55,6 +55,7 @@ namespace :deploy do
   end
 
   after :finishing, 'deploy:cleanup'
+  after :finishing, 'deploy:restart'
   before :starting, 'deploy:pull_down_secret_files'
 
 end
