@@ -31,7 +31,6 @@ gem "resque", "~> 2.0.0.pre.1", github: "resque/resque"
 gem 'annotate'
 gem 'haml'
 gem 'mail'
-gem 'roadie', '~> 2.4.3'
 gem 'json'
 gem 'active_model_serializers'
 gem 'therubyracer', platforms: :ruby

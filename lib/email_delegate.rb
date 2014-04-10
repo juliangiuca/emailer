@@ -9,10 +9,26 @@ class EmailDelegate < SimpleDelegator
   end
 
   def html
-    @html ||= Roadie::Document.new(parsed_body).transform
+    @html ||= body_with_html
   end
 
   private
+  def body_with_html
+    html = <<-HTML
+    <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+    <html>
+      <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+      </head>
+      <body>
+      #{parsed_body}
+      </body>
+    </html>
+    HTML
+  end
+
   def parsed_body
     regex = Regexp.new("(#{mappings.keys.join("|")})")
     @parsed_body ||= body.gsub(regex, mappings)
