@@ -10,7 +10,7 @@ set :repo_url, 'git@github.com:juliangiuca/emailer.git'
 # set :log_level, :debug
 # set :pty, true
 
- set :linked_files, %w{config/settings.json config/newrelic.yml}
+ set :linked_files, %w{config/database.yml config/newrelic.yml .env}
  set :linked_dirs, %w{bin logs tmp/pids tmp/cache tmp/sockets}
 
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
@@ -40,7 +40,8 @@ namespace :deploy do
   task :pull_down_secret_files do
     on roles(:all) do
       execute "mkdir -p /data/emailer/shared/config/"
-      execute "wget --user=#{ENV['BITBUCKET_USER']} --password='#{ENV['BITBUCKET_PASSWORD']}' -q -N https://bitbucket.org/localtoast/secret-files/raw/master/emailer/settings.production.json -O /data/emailer/shared/config/settings.json"
+      execute "wget --user=#{ENV['BITBUCKET_USER']} --password='#{ENV['BITBUCKET_PASSWORD']}' -q -N https://bitbucket.org/localtoast/secret-files/raw/master/emailer/database.yml -O /data/emailer/shared/config/database.yml"
+      execute "wget --user=#{ENV['BITBUCKET_USER']} --password='#{ENV['BITBUCKET_PASSWORD']}' -q -N https://bitbucket.org/localtoast/secret-files/raw/master/emailer/dotenv -O /data/emailer/shared/.env"
       execute "wget --user=#{ENV['BITBUCKET_USER']} --password='#{ENV['BITBUCKET_PASSWORD']}' -q -N https://bitbucket.org/localtoast/secret-files/raw/master/emailer/newrelic.yml -O /data/emailer/shared/config/newrelic.yml"
     end
   end
