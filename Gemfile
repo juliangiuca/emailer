@@ -39,6 +39,7 @@ gem 'devise'
 gem 'omniauth-google-oauth2'
 gem 'gmail_xoauth'
 gem 'rest-client'
+gem 'dotenv'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -59,7 +60,6 @@ end
 
 group :development, :test do
   gem 'byebug'
-  gem 'dotenv'
   gem 'rspec'
   gem 'rspec-rails'
   gem 'database_cleaner'
