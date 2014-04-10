@@ -5,6 +5,8 @@ class EmailJob
 
   def self.perform(email_id)
     email = Email.where(id: email_id).includes(:tracking_pixels).references(:tracking_pixels).first
+    user = email.user
+    user.refresh_access_token!
 
     email.tracking_pixels.each do |tracking_pixel|
       Resque.enqueue(EmailJob::ToRecipient, email.id, tracking_pixel.id)
@@ -25,20 +27,20 @@ class EmailJob
       tracked_email.tracking_pixel = tracking_pixel
 
       mail = Mail.new do
-        content_type 'text/html; charset=UTF-8'
-        from    "#{user.email_address}"
-        to      'me@eggandjam.com'
-        subject "#{email.subject}"
-        body    tracked_email.parsed_body
+        content_type  'text/html; charset=UTF-8'
+        from          user.email_address
+        to            tracking_pixel.contact.email_address
+        subject       email.subject
+        body          tracked_email.html
       end
 
       mail.delivery_method.settings.merge!({
-        user_name: "#{user.email_address}",
-        password:  "#{user.access_token}"
+        user_name: user.email_address,
+        password:  user.access_token
       })
 
       mail.deliver!
-      email.update(sent: true)
+      tracking_pixel.update(sent: true)
     end
   end
 end

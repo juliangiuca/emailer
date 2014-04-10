@@ -8,12 +8,16 @@ class EmailDelegate < SimpleDelegator
     }
   end
 
+  def html
+    @html ||= Roadie::Document.new(parsed_body).transform
+  end
+
+  private
   def parsed_body
     regex = Regexp.new("(#{mappings.keys.join("|")})")
     @parsed_body ||= body.gsub(regex, mappings)
   end
 
-  private
   def recipient
     @recipient ||= tracking_pixel.contact
   end

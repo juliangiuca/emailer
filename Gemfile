@@ -31,6 +31,7 @@ gem "resque", "~> 2.0.0.pre.1", github: "resque/resque"
 gem 'annotate'
 gem 'haml'
 gem 'mail'
+gem 'roadie', '~> 2.4.3'
 gem 'json'
 gem 'active_model_serializers'
 gem 'therubyracer', platforms: :ruby
@@ -39,7 +40,6 @@ gem 'devise'
 gem 'omniauth-google-oauth2'
 gem 'gmail_xoauth'
 gem 'rest-client'
-gem 'google-api-client'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

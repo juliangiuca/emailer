@@ -234,7 +234,7 @@ Devise.setup do |config|
     {
       prompt: "consent",
       access_type: "offline",
-      scope: "https://mail.google.com/"
+      scope: "userinfo.email, userinfo.profile, https://mail.google.com/"
     }
 
 

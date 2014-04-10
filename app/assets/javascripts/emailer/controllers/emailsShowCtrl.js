@@ -10,6 +10,10 @@ emailer.controller("EmailsShowCtrl",
                       "Recipient",
                       function ShowEmailsCtrl ($scope, $http, $routeParams, $modal, $cookieStore, $location, Email, Recipient) {
 
+  setNewEmailCookie = function(emailId) {
+    $cookieStore.put('unsentEmailId', emailId);
+  }
+
   Email.get(
     {
       emailId: $routeParams.emailId
@@ -19,7 +23,7 @@ emailer.controller("EmailsShowCtrl",
       $scope.email   = resp;
       $scope.body    = _.clone(resp.body);
       $scope.subject = _.clone(resp.subject);
-      console.log("ding")
+      setNewEmailCookie(resp.id)
     }, function(err) {
       $cookieStore.remove('unsentEmailId');
       $location.path("/emails/new")
