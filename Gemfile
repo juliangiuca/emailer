@@ -40,6 +40,7 @@ gem 'omniauth-google-oauth2'
 gem 'gmail_xoauth'
 gem 'rest-client'
 gem 'dotenv'
+gem 'foreman'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
