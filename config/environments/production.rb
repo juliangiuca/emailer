@@ -80,7 +80,7 @@ Emailer::Application.configure do
 
   config.action_mailer.default_url_options = { host: 'innocuous.me' }
   config.asset_host = 'http://innocuous.me'
-  IMAGE_LOCATION = "http://i.innocuous.me/"
+  IMAGE_LOCATION = "http://i.innocuous.me/tp/"
 
   Mail.defaults do
      delivery_method :smtp, { :address              => "smtp.gmail.com",
