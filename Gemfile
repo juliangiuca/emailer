@@ -40,7 +40,7 @@ gem 'omniauth-google-oauth2'
 gem 'gmail_xoauth'
 gem 'rest-client'
 gem 'dotenv'
-gem 'foreman'
+gem 'newrelic_rpm'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -56,7 +56,6 @@ group :development do
   gem 'capistrano-bundler'
   gem 'capistrano-rbenv'
   gem 'capistrano-rails'
-  gem 'newrelic_rpm'
 end
 
 group :development, :test do

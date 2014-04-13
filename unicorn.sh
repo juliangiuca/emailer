@@ -5,7 +5,7 @@ function remove_pid_file {
 
 function start_unicorn {
   echo "starting unicorn"
-  /home/emailer/.rbenv/bin/rbenv exec bundle exec unicorn -c /data/emailer/current/config/unicorn_config.rb -E production >> /data/emailer/shared/log/unicorn.log 2>&1
+  /home/emailer/.rbenv/bin/rbenv exec bundle exec unicorn_rails -c /data/emailer/current/config/unicorn_config.rb -E production >> /data/emailer/shared/log/unicorn.log 2>&1
 }
 
 while true; do
