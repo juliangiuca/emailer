@@ -39,7 +39,7 @@ class EmailDelegate < SimpleDelegator
   end
 
   def tracking
-   @tracking ||= %Q|<img src="#{IMAGE_LOCATION}#{tracking_pixel.tracking}">|
+   @tracking ||= %Q|<img src="#{IMAGE_LOCATION}#{tracking_pixel.tracking}" style="display:none; width:1px; height:1px">|
   end
 
 end
