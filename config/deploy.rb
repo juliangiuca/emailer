@@ -24,8 +24,8 @@ set :rbenv_roles, :all # default value
 
 namespace :deploy do
 
-  desc 'Restart application'
-  task :restart do
+  desc 'Restart application' do
+  task :restart_unicorn do
     on roles(:app), in: :sequence, wait: 5 do
       # Your restart mechanism here, for example:
       # execute :touch, release_path.join('tmp/restart.txt')
@@ -36,6 +36,25 @@ namespace :deploy do
       end
     end
   end
+
+  desc 'Restart unicorn'
+  task :restart_unicorn do
+    on roles(:app), in: :sequence, wait: 5 do
+      restart_unicorn
+      restart_resque
+    end
+  end
+
+desc 'Restart resque'
+  task :restart_resque do
+    on roles(:app), in: :sequence, wait: 5 do
+      # Your restart mechanism here, for example:
+      # execute :touch, release_path.join('tmp/restart.txt')
+      Dir.glob(File.join(shared_path, "tmp", "pids", "resque-worker.*.pid")).each do |pid_file|
+        execute "kill -QUIT `cat #{pid_file}`"
+      end
+
+    end
 
   task :pull_down_secret_files do
     on roles(:all) do
