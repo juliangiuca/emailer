@@ -38,7 +38,7 @@ namespace :deploy do
   end
 
   desc 'Restart unicorn'
-  task :restart_unicorn do
+  task :restart do
     on roles(:app), in: :sequence, wait: 5 do
       restart_unicorn
       restart_resque
