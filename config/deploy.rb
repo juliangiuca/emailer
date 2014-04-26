@@ -55,6 +55,8 @@ desc 'Restart resque'
       end
 
     end
+  end
+end
 
   task :pull_down_secret_files do
     on roles(:all) do
