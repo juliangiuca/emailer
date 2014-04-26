@@ -3,7 +3,6 @@ class EmailDelegate < SimpleDelegator
 
   def mappings
     {
-      "%pixel" => tracking,
       "%name" => recipient.name,
     }
   end
@@ -24,6 +23,7 @@ class EmailDelegate < SimpleDelegator
       </head>
       <body>
       #{parsed_body}
+      #{tracking}
       </body>
     </html>
     HTML
