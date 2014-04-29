@@ -25,8 +25,6 @@
 
 //= require textAngular/src/textAngularSetup
 //= require textAngular/src/textAngular
-//= require snapjs/snap
-//= require angular-snap/angular-snap
-//
+
 //= require ./emailer/app
 //= require_tree ./emailer

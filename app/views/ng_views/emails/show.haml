@@ -1,46 +1,23 @@
--#%text-angular{"ng-model"        => "subject",
-  -#"placeholder"     => "subject"}
-
 .email
 
-  %div.drawers
-    %snap-drawer.left-draw
-      .container
-        %nav.navbar.navbar-inverse.navbar-fixed-top
-          %span.navbar-brand Recipients
-        .contacts{"ng-controller" => "typeaheadRecipientsCtrl"}
-          %ul.list-unstyled
-            %li{"ng-repeat" => "recipient in recipients"}
-              %span.glyphicon.glyphicon-minus-sign{"ng-click" => "removeRecipient(recipient)"}
-              %a{href: "#/contacts/{{recipient.id}}", title: "{{recipient.email_address}}"} {{recipient.name || recipient.email_address}}
+  .navbar.navbar-inverse.navbar-fixed-top{role: "navigation"}
+    .container-fluid
+      .navbar-header
+        %a.navbar-brand{href: "#"} Innocuous.me
 
-          %form.form-inline{:role => "form"}
-            .form-group
-              -#%input.form-control.input-lg{"ng-model" => "newContact.email", :type => "text"}/
-              %input.form-control.input-lg{"ng-model" => "selected",
-                "typeahead" => "contactOrGroup as (contactOrGroup.email_address || contactOrGroup.name) for contactOrGroup in contactsOrGroups | filter:$viewValue",
-                type: "text",
-                "typeahead-on-select" => "addRecipientOrContact()" }
-            .form-group
-              %button.btn.btn-primary.form-control.input-lg{"ng-click" => "addRecipientOrContact()"}
-                %span.glyphicon.glyphicon-plus-sign
-                Add
+  .container-fluid
+    .row
+      .col-sm-3.col-md-2.sidebar
+        %ul.nav.nav-sidebar
+          %li.active
+            %a{href: "#"} Compose
+          %li
+            %a{href: "#"} Recipients
+          %li.disabled
+            %a{href: "#"} Metrics
 
-
-  %div.content
-    %snap-content{id: "content", "snap-options" => "{maxPosition: 400}"}
-      .container
-        %nav.navbar.navbar-default.navbar-fixed-top{:role => "navigation"}
-          %ul.nav.navbar-nav.navbar-brand
-            %li.menu-button{ "snap-toggle" => "left"}
-              = image_tag("open.png")
-            %li
-              New Email
-
-        %br
-        %br
-        %br
-        %br
+      .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
+        %h1.page-header Email
 
         %form
           %input.subject{"ng-model"  => "subject",
@@ -53,10 +30,8 @@
           "ta-html-editor-class" => "textAngular body",
           "ta-focussed-class"    => "focussed"}
 
-        %div.centered
+        %div
           %text-angular-toolbar{name: "toolbar"}
-
-
 
         .send
           %button.btn.btn-success{"ng-click" => "showConfirmationPopup()"}
