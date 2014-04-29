@@ -1,26 +1,68 @@
+@mixin editable {
+  padding: 6px 12px;
+  font-size: 14px;
+  color: #555555;
+  vertical-align: middle;
+  background-color: #ffffff;
+  background-image: none;
+  // border: 1px solid #cccccc;
+  // border-radius: 4px;
+  // -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  // box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  // -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  // transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
+
 .contacts {
   margin-top: 60px;
 }
+
+.centered {
+  text-align: middle;
+  margin: auto;
+}
 .email {
+  li {
+    padding: 3px;
+    vertical-align:baseline;
+  }
+
+  .menu-button {
+      cursor: pointer;
+      display: inline;
+      float: left;
+  }
+
+  .subject {
+    @include editable;
+    width: 100%;
+    border: {
+      color: #cccccc;
+      style: solid;
+      width: 1px 1px 1px 1px;
+      radius: 4px 4px 0px 0px;
+    }
+  }
 
   .textAngular {
+    @include editable;
     display: block;
-    padding: 6px 12px;
-    font-size: 14px;
-    color: #555555;
-    vertical-align: middle;
-    background-color: #ffffff;
-    background-image: none;
-    border: 1px solid #cccccc;
-    border-radius: 4px;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-    -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
-    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+
+    p {
+      padding: 0px;
+      margin: 0px;
+    }
 
     &.body {
       height: 200px;
+      max-height: 600px;
       overflow: scroll;
+      border: {
+        color: #cccccc;
+        style: solid;
+        width: 0px 1px 1px 1px;
+        radius: 0px 0px 4px 4px;
+      }
     }
   }
 
@@ -28,7 +70,7 @@
        border-color: #66afe9;
     outline: 0;
     -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
-            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6); 
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
   }
 
   .drawers {

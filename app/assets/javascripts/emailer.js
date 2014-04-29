@@ -22,7 +22,9 @@
 //= require angular-bootstrap/ui-bootstrap.min
 //= require angular-bootstrap/ui-bootstrap-tpls.min
 //= require underscore/underscore-min
-//= require textAngular/textAngular
+
+//= require textAngular/src/textAngularSetup
+//= require textAngular/src/textAngular
 //= require snapjs/snap
 //= require angular-snap/angular-snap
 //

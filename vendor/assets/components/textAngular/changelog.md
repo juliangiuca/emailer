@@ -1,5 +1,28 @@
 ###Changelog
 
+2014-04-08 v1.2.1-pre4
+
+- Fixing IE bugs with ta-default-wrap.
+
+2014-04-08 v1.2.1-pre3
+
+- Fixing a change focus bug introduced in v1.2.1-pre2
+- Changing the code so ta-bind no longer requires rangy-core.js, making it an optional requirement again.
+
+2014-04-08 v1.2.1-pre2
+
+- Fixed up ta-default-wrap. This now requires rangy-core.js
+- Fixed an IE Paste issue.
+- Fixed a webkit bug causing contenteditables not to loose focus.
+
+2014-03-24 v1.2.1-pre1
+
+- Moved setup functions into a seperate file, textAngularSetup.js. This file must be included before textAngular.js file. Using the defaults and textAngular.min.js causes no changes.
+- Adding the Image and Link click popup functions.
+- Adding ability to drag and drop files into the editor.
+- Manager now can add and remove tools dynamically.
+- Added Custom Renderers adding the ability to use placeholders, eg an image, in the editor and display something else in display mode. Uses factory function `taApplyCustomRenderers` to do this.
+
 2014-02-28 v1.2.0
 
 - Lots and Lots of changes, too many to list. Structural changes and added functionality. Supports down to IE8 and all other browsers.

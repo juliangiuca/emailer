@@ -31,28 +31,32 @@
     %snap-content{id: "content", "snap-options" => "{maxPosition: 400}"}
       .container
         %nav.navbar.navbar-default.navbar-fixed-top{:role => "navigation"}
-          %span.navbar-brand Email.
+          %ul.nav.navbar-nav.navbar-brand
+            %li.menu-button{ "snap-toggle" => "left"}
+              = image_tag("open.png")
+            %li
+              New Email
 
         %br
         %br
-        %text-angular-toolbar{name: "toolbar"}
+        %br
+        %br
 
-        %div{"text-angular"      => true,
-          "ng-model"             => "subject",
-          "ta-target-toolbars"   => 'toolbar',
-          "ta-text-editor-class" => "textAngular subject",
-          "ta-html-editor-class" => "textAngular subject",
-          "ta-focussed-class" => "focussed"}
+        %form
+          %input.subject{"ng-model"  => "subject",
+            "placeholder"            => "Subject"}
 
         %div{"text-angular"      => true,
           "ng-model"             => "body",
           "ta-target-toolbars"   => 'toolbar',
           "ta-text-editor-class" => "textAngular body",
           "ta-html-editor-class" => "textAngular body",
-          "ta-focussed-class" => "focussed"}
+          "ta-focussed-class"    => "focussed"}
 
-        %button{ :class => "btn btn-primary btn-small", "snap-toggle" => "left"}
-          Recipients ->
+        %div.centered
+          %text-angular-toolbar{name: "toolbar"}
+
+
 
         .send
           %button.btn.btn-success{"ng-click" => "showConfirmationPopup()"}

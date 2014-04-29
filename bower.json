@@ -23,10 +23,9 @@
     "underscore": "~1.5.2",
     "angular-bootstrap": "*",
     "angular-sanitize": "*",
-    "textAngular": "*",
+    "textAngular": "1.2.1-pre4",
     "Font-Awesome": "*",
     "rangy": "*",
     "angular-snap": "*"
-
   }
 }

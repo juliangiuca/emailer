@@ -404,7 +404,22 @@ function encodeEntities(value) {
   return value.
     replace(/&/g, '&amp;').
     replace(NON_ALPHANUMERIC_REGEXP, function(value){
-      return '&#' + value.charCodeAt(0) + ';';
+      // unsafe chars are: \u0000-\u001f \u007f-\u009f \u00ad \u0600-\u0604 \u070f \u17b4 \u17b5 \u200c-\u200f \u2028-\u202f \u2060-\u206f \ufeff \ufff0-\uffff from jslint.com/lint.html
+      // decimal values are: 0-31, 127-159, 173, 1536-1540, 1807, 6068, 6069, 8204-8207, 8232-8239, 8288-8303, 65279, 65520-65535
+      var c = value.charCodeAt(0);
+      // if unsafe character encode
+      if(c <= 159 ||
+        c == 173 ||
+        (c >= 1536 && c <= 1540) ||
+        c == 1807 ||
+        c == 6068 ||
+        c == 6069 ||
+        (c >= 8204 && c <= 8207) ||
+        (c >= 8232 && c <= 8239) ||
+        (c >= 8288 && c <= 8303) ||
+        c == 65279 ||
+        (c >= 65520 && c <= 65535)) return '&#' + c + ';';
+      return value; // avoids multilingual issues
     }).
     replace(/</g, '&lt;').
     replace(/>/g, '&gt;');
@@ -450,10 +465,29 @@ function validStyles(styleAttr){
 					|| value === 'center'
 					|| value === 'justify'
 				)
+			||
+				key === 'float' && (
+					value === 'left'
+					|| value === 'right'
+					|| value === 'none'
+				)
+			||
+				(key === 'width' || key === 'height') && (
+					value.match(/[0-9\.]*(px|em|rem|%)/)
+				)
 			) result += key + ': ' + value + ';';
 		}
 	});
 	return result;
+}
+
+// this function is used to manually allow specific attributes on specific tags with certain prerequisites
+function validCustomTag(tag, attrs, lkey, value){
+	// catch the div placeholder for the iframe replacement
+    if (tag === 'img' && attrs['ta-insert-video']){
+        if(lkey === 'ta-insert-video' || lkey === 'allowfullscreen' || lkey === 'frameborder' || (lkey === 'contenteditble' && value === 'false')) return true;
+    }
+    return false;
 }
 
 /**
@@ -481,7 +515,7 @@ function htmlSanitizeWriter(buf, uriValidator){
         angular.forEach(attrs, function(value, key){
           var lkey=angular.lowercase(key);
           var isImage=(tag === 'img' && lkey === 'src') || (lkey === 'background');
-          if ((lkey === 'style' && (value = validStyles(value)) !== '') || validAttrs[lkey] === true &&
+          if ((lkey === 'style' && (value = validStyles(value)) !== '') || validCustomTag(tag, attrs, lkey, value) || validAttrs[lkey] === true &&
             (uriAttrs[lkey] !== true || uriValidator(value, isImage))) {
             out(' ');
             out(key);
