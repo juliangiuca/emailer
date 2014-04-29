@@ -1,4 +1,4 @@
-class GroupsController < ApiController
+class Api::V1::GroupsController < Api::ApiController
 
   def index
     render json: current_user.groups.to_a

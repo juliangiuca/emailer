@@ -1,5 +1,7 @@
-class ContactsController < ApiController
+class ContactsController < UIController
+
+  layout "emailer"
+
   def index
-    render json: current_user.contacts.to_a
   end
 end

@@ -1,5 +1,5 @@
 emailer.factory('Recipient', ['$resource', function($resource) {
-  return $resource('/emails/:emailId/recipients/:recipientId',
+  return $resource('/api/v1/emails/:emailId/recipients/:recipientId',
     {
       emailId:'@emailId',
       recipientId:'@recipientId',
@@ -7,7 +7,7 @@ emailer.factory('Recipient', ['$resource', function($resource) {
     },
     {
       update: {method: 'PATCH'},
-      addToEmail: {method: 'POST', url: "/emails/:emailId/recipients?emailAddress=:emailAddress"}
+      addToEmail: {method: 'POST', url: "/api/v1/emails/:emailId/recipients?emailAddress=:emailAddress"}
     }
   )
 }])

@@ -1,4 +1,4 @@
-class ApiController < ApplicationController
+class Api::ApiController < ApplicationController
   layout false
   skip_before_action :verify_authenticity_token
   before_filter :logged_in_only

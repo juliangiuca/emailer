@@ -11,22 +11,30 @@ Emailer::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   get 'welcome', to: 'welcome#index'
-  root "bootstrap#index"
+  root "emails#index"
 
   get     'ngViews/*url',  to: 'ng_views#get'
   put     'ngViews/*url',  to: 'ng_views#put'
   delete  'ngViews/*url',  to: 'ng_viesw#delete'
   post    'ngViews/*url',  to: 'ng_views#post'
 
-  resources :contacts
 
-  resources :emails do
-    resources :recipients
-    post 'deliver'
+  get "/emails",     to: "emails#index"
+  get "/contacts",   to: "contacts#index"
+  get "/groups",     to: "groups#index"
+
+  namespace "api" do
+    namespace "v1" do
+      resources :contacts
+
+      resources :emails do
+        resources :recipients
+        post 'deliver'
+      end
+
+      resources :groups do
+        resources :members
+      end
+    end
   end
-
-  resources :groups do
-    resources :members
-  end
-
 end

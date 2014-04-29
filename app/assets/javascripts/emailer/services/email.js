@@ -1,8 +1,8 @@
 emailer.factory('Email', ['$resource', function($resource) {
-  return $resource('/emails/:emailId', 
+  return $resource('/api/v1/emails/:emailId',
     {emailId:'@id'},
     {
-      deliver: {method: 'POST', url: "/emails/:emailId/deliver"},
+      deliver: {method: 'POST', url: "/api/v1/emails/:emailId/deliver"},
     }
   )
 }])

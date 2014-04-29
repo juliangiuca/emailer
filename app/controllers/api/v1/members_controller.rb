@@ -1,4 +1,4 @@
-class MembersController < ApiController
+class Api::V1::MembersController < Api::ApiController
 
   def index
     render json: group.contacts.to_a

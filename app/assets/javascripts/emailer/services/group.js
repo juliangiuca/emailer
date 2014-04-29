@@ -1,12 +1,12 @@
 emailer.factory('Group', ['$resource', function($resource) {
-  return $resource('/groups/:groupId',
+  return $resource('/api/v1/groups/:groupId',
     {
       groupId:'@id',
       emailId:'@emailId'
     },
     {
       update: {method: 'PATCH'},
-      addToEmail: {method: 'POST', url: "/emails/:emailId/recipients/?groupId=:groupId"}
+      addToEmail: {method: 'POST', url: "/api/v1/emails/:emailId/recipients/?groupId=:groupId"}
     }
   )
 }])

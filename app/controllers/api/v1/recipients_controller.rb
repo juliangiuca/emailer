@@ -1,4 +1,4 @@
-class RecipientsController < ApiController
+class Api::V1::RecipientsController < Api::ApiController
 
   def index
     render json: email.recipients.to_a
