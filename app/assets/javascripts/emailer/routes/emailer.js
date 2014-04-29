@@ -8,7 +8,7 @@ emailer.config(['$routeProvider', function ($routeProvider) {
       templateUrl: 'ngViews/campaigns/index',
       controller: 'CampaignCtrl',
     }).
-    when('/users', {
+    when('/contacts', {
       templateUrl: 'ngViews/users/index',
       controller: 'UserCtrl'
     }).

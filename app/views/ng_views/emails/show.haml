@@ -4,15 +4,23 @@
     .container-fluid
       .navbar-header
         %a.navbar-brand{href: "#"} Innocuous.me
+      .navbar-collapse.collapse
+        %ul.nav.navbar-nav.navbar-right
+          %li
+            %a{href: "#/emails/new"} New Email
+          %li
+            %a{href: "#/contacts"} Contacts
+          %li
+            %a{href: "#/groups"} Groups
 
   .container-fluid
     .row
       .col-sm-3.col-md-2.sidebar
         %ul.nav.nav-sidebar
           %li.active
-            %a{href: "#"} Compose
+            %a{href: "#/emails/{{email.id}}"} Compose
           %li
-            %a{href: "#"} Recipients
+            %a{href: "#/emails/{{email.id}}/recipients"} Recipients
           %li.disabled
             %a{href: "#"} Metrics
 
