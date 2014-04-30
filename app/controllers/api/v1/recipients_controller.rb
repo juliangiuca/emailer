@@ -13,6 +13,12 @@ class Api::V1::RecipientsController < Api::ApiController
     render json nil, status: :deleted
   end
 
+  def update
+    debugger
+    i=0
+    i+=1
+  end
+
   private
   def email
     current_user.emails.find(params[:email_id])

@@ -12,9 +12,18 @@ class Api::V1::GroupsController < Api::ApiController
     render json: current_user.groups.create!(request_body)
   end
 
+  def update
+    group.update!(group_params)
+    render json: group
+  end
+
 
   private
   def group
     @group ||= current_user.groups.find(params[:id])
+  end
+
+  def group_params
+    params.require(:group).permit(:name)
   end
 end

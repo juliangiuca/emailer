@@ -1,6 +1,6 @@
-class GroupsController < UiController
+class GroupsController < UIController
 
-  layout "emailer"
+  layout "groups"
 
   def index
   end

@@ -1,7 +1,7 @@
 emailer.controller("EmailsNewCtrl", ["$scope", "$cookieStore", "$location", "$q", "Email", "Recipient", function NewEmailsCtrl ($scope, $cookieStore, $location, $q, Email, Recipient) {
 
   goToEmail = function() {
-    $location.path("/emails/" + getNewEmailCookie())
+    $location.path("/" + getNewEmailCookie())
   }
 
   setNewEmailCookie = function(emailId) {

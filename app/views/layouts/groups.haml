@@ -1,10 +1,11 @@
 !!!
-%html{"data-framework" => "angularjs", :lang => "en", "ng-app" => "emailer"}
+%html{"data-framework" => "angularjs", :lang => "en", "ng-app" => "groups"}
   %head
     %title Emailer
     %meta{name: "viewport", content: "width=device-width, initial-scale=1.0"}
 
-    = stylesheet_link_tag :emailer
+    = stylesheet_link_tag :shared
+    = stylesheet_link_tag :groups
     = csrf_meta_tags
 
 
@@ -12,5 +13,8 @@
     %p.notice= notice
     %p.alert= alert
 
+    = render :partial => "nav/navbar"
+
     %ng-view
-    = javascript_include_tag :emailer
+    = javascript_include_tag :shared
+    = javascript_include_tag :groups

@@ -18,10 +18,7 @@ class Api::V1::EmailsController < Api::ApiController
   end
 
   def update
-    attr = params[:changed]
-    raise unless ["subject", "body"].include?(attr)
-
-    email.update_attribute(attr, request_body[attr])
+    email.update!(email_params)
     render json: email
   end
 
@@ -31,7 +28,11 @@ class Api::V1::EmailsController < Api::ApiController
   end
 
   private
-    def email
-      @email ||= current_user.emails.find(params[:id])
-    end
+  def email
+    @email ||= current_user.emails.find(params[:id])
+  end
+
+  def email_params
+    params.require(:email).permit(:subject, :body)
+  end
 end

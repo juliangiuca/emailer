@@ -26,6 +26,6 @@
     "textAngular": "1.2.1-pre4",
     "Font-Awesome": "*",
     "rangy": "*",
-    "angular-snap": "*"
+    "angular-xeditable": "*"
   }
 }

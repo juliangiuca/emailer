@@ -12,5 +12,9 @@
     %p.notice= notice
     %p.alert= alert
 
+    = render :partial => "nav/navbar"
+
+
     %ng-view
+    = javascript_include_tag :shared
     = javascript_include_tag :emailer

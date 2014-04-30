@@ -1,0 +1,9 @@
+//= require angular/angular
+//= require angular-resource/angular-resource
+//= require angular-route/angular-route
+//= require angular-sanitize/angular-sanitize
+//= require angular-cookies/angular-cookies
+//= require angular-bootstrap/ui-bootstrap.min
+//= require angular-bootstrap/ui-bootstrap-tpls.min
+//= require underscore/underscore-min
+//= require angular-xeditable/dist/js/xeditable.js
