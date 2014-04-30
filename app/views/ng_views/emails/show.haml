@@ -1,0 +1,39 @@
+.email
+  .container-fluid
+    .row
+      .col-sm-3.col-md-2.sidebar
+        %ul.nav.nav-sidebar
+          %li{"ng-class" => "{active: interactWith=='compose'}"}
+            %a{"ng-click"=>"interactWith='compose'"} Compose
+          %li{"ng-class" => "{active: interactWith=='recipients'}"}
+            %a{"ng-click"=>"interactWith='recipients'"}
+              Recipients
+              .badge.pull-right
+                {{recipients.length || 0}}
+
+          %li.disabled{"ng-show" => "!email.sent"}
+            %a{href: "#"} Metrics
+          %li{"ng-show" => "email.sent"}
+            %a{href: "#"} Metrics
+
+      .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main{"ng-switch" => true, "on"=>"interactWith"}
+        %div{"ng-switch-when" => "compose"}
+          = render :partial => "ng_views/emails/compose"
+          .send
+            %button.btn.btn-success{"ng-click" => "showConfirmationPopup()"}
+              Send
+              %span.glyphicon.glyphicon-send
+
+        %div{"ng-switch-when" => "recipients"}
+          = render :partial => "ng_views/emails/recipients"
+
+
+
+        %script{type: "text/ng-template", id: "confirmationDialog"}
+          .modal-header
+            %h3 Send {{email.subject || "Email"}}?
+          .modal-body
+            You will email all the peoples, and there is no undo. Do you want to proceed?
+          .modal-footer
+            %button.btn.btn-primary{"ng-click" => "ok()"} Oh Hells Yes
+            %button.btn.btn-warning{"ng-click" => "cancel()"} Not yet...

@@ -21,22 +21,18 @@ emailer.controller("typeaheadRecipientsCtrl", ["$scope", "$http", "$q", "Contact
     var isAnObj = angular.isObject(userPicked);
 
     //Create the recipient if it's only an email address
-    if (!isAnObj)
-      userPicked = new Recipient({emailAddress: userPicked})
+    email = (!isAnObj) ? userPicked : false
+    email = email || userPicked.emailAddress
 
-    //Add the user to an email
-    var picked = userPicked.$addToEmail(
-      {
-        emailId: $scope.email.id,
-      });
+    if (email) {
+      $http.post("/api/v1/emails/" + $scope.email.id + "/recipients?emailAddress=" + email)
+        .then(getRecipients())
+    } else {
+      $http.post("/api/v1/emails/" + $scope.email.id + "/recipients?groupId=" + userPicked.id)
+        .then(getRecipients())
+    }
+    $scope.selected = undefined;
 
-    picked.then(function(data) {
-      console.log($scope.contactsOrGroups)
-      $scope.selected = undefined;
-      getRecipients();
-    }, function(err) {
-      $scope.selected = undefined;
-    })
   };
 
   $scope.removeRecipient = function(recipient) {

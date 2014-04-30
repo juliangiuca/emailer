@@ -21,8 +21,8 @@ emailer.config(['$routeProvider', function ($routeProvider) {
 
           return $http.get("/api/v1/emails/" + $route.current.params.emailId)
             .then(saveResourceData('email'))
-            .then($http.get("/api/v1/emails/" + $route.current.params.emailId + "/recipients"))
-            .then(saveResourceData('recipient'))
+            .then(function() { return $http.get("/api/v1/emails/" + $route.current.params.emailId + "/recipients")} )
+            .then(saveResourceData('recipients'))
             .then(function() {
               return data
             })

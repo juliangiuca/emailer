@@ -5,7 +5,7 @@ class Api::V1::RecipientsController < Api::ApiController
   end
 
   def create
-    add_recipient_by_email || add_recipient_by_id || add_recipient_by_group
+    add_recipient_by_email || add_recipient_by_group
   end
 
   def destroy
@@ -29,13 +29,6 @@ class Api::V1::RecipientsController < Api::ApiController
 
     contact = Contact.where(user_id: current_user.id, email_address: params[:emailAddress]).first
     contact ||= Contact.create!(user_id: current_user.id, email_address: params[:emailAddress])
-    add_recipient(contact)
-  end
-
-  def add_recipient_by_id
-    return nil unless params[:contactId]
-
-    contact = current_user.contacts.find(params[:contactId])
     add_recipient(contact)
   end
 
