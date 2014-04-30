@@ -46,4 +46,9 @@ emailer.controller("typeaheadRecipientsCtrl", ["$scope", "$http", "$q", "Contact
     });
   }
 
+  $scope.updateRecipient = function(data) {
+    var contact = new Contact(data)
+    contact.$update()
+  }
+
 }])

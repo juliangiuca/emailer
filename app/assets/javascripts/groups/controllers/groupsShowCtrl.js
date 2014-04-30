@@ -13,16 +13,14 @@ groups.controller("GroupsShowCtrl", ["$scope", "$routeParams", "Group", "GroupMe
     });
   };
 
-  $scope.updateMemberName = function(contactId, contactName) {
-    var contact = new Contact();
-    contact.id = contactId;
-    contact.name = contactName;
-    return contact.$update({changed: "name"})
+  $scope.updateMember = function(data) {
+    var contact = new Contact(data);
+    return contact.$update()
   };
 
   $scope.updateGroupName = function(data) {
     var group = $scope.group;
     group.name = data;
-    return group.$update({changed: "name"})
+    return group.$update()
   }
 }])

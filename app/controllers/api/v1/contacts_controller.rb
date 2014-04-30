@@ -4,13 +4,14 @@ class Api::V1::ContactsController < Api::ApiController
   end
 
   def update
+    debugger
     contact.update!(contact_params)
     render json: contact
   end
 
   private
   def contact_params
-    params.require(:contact).permit(:name)
+    params.require(:contact).permit(:name, :email_address)
   end
 
   def contact

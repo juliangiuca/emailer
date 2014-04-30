@@ -29,10 +29,10 @@
             %tbody
               %tr{"ng-repeat" => "member in members"}
                 %td
-                  %a{href: "#", "editable-text" => "member.name", "onbeforesave" => "updateMemberName(member.id, $data)"} {{member.name || "No name"}}
+                  %a{href: "#", "editable-text" => "member.name", "onbeforesave" => "updateMember({id: member.id, name: $data})"} {{member.name || "No name"}}
 
                 %td
-                  %a{href: "#", "editable-email" => "member.email_address"} {{member.email_address}}
+                  %a{href: "#", "editable-email" => "member.email_address", "onbeforesave" => "updateMember({id: member.id, email_address: $data})"} {{member.email_address}}
 
                 %td
                   %span.glyphicon.glyphicon-minus-sign{"ng-click" => "removeMember(member)"}

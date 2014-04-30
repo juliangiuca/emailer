@@ -25,10 +25,10 @@
       %tbody
         %tr{"ng-repeat" => "recipient in recipients"}
           %td
-            %a{"editable-text" => "recipient.name", "onbeforesave" => "updateMemberName(member.id, $data)"} {{recipient.name || "No name"}}
+            %a{"editable-text" => "recipient.name", "onbeforesave" => "updateRecipient({id:recipient.id, name: $data})"} {{recipient.name || "No name"}}
 
           %td
-            %a{"editable-email" => "recipient.email_address"} {{recipient.email_address}}
+            %a{"editable-email" => "recipient.email_address", "onbeforesave" => "updateRecipient({id:recipient.id, email_address: $data})"} {{recipient.email_address}}
 
           %td
             %span.glyphicon.glyphicon-minus-sign{"ng-click" => "removeRecipient(recipient)"}
