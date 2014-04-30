@@ -1,0 +1,15 @@
+%h1.page-header Email
+
+%form
+  %input.subject{"ng-model"  => "subject",
+    "placeholder"            => "Subject"}
+
+%div{"text-angular"      => true,
+  "ng-model"             => "body",
+  "ta-target-toolbars"   => 'toolbar',
+  "ta-text-editor-class" => "textAngular body",
+  "ta-html-editor-class" => "textAngular body",
+  "ta-focussed-class"    => "focussed"}
+
+%div
+  %text-angular-toolbar{name: "toolbar"}

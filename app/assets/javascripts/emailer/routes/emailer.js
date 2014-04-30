@@ -6,7 +6,28 @@ emailer.config(['$routeProvider', function ($routeProvider) {
     }).
     when('/:emailId', {
       templateUrl: 'ngViews/emails/show',
-      controller: 'EmailsShowCtrl'
+      controller: 'EmailsShowCtrl',
+      resolve: {
+
+
+        preFetched: ["$http", "$route", function ($http, $route){
+          var data = {};
+
+          var saveResourceData = function (scoped) {
+            return function(response) {
+              return data[scoped] = response.data;
+            }
+          };
+
+          return $http.get("/api/v1/emails/" + $route.current.params.emailId)
+            .then(saveResourceData('email'))
+            .then($http.get("/api/v1/emails/" + $route.current.params.emailId + "/recipients"))
+            .then(saveResourceData('recipient'))
+            .then(function() {
+              return data
+            })
+        }]
+      }
     }).
     otherwise({
       redirectTo: '/new'
