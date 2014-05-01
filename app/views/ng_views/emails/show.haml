@@ -11,10 +11,8 @@
               .badge.pull-right
                 {{recipients.length || 0}}
 
-          %li.disabled{"ng-show" => "!enableMetrics"}
-            %a{href: "#"} Metrics
-          %li{"ng-show" => "enableMetrics"}
-            %a{href: "#"} Metrics
+          %li{"ng-class" => "{disabled: !enableMetrics, active: interactWith=='metrics'}"}
+            %a{"ng-click"=>"interactWith='metrics'"} Metrics
 
       .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main{"ng-switch" => true, "on"=>"interactWith"}
         %div{"ng-switch-when" => "compose"}
@@ -22,6 +20,9 @@
 
         %div{"ng-switch-when" => "recipients"}
           = render :partial => "ng_views/emails/recipients"
+
+        %div{"ng-switch-when" => "metrics"}
+          = render :partial => "ng_views/emails/metrics"
 
 
 

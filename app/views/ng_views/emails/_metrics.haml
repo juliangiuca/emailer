@@ -1,0 +1,48 @@
+%h1.page-header Metrics
+.metrics{"ng-controller" => "metricsCtrl"}
+
+  %h2.sub-header Opened
+  .table-responsive
+    %table.table.table-striped
+      %thead
+        %tr
+          %th Name
+          %th Email
+          %th No. Opens
+          %th Seconds
+          %th First Viewed On
+
+      %tbody
+        %tr{"ng-repeat" => "recipient in opened"}
+          %td
+            %a{"editable-text" => "recipient.name", "onbeforesave" => "updateRecipient({id:recipient.id, name: $data})"} {{recipient.name || "No name"}}
+
+          %td
+            {{recipient.email_address}}
+          %td
+            {{recipient.tracking_pixel.views || 0}}
+          %td
+            {{(recipient.tracking_pixel.time_viewed || 0)}}
+          %td
+            {{(recipient.tracking_pixel.date_first_viewed || "-")}}
+
+
+  %h2.sub-header Unopened
+  .table-responsive
+    %table.table.table-striped
+      %thead
+        %tr
+          %th Name
+          %th Email
+          %th &nbsp;
+
+      %tbody
+        %tr{"ng-repeat" => "recipient in unopened"}
+          %td
+            %a{"editable-text" => "recipient.name", "onbeforesave" => "updateRecipient({id:recipient.id, name: $data})"} {{recipient.name || "No name"}}
+
+          %td
+            {{recipient.email_address}}
+
+          %td
+            %span.glyphicon.glyphicon-minus-sign{"ng-click" => "removeRecipient(recipient)"}

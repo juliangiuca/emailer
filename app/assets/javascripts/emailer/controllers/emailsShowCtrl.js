@@ -6,7 +6,7 @@ emailer.controller("EmailsShowCtrl", [ "$scope", "$http", "$routeParams", "$moda
   var recipients       = $scope.recipients = preFetched.recipients
   var email            = $scope.email      = preFetched.email
   $cookieStore.put('unsentEmailId', email.id);
-  $scope.enableMetrics = _.find(recipients, function (r) { return r.tracking_pixel.sent === true })
+  $scope.enableMetrics = _.find(recipients, function (r) { return !_.isUndefined(r.tracking_pixel.sent) })
 
 
   // Debounce to prevent a bunch of save calls from being triggered
