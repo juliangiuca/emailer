@@ -22,7 +22,7 @@
           %td
             {{recipient.tracking_pixel.views || 0}}
           %td
-            {{(recipient.tracking_pixel.time_viewed || 0)}}
+            {{(recipient.tracking_pixel.time_viewed || 0)/10}}
           %td
             {{(recipient.tracking_pixel.date_first_viewed || "-")}}
 
