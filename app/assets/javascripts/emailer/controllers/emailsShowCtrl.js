@@ -30,9 +30,7 @@ emailer.controller("EmailsShowCtrl", [ "$scope", "$http", "$routeParams", "$moda
   $scope.getRecipients = function() {
     Recipient.query({emailId: $scope.email.id},
       function (recipients) {
-        if ($scope.recipients != recipients) {
-          $scope.recipients = recipients
-        }
+        $scope.recipients = recipients
       });
   }
 
