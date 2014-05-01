@@ -11,8 +11,5 @@
  * require_self
  * require_tree .
  *
- *= require bootstrap/dist/css/bootstrap.min.css
- *= require Font-Awesome/css/font-awesome.min.css
- *= require angular-snap/angular-snap.min.css
  *= require_tree ./groups
  */
