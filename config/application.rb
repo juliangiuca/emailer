@@ -31,6 +31,5 @@ module Emailer
     config.assets.paths << Rails.root.join('vendor', 'assets', 'components')
 
     config.autoload_paths += %W(#{config.root}/app/jobs)
-    config.assets.enabled = false
   end
 end
