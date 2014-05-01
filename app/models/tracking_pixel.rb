@@ -17,6 +17,7 @@
 class TrackingPixel < ActiveRecord::Base
   belongs_to :email
   belongs_to :contact
+  has_many :user_agents
 
   validates_uniqueness_of :tracking, allow_nil: true
   validates_uniqueness_of :contact_id, scope: :email_id, allow_nil: true
