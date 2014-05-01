@@ -48,7 +48,7 @@ emailer.controller("EmailsShowCtrl", [ "$scope", "$http", "$routeParams", "$moda
     modalInstance.result.then(function () {
       //They pressed OK
       //$scope.email.$deliver()
-      $http.post("/api/v1/emails/" + $scope.email.id " +/deliver")
+      $http.post("/api/v1/emails/" + $scope.email.id + "/deliver")
 
     }, function () {
       //They pressed cancel
