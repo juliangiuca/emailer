@@ -1,4 +1,5 @@
-emailer.controller("EmailConfirmationCtrl", ["$scope", "$modalInstance", "email", function EmailConfirmationCtrl ($scope, $modalInstance, email) {
+emailer.controller("EmailConfirmationCtrl", ["$scope", "$modalInstance", "email",
+           function EmailConfirmationCtrl ($scope, $modalInstance, email) {
   $scope.email = email;
 
   $scope.ok = function () {
@@ -9,4 +10,3 @@ emailer.controller("EmailConfirmationCtrl", ["$scope", "$modalInstance", "email"
     $modalInstance.dismiss('cancel');
   };
 }]);
-

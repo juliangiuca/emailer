@@ -1,4 +1,5 @@
-emailer.controller("EmailsNewCtrl", ["$scope", "$cookieStore", "$location", "$q", "Email", "Recipient", function NewEmailsCtrl ($scope, $cookieStore, $location, $q, Email, Recipient) {
+emailer.controller("EmailsNewCtrl", ["$scope", "$cookieStore", "$location", "$q", "Email", "Recipient",
+          function EmailsNewCtrl ($scope, $cookieStore, $location, $q, Email, Recipient) {
 
   goToEmail = function() {
     $location.path("/" + getNewEmailCookie())
