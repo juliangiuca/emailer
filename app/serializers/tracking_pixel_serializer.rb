@@ -1,5 +1,5 @@
 class TrackingPixelSerializer < ActiveModel::Serializer
-  attributes :id, :email_id, :contact_id, :time_viewed, :sent, :date_first_viewed, :views
+  attributes :id, :email_id, :contact_id, :time_viewed, :sent, :date_first_viewed, :views, :has_been_googled
 
   has_many :user_agents
 
