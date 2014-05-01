@@ -23,7 +23,7 @@ Emailer::Application.configure do
   config.serve_static_assets = false
 
   # Compress JavaScripts and CSS.
-  config.assets.js_compressor = :uglifier
+  # config.assets.js_compressor = :uglifier
   # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
@@ -37,7 +37,7 @@ Emailer::Application.configure do
 
   # Specifies the header that your server uses for sending files.
   # config.action_dispatch.x_sendfile_header = "X-Sendfile" # for apache
-   config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for nginx
+  config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for nginx
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   # config.force_ssl = true
@@ -59,7 +59,7 @@ Emailer::Application.configure do
 
   # Precompile additional assets.
   # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
-   config.assets.precompile += %w( emailer.js emailer.css groups.js groups.css shared.js shared.css )
+  config.assets.precompile += %w( emailer.js emailer.css groups.js groups.css shared.js shared.css )
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
@@ -87,6 +87,6 @@ Emailer::Application.configure do
                               :port                 => 587,
                               :authentication       => 'XOAUTH2',
                               :enable_starttls_auto => true  }
- end
+  end
 
 end
