@@ -1,11 +1,11 @@
 %h1.page-header Compose
 
 %form
-  %input.subject{"ng-model"  => "subject",
+  %input.subject{"ng-model"  => "email.subject",
     "placeholder"            => "Subject"}
 
 %div{"text-angular"      => true,
-  "ng-model"             => "body",
+  "ng-model"             => "email.body",
   "ta-target-toolbars"   => 'toolbar',
   "ta-text-editor-class" => "textAngular body",
   "ta-html-editor-class" => "textAngular body",
@@ -13,3 +13,8 @@
 
 %div
   %text-angular-toolbar{name: "toolbar"}
+
+.send
+  %button.btn.btn-success{"ng-click" => "showConfirmationPopup()"}
+    Send
+    %span.glyphicon.glyphicon-send

@@ -7,7 +7,8 @@ module.exports = function (config) {
 
 		plugins: [
 			'karma-jasmine',
-			'karma-phantomjs-launcher',
+			'karma-chrome-launcher',
+			'karma-firefox-launcher',
 			'karma-coverage'
 		],
 		
@@ -17,9 +18,8 @@ module.exports = function (config) {
 			'bower_components/rangy/rangy-selectionsaverestore.js',
 			'bower_components/angular/angular.min.js',
 			'bower_components/angular-mocks/angular-mocks.js',
-			'src/textAngular-sanitize.js',
-			'src/textAngularSetup.js',
-			'src/textAngular.js',
+			'textAngular-sanitize.js',
+			'textAngular.js',
 			'test/**/*.spec.js'
 		],
 
@@ -29,19 +29,12 @@ module.exports = function (config) {
 		],
 
 		preprocessors: {
-			'src/textAngular.js': ['coverage'],
-			'src/textAngularSetup.js': ['coverage']
+			'textAngular.js': ['coverage']
 		},
 
 		// test results reporter to use
 		// possible values: 'dots', 'progress', 'junit'
 		reporters: ['progress', 'coverage'],
-		coverageReporter: {
-			reporters: [
-				{type: 'json', dir: 'coverage/'},
-				{type: 'lcov', dir: 'coverage/'}
-			]
-		},
 
 		// web server port
 		port: 9876,
@@ -72,7 +65,7 @@ module.exports = function (config) {
 		// - Safari (only Mac)
 		// - PhantomJS
 		// - IE (only Windows)
-		browsers: ['PhantomJS'],
+		browsers: ['Chrome'],
 
 
 		// If browser does not capture in given timeout [ms], kill it

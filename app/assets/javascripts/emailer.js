@@ -10,8 +10,7 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require textAngular/src/textAngularSetup
-//= require textAngular/src/textAngular
+//= require textAngular/textAngular
 
 //= require ./emailer/app
 //= require_tree ./emailer

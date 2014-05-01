@@ -9,7 +9,6 @@ emailer.config(['$routeProvider', function ($routeProvider) {
       controller: 'EmailsShowCtrl',
       resolve: {
 
-
         preFetched: ["$http", "$route", function ($http, $route){
           var data = {};
 
