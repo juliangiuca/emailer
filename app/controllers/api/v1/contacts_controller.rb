@@ -4,7 +4,6 @@ class Api::V1::ContactsController < Api::ApiController
   end
 
   def update
-    debugger
     contact.update!(contact_params)
     render json: contact
   end

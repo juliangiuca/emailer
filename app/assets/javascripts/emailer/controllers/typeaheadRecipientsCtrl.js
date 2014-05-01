@@ -20,10 +20,10 @@ emailer.controller("typeaheadRecipientsCtrl", ["$scope", "$http", "$q", "Contact
 
     if (email) {
       $http.post("/api/v1/emails/" + $scope.email.id + "/recipients?emailAddress=" + email)
-        .then($scope.getRecipients())
+        .then(function() { return $scope.getRecipients() })
     } else {
       $http.post("/api/v1/emails/" + $scope.email.id + "/recipients?groupId=" + userPicked.id)
-        .then($scope.getRecipients())
+        .then(function() { return $scope.getRecipients() })
     }
     $scope.selected = undefined;
 
@@ -31,7 +31,7 @@ emailer.controller("typeaheadRecipientsCtrl", ["$scope", "$http", "$q", "Contact
 
   $scope.removeRecipient = function(recipient) {
     $http.delete("/api/v1/emails/" + $scope.email.id + "/recipients/" + recipient.id)
-      .then($scope.getRecipients())
+      .then(function() { return $scope.getRecipients() })
   }
 
   $scope.updateRecipient = function(data) {
