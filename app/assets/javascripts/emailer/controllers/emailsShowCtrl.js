@@ -1,8 +1,8 @@
 emailer.controller("EmailsShowCtrl",
                     [
                       "$scope", "$http", "$routeParams", "$modal", "$cookieStore", "$location",
-                      "preFetched",
-                      function ShowEmailsCtrl ($scope, $http, $routeParams, $modal, $cookieStore, $location, preFetched) {
+                      "preFetched", "Recipient",
+                      function ShowEmailsCtrl ($scope, $http, $routeParams, $modal, $cookieStore, $location, preFetched, Recipient) {
 
   $scope.interactWith  = "compose";
   $scope.addRecipients = false
@@ -11,6 +11,7 @@ emailer.controller("EmailsShowCtrl",
   $scope.body          = _.clone(email.body);
   $scope.subject       = _.clone(email.subject);
   $cookieStore.put('unsentEmailId', email.id);
+  $scope.enableMetrics = _.find(recipients, function (r) { return r.tracking_pixel.sent === true })
 
 
   // Debounce to prevent a bunch of save calls from being triggered
@@ -31,6 +32,15 @@ emailer.controller("EmailsShowCtrl",
       $scope.saveEmail();
     }
   });
+
+  $scope.getRecipients = function() {
+    Recipient.query({emailId: $scope.email.id},
+      function (recipients) {
+        if ($scope.recipients != recipients) {
+          $scope.recipients = recipients
+        }
+      });
+  }
 
   $scope.showConfirmationPopup = function () {
     var modalInstance = $modal.open({

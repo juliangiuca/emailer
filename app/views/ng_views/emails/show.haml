@@ -11,9 +11,9 @@
               .badge.pull-right
                 {{recipients.length || 0}}
 
-          %li.disabled{"ng-show" => "!email.sent"}
+          %li.disabled{"ng-show" => "!enableMetrics"}
             %a{href: "#"} Metrics
-          %li{"ng-show" => "email.sent"}
+          %li{"ng-show" => "enableMetrics"}
             %a{href: "#"} Metrics
 
       .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main{"ng-switch" => true, "on"=>"interactWith"}

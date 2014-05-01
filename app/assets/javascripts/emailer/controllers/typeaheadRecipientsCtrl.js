@@ -1,14 +1,6 @@
 emailer.controller("typeaheadRecipientsCtrl", ["$scope", "$http", "$q", "Contact", "Recipient", "Group", "GroupMember", function typeaheadRecipientsCtrl ($scope, $http, $q, Contact, Recipient, Group, GroupMember) {
   $scope.contacts = $scope.groups = $scope.selected = undefined
 
-  var getRecipients = function() {
-    Recipient.query({emailId: $scope.email.id},
-      function (recipients) {
-        if ($scope.recipients != recipients)
-          $scope.recipients = recipients
-      });
-  }
-
   $q.all([
     Contact.query().$promise,
     Group.query().$promise
@@ -22,28 +14,22 @@ emailer.controller("typeaheadRecipientsCtrl", ["$scope", "$http", "$q", "Contact
 
     //Create the recipient if it's only an email address
     email = (!isAnObj) ? userPicked : false
-    email = email || userPicked.emailAddress
+    email = email || userPicked.email_address
 
     if (email) {
       $http.post("/api/v1/emails/" + $scope.email.id + "/recipients?emailAddress=" + email)
-        .then(getRecipients())
+        .then($scope.getRecipients())
     } else {
       $http.post("/api/v1/emails/" + $scope.email.id + "/recipients?groupId=" + userPicked.id)
-        .then(getRecipients())
+        .then($scope.getRecipients())
     }
     $scope.selected = undefined;
 
   };
 
   $scope.removeRecipient = function(recipient) {
-    recipient.$delete(
-      {
-        emailId: $scope.email.id,
-        recipientId: recipient.id
-      },
-      function (res) {
-        getRecipients();
-    });
+    $http.delete("/api/v1/emails/" + $scope.email.id + "/recipients/" + recipient.id)
+      .then($scope.getRecipients())
   }
 
   $scope.updateRecipient = function(data) {

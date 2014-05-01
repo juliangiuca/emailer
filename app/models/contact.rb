@@ -14,6 +14,7 @@ class Contact < ActiveRecord::Base
   belongs_to :user
   has_many :memberships
   has_many :groups, through: :memberships
+  has_many :tracking_pixels
 
   validates_presence_of :email_address
   validates_uniqueness_of :email_address, scope: :user_id

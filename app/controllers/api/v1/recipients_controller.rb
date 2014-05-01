@@ -1,7 +1,9 @@
 class Api::V1::RecipientsController < Api::ApiController
+  serialization_scope :email
 
   def index
-    render json: email.recipients.to_a
+    @recipients = email.recipients
+    render json: @recipients, each_serializer: RecipientSerializer
   end
 
   def create
@@ -10,7 +12,7 @@ class Api::V1::RecipientsController < Api::ApiController
 
   def destroy
     TrackingPixel.where(email_id: email.id, contact_id: params[:id]).destroy_all
-    render json nil, status: :deleted
+    render json: nil, status: :ok
   end
 
   def update
