@@ -32,4 +32,8 @@ class TrackingPixel < ActiveRecord::Base
     )
   end
 
+  def has_been_googled
+    @has_been_googled ||= !!(user_agents.find {|ua| ua.agent =~ /GoogleImageProxy/})
+  end
+
 end
