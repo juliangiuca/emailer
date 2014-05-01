@@ -40,7 +40,7 @@ class EmailJob
       })
 
       mail.deliver!
-      tracking_pixel.update_attribute(:sent, true)
+      tracking_pixel.update_attribute(:sent, Time.now)
     end
   end
 end
