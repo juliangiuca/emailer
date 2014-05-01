@@ -31,7 +31,7 @@ Emailer::Application.routes.draw do
         resources :recipients
       end
 
-      post '/emails/:id/deliver', to: "api/v1/emails#deliver", as: "email_deliver"
+      post '/emails/:id/deliver', to: "emails#deliver", as: "email_deliver"
 
       resources :groups do
         resources :members
