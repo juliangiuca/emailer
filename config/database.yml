@@ -17,13 +17,19 @@
 development: &development
   adapter: postgresql
   encoding: unicode
-  database: bindislist_development
+  database: emailer_development
   pool: 5
   username: local
   password:
 
-production:
-  *development
+local_production:
+  adapter: postgresql
+  encoding: unicode
+  database: emailer_production
+  pool: 5
+  username: emailer_ro
+  password: "M%L+3fiV3kkz"
+  host: "innocuous.deebee.me"
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
@@ -49,7 +55,7 @@ production:
 test:
   adapter: postgresql
   encoding: unicode
-  database: bindislist_test
+  database: emailer_test
   pool: 5
   username: local
   password:
