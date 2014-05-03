@@ -47,3 +47,23 @@
 
           %td
             %span.glyphicon.glyphicon-minus-sign{"ng-click" => "removeRecipient(recipient)"}
+
+  %h2.sub-header Unsent
+  .table-responsive
+    %table.table.table-striped
+      %thead
+        %tr
+          %th Name
+          %th Email
+          %th &nbsp;
+
+      %tbody
+        %tr{"ng-repeat" => "recipient in unopened"}
+          %td
+            %a{"editable-text" => "recipient.name", "onbeforesave" => "updateRecipient({id:recipient.id, name: $data})"} {{recipient.name || "No name"}}
+
+          %td
+            {{recipient.email_address}}
+
+          %td
+            %span.glyphicon.glyphicon-minus-sign{"ng-click" => "removeRecipient(recipient)"}
