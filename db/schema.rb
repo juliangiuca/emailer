@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140329211010) do
+ActiveRecord::Schema.define(version: 20140502224618) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,17 +67,8 @@ ActiveRecord::Schema.define(version: 20140329211010) do
     t.integer  "email_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "views",             default: 0
     t.datetime "date_first_viewed"
     t.datetime "sent"
-    t.integer  "time_viewed",       default: 0
-  end
-
-  create_table "user_agents", force: true do |t|
-    t.integer  "tracking_pixel_id"
-    t.string   "agent",             limit: 1000
-    t.string   "referer",           limit: 1000
-    t.datetime "created_at"
   end
 
   create_table "users", force: true do |t|
@@ -92,6 +83,15 @@ ActiveRecord::Schema.define(version: 20140329211010) do
     t.boolean  "expires"
     t.string   "image"
     t.string   "provider"
+  end
+
+  create_table "views", force: true do |t|
+    t.integer  "tracking_pixel_id"
+    t.string   "agent",             limit: 1000
+    t.string   "referer",           limit: 1000
+    t.datetime "created_at"
+    t.integer  "time",                           default: 0
+    t.boolean  "googled",                        default: false
   end
 
 end

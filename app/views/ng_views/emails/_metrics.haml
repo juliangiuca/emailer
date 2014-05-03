@@ -14,20 +14,19 @@
           %th Has been googled?
 
       %tbody
-        %tr{"ng-repeat" => "recipient in opened"}
+        %tr{"ng-repeat" => "recipient in opened", "ng-click" => "display=recipient.id"}
           %td
             %a{"editable-text" => "recipient.name", "onbeforesave" => "updateRecipient({id:recipient.id, name: $data})"} {{recipient.name || "No name"}}
-
           %td
             {{recipient.email_address}}
           %td
-            {{recipient.tracking_pixel.views || 0}}
+            {{recipient.tracking_pixel.no_views || 0}}
           %td
             {{(recipient.tracking_pixel.time_viewed || 0)/10}}
           %td
             {{recipient.tracking_pixel.date_first_viewed || "-"}}
           %td
-            {{recipient.tracking_pixel.has_been_googled}}
+            {{recipient.tracking_pixel.has_been_googled ? "Yes" : "No"}}
 
   %h2.sub-header Unopened
   .table-responsive
