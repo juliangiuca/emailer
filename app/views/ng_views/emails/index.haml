@@ -45,7 +45,7 @@
               %tbody
                 %tr{"ng-repeat" => "email in sent"}
                   %td
-                    {{email.subject}}
+                    %a{href: "/emails/#/{{email.id}}"}{{email.subject}}
                   %td
                     {{email.recipients || "0"}}
 
