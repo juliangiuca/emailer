@@ -1,22 +1,22 @@
 emailer.controller("EmailsNewCtrl", ["$scope", "$cookieStore", "$location", "$q", "Email", "Recipient",
           function EmailsNewCtrl ($scope, $cookieStore, $location, $q, Email, Recipient) {
 
-  goToEmail = function() {
-    $location.path("/" + getNewEmailCookie())
-  }
+  // goToEmail = function() {
+  //   $location.path("/" + getNewEmailCookie())
+  // }
+  //
+  // setNewEmailCookie = function(emailId) {
+  //   $cookieStore.put('unsentEmailId', emailId);
+  //   return emailId;
+  // }
+  //
+  // getNewEmailCookie = function() {
+  //   return $cookieStore.get('unsentEmailId')
+  // }
 
-  setNewEmailCookie = function(emailId) {
-    $cookieStore.put('unsentEmailId', emailId);
-    return emailId;
-  }
-
-  getNewEmailCookie = function() {
-    return $cookieStore.get('unsentEmailId')
-  }
-
-  fetchRecipients = function(emailId) {
-    $scope.recipients = Recipient.query({"emailId": emailId});
-  }
+  // fetchRecipients = function(emailId) {
+  //   $scope.recipients = Recipient.query({"emailId": emailId});
+  // }
 
   createEmail = function() {
     var deferred = $q.defer();
@@ -32,20 +32,24 @@ emailer.controller("EmailsNewCtrl", ["$scope", "$cookieStore", "$location", "$q"
     return deferred.promise;
   }
 
-  if (getNewEmailCookie()) {
-    goToEmail();
-  } else {
-    createEmail().then(function(emailId) {
-      console.log("email ID is: " + emailId);
-      return setNewEmailCookie(emailId);
-    }).then(function(emailId) {
-      return fetchRecipients(emailId)
-    }).then(function() {
-      return goToEmail();
-    }).fail(function (err) {
-      console.log("Something errored");
-    });
-  }
+  // if (getNewEmailCookie()) {
+  //   goToEmail();
+  // } else {
+  //   createEmail().then(function(emailId) {
+  //     console.log("email ID is: " + emailId);
+  //     return setNewEmailCookie(emailId);
+  //   }).then(function(emailId) {
+  //     return fetchRecipients(emailId)
+  //   }).then(function() {
+  //     return goToEmail();
+  //   }).fail(function (err) {
+  //     console.log("Something errored");
+  //   });
+  // }
 
+createEmail()
+  .then(function(emailId) {
+    $location.path("/" + emailId)
+  })
 
 }])

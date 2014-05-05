@@ -66,4 +66,15 @@ class User < ActiveRecord::Base
     self.save!
   end
 
+  def update_contacts!
+    data = {
+      :client_id => ENV["GOOGLE_CLIENT_ID"],
+      :client_secret => ENV["GOOGLE_CLIENT_SECRET"],
+      :refresh_token => self.refresh_token,
+      :grant_type => "refresh_token"
+    }
+    response = ActiveSupport::JSON.decode(RestClient.post "https://accounts.google.com/o/oauth2/token", data)
+
+  end
+
 end

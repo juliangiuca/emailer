@@ -3,6 +3,8 @@
     .row
       .col-sm-3.col-md-2.sidebar
         %ul.nav.nav-sidebar
+          %li
+            %a{href: "/emails/#"} All emails
           %li{"ng-class" => "{active: interactWith=='compose'}"}
             %a{"ng-click"=>"interactWith='compose'"} Compose
           %li{"ng-class" => "{active: interactWith=='recipients'}"}
@@ -23,8 +25,6 @@
 
         %div{"ng-switch-when" => "metrics"}
           = render :partial => "ng_views/emails/metrics"
-
-
 
         %script{type: "text/ng-template", id: "confirmationDialog"}
           .modal-header

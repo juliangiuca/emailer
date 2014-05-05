@@ -1,0 +1,56 @@
+.email-index
+  .container-fluid
+    .row
+      .col-sm-3.col-md-2.sidebar
+        %ul.nav.nav-sidebar
+          %li
+            %a{href: "/emails/#/new"}
+              %button.btn.btn-success{style: "width: 100%"} New email
+          %li.active
+            %a{href: "/#/emails"} All emails
+
+      .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
+        %h1.page-header Unsent emails
+        %div{{"ng-show" => "unsent.length > 0"}}
+          .table-responsive
+            %table.table.table-striped
+              %thead
+                %tr
+                  %th Subject
+                  %th No. recipients
+
+              %tbody
+                %tr{"ng-repeat" => "email in unsent"}
+                  %td
+                    %a{href: "/emails/#/{{email.id}}"} {{email.subject || "No subject"}}
+
+                  %td
+                    {{email.recipients || "0"}}
+
+        %div{{"ng-show" => "sent.length == 0"}}
+          No sent emails.
+
+        %br
+        %h1.page-header Sent emails
+
+        %div{{"ng-show" => "sent.length > 0"}}
+          .table-responsive
+            %table.table.table-striped
+              %thead
+                %tr
+                  %th Subject
+                  %th No. recipients
+                  %th Sent on
+
+              %tbody
+                %tr{"ng-repeat" => "email in sent"}
+                  %td
+                    {{email.subject}}
+                  %td
+                    {{email.recipients || "0"}}
+
+                  %td
+                    {{email.sent_on}}
+
+        %div{{"ng-show" => "sent.length == 0"}}
+          No sent emails.

@@ -7,6 +7,7 @@ class EmailJob
     email = Email.where(id: email_id).includes(:tracking_pixels).references(:tracking_pixels).first
     user = email.user
     user.refresh_access_token!
+    email.update_attribute(:sent_on, Time.now) unless email.sent_on
 
     email.tracking_pixels.each do |tracking_pixel|
       Resque.enqueue(EmailJob::ToRecipient, email.id, tracking_pixel.id)

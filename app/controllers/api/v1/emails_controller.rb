@@ -1,7 +1,7 @@
 class Api::V1::EmailsController < Api::ApiController
 
   def index
-    render json: current_user.emails.to_a
+    render json: current_user.emails.order("id desc").to_a
   end
 
   def create
