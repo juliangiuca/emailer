@@ -10,7 +10,11 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require angular-ui-router/release/angular-ui-router.min
 //= require textAngular/textAngular
+//= require highcharts-release/adapters/standalone-framework.src.js
+//= require highcharts-release/highcharts.src.js
+//= require highcharts-ng/src/highcharts-ng.js
 
 //= require ./emailer/app
 //= require_tree ./emailer

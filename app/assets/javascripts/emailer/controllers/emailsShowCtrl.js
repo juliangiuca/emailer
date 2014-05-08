@@ -1,7 +1,9 @@
-emailer.controller("EmailsShowCtrl", [ "$scope", "$http", "$routeParams", "$modal", "$cookieStore", "$location", "preFetched", "Recipient",
-           function EmailsShowCtrl ($scope, $http, $routeParams, $modal, $cookieStore, $location, preFetched, Recipient) {
+emailer.controller("EmailsShowCtrl", [ "$scope", "$rootScope", "$http", "$state", "$modal", "$cookieStore", "$location", "preFetched", "Recipient",
+           function EmailsShowCtrl ($scope, $rootScope, $http, $state, $modal, $cookieStore, $location, preFetched, Recipient) {
 
-  $scope.interactWith  = "compose";
+  $rootScope.$state = $state;
+
+  $scope.interactWith  = $state.current.data.name || "compose";
   $scope.addRecipients = false
   var recipients       = $scope.recipients = preFetched.recipients
   var email            = $scope.email      = preFetched.email

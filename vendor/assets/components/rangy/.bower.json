@@ -17,6 +17,6 @@
     "commit": "b26d4a5b16839f1a76bd40eddfcfa804e0c66f46"
   },
   "_source": "git://github.com/Dakuan/Rangy-bower.git",
-  "_target": "1.2.x",
+  "_target": "*",
   "_originalSource": "rangy"
 }

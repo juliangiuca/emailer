@@ -1,6 +1,10 @@
 %h1.page-header Metrics
 .metrics{"ng-controller" => "metricsCtrl"}
 
+
+  %highchart{config: "chartConfig"}
+
+
   %h2.sub-header Opened
   .table-responsive
     %table.table.table-striped

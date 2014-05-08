@@ -5,18 +5,18 @@
         %ul.nav.nav-sidebar
           %li
             %a{href: "/emails/#"} All emails
-          %li{"ng-class" => "{active: interactWith=='compose'}"}
-            %a{"ng-click"=>"interactWith='compose'"} Compose
-          %li{"ng-class" => "{active: interactWith=='recipients'}"}
-            %a{"ng-click"=>"interactWith='recipients'"}
+          %li{"ui-sref-active" => "active"}
+            %a{"ui-sref" => "showEmail"} Compose
+          %li{"ui-sref-active" => "active"}
+            %a{"ui-sref" => "showEmail.recipients"}
               Recipients
               .badge.pull-right
                 {{recipients.length || 0}}
 
-          %li{"ng-class" => "{disabled: !enableMetrics, active: interactWith=='metrics'}"}
-            %a{"ng-click"=>"interactWith='metrics'"} Metrics
+          %li{"ui-sref-active" => "active", "ng-class" => "{disabled: !enableMetrics, active: interactWith=='metrics'}"}
+            %a{"ui-sref" => "showEmail.metrics"} Metrics
 
-      .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main{"ng-switch" => true, "on"=>"interactWith"}
+      .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main{"ng-switch" => true, "on"=>"$state.current.data.name"}
         %div{"ng-switch-when" => "compose"}
           = render :partial => "ng_views/emails/compose"
 

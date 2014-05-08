@@ -26,6 +26,9 @@
     "textAngular": "*",
     "Font-Awesome": "*",
     "rangy": "*",
-    "angular-xeditable": "*"
+    "angular-xeditable": "*",
+    "highcharts-release": "*",
+    "highcharts-ng": "*",
+    "angular-ui-router": "*"
   }
 }
