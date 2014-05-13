@@ -13,7 +13,7 @@
               .badge.pull-right
                 {{recipients.length || 0}}
 
-          %li{"ui-sref-active" => "active", "ng-class" => "{disabled: !enableMetrics, active: interactWith=='metrics'}"}
+          %li{"ui-sref-active" => "active", "ng-class" => "{disabled: !enableMetrics}"}
             %a{"ui-sref" => "showEmail.metrics"} Metrics
 
       .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main{"ng-switch" => true, "on"=>"$state.current.data.name"}
