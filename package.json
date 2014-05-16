@@ -12,7 +12,6 @@
     "karma-jshint-preprocessor": "*",
     "karma-sprockets": "*",
     "karma-junit-reporter": "*",
-    "factory_girl": "*",
     "browserify": "*",
     "gulp": "*",
     "vinyl-source-stream": "*",
