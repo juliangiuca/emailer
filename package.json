@@ -1,0 +1,32 @@
+{
+  "name": "emailer",
+  "version": "0.0.1",
+  "private": true,
+  "description": "An email platform",
+  "main": "image.js",
+  "devDependencies": {
+    "karma": "*",
+    "karma-jasmine": "~0.2.0",
+    "karma-phantomjs-launcher": "*",
+    "karma-chrome-launcher": "*",
+    "karma-jshint-preprocessor": "*",
+    "karma-sprockets": "*",
+    "karma-junit-reporter": "*",
+    "browserify": "*",
+    "gulp": "*",
+    "vinyl-source-stream": "*",
+    "glob": "*"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/juliangiuca/image-tracking.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/juliangiuca/image-tracking/issues"
+  }
+}
