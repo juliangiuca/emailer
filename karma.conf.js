@@ -9,14 +9,14 @@ module.exports = function(config) {
     files: [
       'vendor/assets/components/angular/angular.js',
       'vendor/assets/components/angular-mocks/angular-mocks.js',
-      'test/**/*Test.js'
+      'compiled_tests/**/*.js'
     ],
 
     // list of files to exclude
     exclude: [ ],
 
-    preprocessors: { 
-      '*.js': ['jshint']
+    preprocessors: {
+      'app/assets/javascript/emailer/**/*.js': 'jshint'
     },
 
     // use dots reporter, as travis terminal does not support escaping sequences
@@ -40,6 +40,7 @@ module.exports = function(config) {
     // level of logging
     // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
     // CLI --log-level debug
+    //logLevel: config.LOG_WARN,
     logLevel: config.LOG_DEBUG,
 
     // enable / disable watching file and executing tests whenever any file changes

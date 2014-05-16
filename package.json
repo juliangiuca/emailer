@@ -11,7 +11,12 @@
     "karma-chrome-launcher": "*",
     "karma-jshint-preprocessor": "*",
     "karma-sprockets": "*",
-    "karma-junit-reporter": "*"
+    "karma-junit-reporter": "*",
+    "factory_girl": "*",
+    "browserify": "*",
+    "gulp": "*",
+    "vinyl-source-stream": "*",
+    "glob": "*"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

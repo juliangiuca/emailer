@@ -1,14 +1,19 @@
 describe('emailer', function () {
-  var scope, controller;
+  var scope, controller, recipient;
 
   beforeEach(function () {
-    module('emailer');
+    var fs = require('fs');
+    var path = require('path');
+    angular.mock.module('emailer');
+
+    recipient = require("../../../test/fixtures/recipient.js");
   });
 
   describe('metricsCtrl', function () {
     beforeEach(inject(function ($rootScope, $controller) {
 
       scope = $rootScope.$new();
+      scope.recipients = [recipient.liz, recipient.julian]
 
       controller = $controller('metricsCtrl', {
         '$scope': scope
@@ -16,7 +21,7 @@ describe('emailer', function () {
     }));
 
     it('sets the name', function () {
-      expect(scope.opened).toEqual(new Array);
+      expect(scope.opened).toEqual([recipient.liz]);
     });
 
   });

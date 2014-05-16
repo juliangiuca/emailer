@@ -16,3 +16,4 @@
 /tmp
 .env
 .ackrc
+compiled_tests
