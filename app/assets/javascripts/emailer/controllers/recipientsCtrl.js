@@ -1,5 +1,5 @@
-emailer.controller("typeaheadRecipientsCtrl", ["$scope", "$http", "$q", "Contact", "Recipient", "Group", "GroupMember",
-           function typeaheadRecipientsCtrl ($scope, $http, $q, Contact, Recipient, Group, GroupMember) {
+emailer.controller("recipientsCtrl", ["$scope", "$http", "$q", "Contact", "Recipient", "Group", "GroupMember",
+           function recipientsCtrl ($scope, $http, $q, Contact, Recipient, Group, GroupMember) {
 
   $scope.contacts = $scope.groups = $scope.selected = undefined
 
