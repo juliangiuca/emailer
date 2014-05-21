@@ -37,7 +37,7 @@ emailer.directive('pie', function () {
           },
           series: [{
             type: 'pie',
-            name: 'Browser share',
+            name: attrs.seriesName,
             data: data
           }]
         });

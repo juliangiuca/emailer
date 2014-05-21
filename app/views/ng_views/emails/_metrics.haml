@@ -6,9 +6,13 @@
     .row
       .col-md-12
         .col-md-6
-          %pie{"chart-data" => "openedChart", "chart-title" => "Open, Unopened, Unsent"}
+          %pie{"chart-data" => "openedChart",
+            "chart-title" => "Open vs Unopened",
+            "series-name" => "Opens" }
         .col-md-6
-          %pie{"chart-data" => "deliveryChart", "chart-title" => "Sent vs Unsent"}
+          %pie{"chart-data" => "deliveryChart",
+            "chart-title" => "Sent vs Unsent",
+            "series-name" => "Delivery rate" }
 
 
   %h2.sub-header Opened
