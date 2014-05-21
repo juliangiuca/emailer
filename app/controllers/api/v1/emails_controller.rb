@@ -27,6 +27,11 @@ class Api::V1::EmailsController < Api::ApiController
     render nothing: true, status: :created
   end
 
+  def destroy
+    email.destroy
+    render nothing: true, status: :no_content
+  end
+
   private
   def email
     @email ||= current_user.emails.find(params[:id])

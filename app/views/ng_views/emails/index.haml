@@ -3,14 +3,14 @@
     .row
       .col-sm-3.col-md-2.sidebar
         %ul.nav.nav-sidebar
-          %li
-            %a{href: "/emails/#/new"}
-              %button.btn.btn-success{style: "width: 100%"} New email
           %li.active
             %a{href: "/#/emails"} All emails
+          %hr
+          %li
+            %a{href: "/emails/#/new"} Compose
 
       .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
-        %h1.page-header Unsent emails
+        %h1.page-header Drafts
         %div{{"ng-show" => "unsent.length > 0"}}
           .table-responsive
             %table.table.table-striped
@@ -18,6 +18,7 @@
                 %tr
                   %th Subject
                   %th No. recipients
+                  %th
 
               %tbody
                 %tr{"ng-repeat" => "email in unsent"}
@@ -26,6 +27,9 @@
 
                   %td
                     {{email.recipients || "0"}}
+
+                  %td
+                    %span.glyphicon.glyphicon-minus-sign{"ng-click" => "removeEmail(email)"}
 
         %div{{"ng-show" => "sent.length == 0"}}
           No sent emails.

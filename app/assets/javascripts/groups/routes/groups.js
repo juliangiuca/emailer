@@ -34,7 +34,7 @@ groups.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider,
     })
       .state('showGroup.bulkAdd', {
         data: {name: "bulkAdd"},
-        url: '/add',
+        url: '/bulk',
       })
 
     $urlRouterProvider.otherwise('/');

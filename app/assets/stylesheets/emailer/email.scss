@@ -16,6 +16,13 @@
 
 
 .email {
+  .ta-editor {
+    min-height: 300px;
+    height: auto;
+    overflow: auto;
+    font-family: inherit;
+    font-size: 100%;
+  }
 
   a {
     cursor: pointer;
@@ -42,6 +49,7 @@
     }
 
     &.body {
+      padding: 0px;
       height: 200px;
       max-height: 600px;
       overflow: scroll;

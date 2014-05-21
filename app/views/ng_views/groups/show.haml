@@ -4,7 +4,12 @@
       .col-sm-3.col-md-2.sidebar
         %ul.nav.nav-sidebar
           %li{"ui-sref-active" => "active"}
-            %a{"ui-sref" => "showGroup"} All memebrs
+            %a{"ui-sref" => "index"}
+              %i.fa.fa-chevron-left
+              All groups
+          %hr
+          %li{"ui-sref-active" => "active"}
+            %a{"ui-sref" => "showGroup"} All members
           %li{"ui-sref-active" => "active"}
             %a{"ui-sref" => "showGroup.bulkAdd"} Bulk add
 
