@@ -1,14 +1,22 @@
-emailer.controller("EmailsShowCtrl", [ "$scope", "$rootScope", "$http", "$state", "$modal", "$cookieStore", "$location", "preFetched", "Recipient",
-           function EmailsShowCtrl ($scope, $rootScope, $http, $state, $modal, $cookieStore, $location, preFetched, Recipient) {
+emailer.controller("EmailsShowCtrl", [ "$scope", "$rootScope", "$http", "$state", "$modal", "$cookieStore", "$location", "$q", "preFetched", "Recipient",
+           function EmailsShowCtrl ($scope, $rootScope, $http, $state, $modal, $cookieStore, $location, $q, preFetched, Recipient) {
 
   $rootScope.$state = $state;
 
   $scope.addRecipients = false
   var recipients       = $scope.recipients = preFetched.recipients
   var email            = $scope.email      = preFetched.email
-  $cookieStore.put('unsentEmailId', email.id);
-  $scope.enableMetrics = _.find(recipients, function (r) { return r.tracking_pixel.sent != undefined  })
 
+  $http.get("/api/v1/emails/" + $scope.email.id + "/recipients")
+    .then(function (response) {
+      $scope.recipients = response.data
+      return $scope.recipients
+    })
+    .then(function (recipients) {
+      $scope.enableMetrics = _.find(recipients, function (r) { return r.tracking_pixel.sent != undefined  })
+    })
+
+  $cookieStore.put('unsentEmailId', email.id);
 
   // Debounce to prevent a bunch of save calls from being triggered
   // We don't really care about the response - we want to just send updates down the wire
@@ -29,10 +37,15 @@ emailer.controller("EmailsShowCtrl", [ "$scope", "$rootScope", "$http", "$state"
   });
 
   $scope.getRecipients = function() {
+    var deferred = $q.defer();
+
     Recipient.query({emailId: $scope.email.id},
       function (recipients) {
         $scope.recipients = recipients
+        deferred.resolve();
       });
+
+    return deferred.promise;
   }
 
   $scope.showConfirmationPopup = function () {

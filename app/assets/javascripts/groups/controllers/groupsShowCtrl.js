@@ -1,6 +1,10 @@
-groups.controller("GroupsShowCtrl", ["$scope", "$routeParams", "Group", "GroupMember", "Contact", function GroupsShowCtrl ($scope, $routeParams, Group, GroupMember, Contact) {
-  $scope.group = Group.get({groupId: $routeParams.groupId})
-  $scope.members = GroupMember.query({groupId: $routeParams.groupId});
+groups.controller("GroupsShowCtrl", ["$scope", "$rootScope", "$state", "Group", "GroupMember", "Contact", "preFetched", 
+    function GroupsShowCtrl ($scope, $rootScope, $state, Group, GroupMember, Contact, preFetched) {
+
+  $rootScope.$state = $state;
+
+  $scope.group   = preFetched.group
+  $scope.members = GroupMember.query({groupId: $scope.group.id});
 
   $scope.removeMember = function(member) {
     member.$delete(

@@ -1,6 +1,4 @@
-// This is a manifest file that'll be compiled into application, which will include all the files
-// listed below.
-//
+// This is a manifest file that'll be compiled into application, which will include all the files // listed below.  //
 // Any JavaScript/Coffee file within this directory, lib/assets/javascripts, vendor/assets/javascripts,
 // or vendor/assets/javascripts of plugins, if any, can be referenced here using a relative path.
 //
@@ -10,11 +8,11 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require angular-ui-router/release/angular-ui-router.min
-//= require textAngular/textAngular
+//= require textAngular/dist/textAngular.min.js
 //= require highcharts-release/adapters/standalone-framework.src.js
 //= require highcharts-release/highcharts.src.js
-//= require highcharts-ng/src/highcharts-ng.js
+//= require highcharts-release/highcharts-more.src.js
+// require highcharts-ng/dist/highcharts-ng.min.js
 
 //= require ./emailer/app
 //= require_tree ./emailer

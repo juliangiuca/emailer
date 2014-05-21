@@ -2,7 +2,13 @@
 .metrics{"ng-controller" => "metricsCtrl"}
 
 
-  %highchart{config: "chartConfig"}
+  .container-fluid
+    .row
+      .col-md-12
+        .col-md-6
+          %pie{"chart-data" => "openedChart", "chart-title" => "Open, Unopened, Unsent"}
+        .col-md-6
+          %pie{"chart-data" => "deliveryChart", "chart-title" => "Sent vs Unsent"}
 
 
   %h2.sub-header Opened
@@ -62,7 +68,7 @@
           %th &nbsp;
 
       %tbody
-        %tr{"ng-repeat" => "recipient in unopened"}
+        %tr{"ng-repeat" => "recipient in unsent"}
           %td
             %a{"editable-text" => "recipient.name", "onbeforesave" => "updateRecipient({id:recipient.id, name: $data})"} {{recipient.name || "No name"}}
 

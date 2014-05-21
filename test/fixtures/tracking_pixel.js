@@ -18,6 +18,16 @@ module.exports = {
     "date_first_viewed": null,
     "no_views": 0,
     "has_been_googled":false
+  },
+  "unsent": {
+    "id":50,
+    "email_id":18,
+    "contact_id":28,
+    "time_viewed": 0,
+    "sent": null,
+    "date_first_viewed": null,
+    "no_views": 0,
+    "has_been_googled":false
   }
 }
 

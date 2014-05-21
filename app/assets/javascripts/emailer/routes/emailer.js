@@ -14,8 +14,8 @@ emailer.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider
 
       return $http.get("/api/v1/emails/" + $stateParams.emailId)
         .then(saveResourceData('email'))
-        .then(function() { return $http.get("/api/v1/emails/" + $stateParams.emailId + "/recipients")} )
-        .then(saveResourceData('recipients'))
+        //.then(function() { return $http.get("/api/v1/emails/" + $stateParams.emailId + "/recipients")} )
+        //.then(saveResourceData('recipients'))
         .then(function() {
           return data
         })

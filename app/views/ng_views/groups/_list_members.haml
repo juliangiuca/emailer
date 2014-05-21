@@ -1,0 +1,31 @@
+%div{"ng-controller" => "typeaheadGroupMemberCtrl"}
+  %form.form-inline{:role => "form"}
+    .form-group
+      %input.form-control.input-lg{"ng-model" => "selected",
+        "placeholder" => "Email",
+        "typeahead" => "contact as contact.email_address for contact in contacts | filter:$viewValue",
+        type: "text",
+        "typeahead-on-select" => "addContact(selected)" }
+    .form-group
+      %button.btn.btn-primary.form-control.input-lg{"ng-click" => "addContact()"}
+        %span.glyphicon.glyphicon-plus-sign
+        Add
+
+.table-responsive
+  %table.table.table-striped
+    %thead
+      %tr
+        %th Name
+        %th Email
+        %th &nbsp;
+
+    %tbody
+      %tr{"ng-repeat" => "member in members"}
+        %td
+          %a{href: "#", "editable-text" => "member.name", "onbeforesave" => "updateMember({id: member.id, name: $data})"} {{member.name || "No name"}}
+
+        %td
+          %a{href: "#", "editable-email" => "member.email_address", "onbeforesave" => "updateMember({id: member.id, email_address: $data})"} {{member.email_address}}
+
+        %td
+          %span.glyphicon.glyphicon-minus-sign{"ng-click" => "removeMember(member)"}

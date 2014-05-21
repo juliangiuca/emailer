@@ -13,6 +13,19 @@ class Api::V1::MembersController < Api::ApiController
     render json: contact, status: :created
   end
 
+  def bulk
+    emails = params[:emails]
+    emails = emails.split(",")
+    emails.each do |email|
+      contact = current_user.contacts.find_by(email_address: email.strip)
+      contact ||= current_user.contacts.create!(email_address: email.strip)
+
+      group.contacts << contact
+    end
+
+    render json: nil, status: :created
+  end
+
   private
   def group
     @group ||= current_user.groups.find(params[:group_id])

@@ -1,5 +1,6 @@
 //= require angular/angular
 //= require angular-resource/angular-resource
+//= require angular-ui-router/release/angular-ui-router.min
 //= require angular-route/angular-route
 //= require angular-sanitize/angular-sanitize
 //= require angular-cookies/angular-cookies

@@ -1,38 +1,20 @@
 .groups
   .container-fluid
     .row
-      .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
+      .col-sm-3.col-md-2.sidebar
+        %ul.nav.nav-sidebar
+          %li{"ui-sref-active" => "active"}
+            %a{"ui-sref" => "showGroup"} All memebrs
+          %li{"ui-sref-active" => "active"}
+            %a{"ui-sref" => "showGroup.bulkAdd"} Bulk add
+
+      .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main{"ng-switch" => true, "on"=>"$state.current.data.name"}
         %h1.page-header
           %a{"editable-text"=>"group.name", "onbeforesave"=>"updateGroupName($data)"} {{group.name}}
 
-        %div{"ng-controller" => "typeaheadGroupMemberCtrl"}
-          %form.form-inline{:role => "form"}
-            .form-group
-              %input.form-control.input-lg{"ng-model" => "selected",
-                "placeholder" => "Email",
-                "typeahead" => "contact as contact.email_address for contact in contacts | filter:$viewValue",
-                type: "text",
-                "typeahead-on-select" => "addContact(selected)" }
-            .form-group
-              %button.btn.btn-primary.form-control.input-lg{"ng-click" => "addContact()"}
-                %span.glyphicon.glyphicon-plus-sign
-                Add
+        %div{"ng-switch-when" => "list"}
+          = render partial: 'ng_views/groups/list_members'
 
-        .table-responsive
-          %table.table.table-striped
-            %thead
-              %tr
-                %th Name
-                %th Email
-                %th &nbsp;
+        %div{"ng-switch-when" => "bulkAdd"}
+          = render partial: 'ng_views/groups/bulk_add'
 
-            %tbody
-              %tr{"ng-repeat" => "member in members"}
-                %td
-                  %a{href: "#", "editable-text" => "member.name", "onbeforesave" => "updateMember({id: member.id, name: $data})"} {{member.name || "No name"}}
-
-                %td
-                  %a{href: "#", "editable-email" => "member.email_address", "onbeforesave" => "updateMember({id: member.id, email_address: $data})"} {{member.email_address}}
-
-                %td
-                  %span.glyphicon.glyphicon-minus-sign{"ng-click" => "removeMember(member)"}

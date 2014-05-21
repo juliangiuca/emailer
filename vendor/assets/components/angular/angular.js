@@ -1,5 +1,5 @@
 /**
- * @license AngularJS v1.3.0-build.2693+sha.e9bc51c
+ * @license AngularJS v1.3.0-build.2712+sha.d8bc44b
  * (c) 2010-2014 Google, Inc. http://angularjs.org
  * License: MIT
  */
@@ -68,7 +68,7 @@ function minErr(module) {
       return match;
     });
 
-    message = message + '\nhttp://errors.angularjs.org/1.3.0-build.2693+sha.e9bc51c/' +
+    message = message + '\nhttp://errors.angularjs.org/1.3.0-build.2712+sha.d8bc44b/' +
       (module ? module + '/' : '') + code;
     for (i = 2; i < arguments.length; i++) {
       message = message + (i == 2 ? '?' : '&') + 'p' + (i-2) + '=' +
@@ -2037,7 +2037,7 @@ function setupModuleLoader(window) {
  * - `codeName` – `{string}` – Code name of the release, such as "jiggling-armfat".
  */
 var version = {
-  full: '1.3.0-build.2693+sha.e9bc51c',    // all of these placeholder strings will be replaced by grunt's
+  full: '1.3.0-build.2712+sha.d8bc44b',    // all of these placeholder strings will be replaced by grunt's
   major: 1,    // package task
   minor: 3,
   dot: 0,
@@ -5664,8 +5664,8 @@ $CompileProvider.$inject = ['$provide', '$$sanitizeUriProvider'];
 function $CompileProvider($provide, $$sanitizeUriProvider) {
   var hasDirectives = {},
       Suffix = 'Directive',
-      COMMENT_DIRECTIVE_REGEXP = /^\s*directive\:\s*([\d\w\-_]+)\s+(.*)$/,
-      CLASS_DIRECTIVE_REGEXP = /(([\d\w\-_]+)(?:\:([^;]+))?;?)/,
+      COMMENT_DIRECTIVE_REGEXP = /^\s*directive\:\s*([\d\w_\-]+)\s+(.*)$/,
+      CLASS_DIRECTIVE_REGEXP = /(([\d\w_\-]+)(?:\:([^;]+))?;?)/,
       ALL_OR_NOTHING_ATTRS = makeMap('ngSrc,ngSrcset,src,srcset');
 
   // Ref: http://developers.whatwg.org/webappapis.html#event-handler-idl-attributes
@@ -6080,7 +6080,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
       return linkFnFound ? compositeLinkFn : null;
 
       function compositeLinkFn(scope, nodeList, $rootElement, boundTranscludeFn) {
-        var nodeLinkFn, childLinkFn, node, $node, childScope, childTranscludeFn, i, ii, n;
+        var nodeLinkFn, childLinkFn, node, $node, childScope, i, ii, n;
 
         // copy nodeList so that linking doesn't break due to live list updates.
         var nodeListLength = nodeList.length,
@@ -6102,14 +6102,17 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
             } else {
               childScope = scope;
             }
-            childTranscludeFn = nodeLinkFn.transclude;
-            if (childTranscludeFn || (!boundTranscludeFn && transcludeFn)) {
-              nodeLinkFn(childLinkFn, childScope, node, $rootElement,
-                createBoundTranscludeFn(scope, childTranscludeFn || transcludeFn)
-              );
-            } else {
-              nodeLinkFn(childLinkFn, childScope, node, $rootElement, boundTranscludeFn);
+
+            // We need to create a new boundTranscludeFn if
+            //  - a directive on this element wants to transclude
+            //  or
+            //  - there is no boundTranscludeFn already and a transcludeFn was passed in
+            if ( nodeLinkFn.transcludeOnThisElement || (!boundTranscludeFn && transcludeFn) ) {
+              boundTranscludeFn = createBoundTranscludeFn(scope, nodeLinkFn.transclude || transcludeFn);
             }
+
+            nodeLinkFn(childLinkFn, childScope, node, $rootElement, boundTranscludeFn);
+
           } else if (childLinkFn) {
             childLinkFn(scope, node.childNodes, undefined, boundTranscludeFn);
           }
@@ -6485,7 +6488,9 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
       }
 
       nodeLinkFn.scope = newScopeDirective && newScopeDirective.scope === true;
-      nodeLinkFn.transclude = hasTranscludeDirective && childTranscludeFn;
+      nodeLinkFn.transcludeOnThisElement = hasTranscludeDirective;
+      nodeLinkFn.transclude = childTranscludeFn;
+
       previousCompileContext.hasElementTranscludeDirective = hasElementTranscludeDirective;
 
       // might be normal or delayed nodeLinkFn depending on if templateUrl is present
@@ -14978,8 +14983,8 @@ function formatNumber(number, pattern, groupSep, decimalSep, fractionSize) {
       fractionSize = Math.min(Math.max(pattern.minFrac, fractionLen), pattern.maxFrac);
     }
 
-    var pow = Math.pow(10, fractionSize);
-    number = Math.round(number * pow) / pow;
+    var pow = Math.pow(10, fractionSize + 1);
+    number = Math.floor(number * pow + 5) / pow;
     var fraction = ('' + number).split(DECIMAL_SEP);
     var whole = fraction[0];
     fraction = fraction[1] || '';
@@ -18237,8 +18242,11 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
    */
   this.$commitViewValue = function() {
     var value = ctrl.$viewValue;
-    ctrl.$$lastCommittedViewValue = value;
     $timeout.cancel(pendingDebounce);
+    if (ctrl.$$lastCommittedViewValue === value) {
+      return;
+    }
+    ctrl.$$lastCommittedViewValue = value;
 
     // change to dirty
     if (ctrl.$pristine) {
@@ -19091,7 +19099,7 @@ function classDirective(name, selector) {
           scope.$watch('$index', function($index, old$index) {
             // jshint bitwise: false
             var mod = $index & 1;
-            if (mod !== old$index & 1) {
+            if (mod !== (old$index & 1)) {
               var classes = arrayClasses(scope.$eval(attr[name]));
               mod === selector ?
                 addClasses(classes) :
@@ -19616,16 +19624,16 @@ var ngCloakDirective = ngDirective({
             {type:'email', value:'john.smith@example.org'} ];
 
           $scope.greet = function() {
-           alert(this.name);
+           alert($scope.name);
           };
 
           $scope.addContact = function() {
-           this.contacts.push({type:'email', value:'yourname@example.org'});
+           $scope.contacts.push({type:'email', value:'yourname@example.org'});
           };
 
           $scope.removeContact = function(contactToRemove) {
-           var index = this.contacts.indexOf(contactToRemove);
-           this.contacts.splice(index, 1);
+           var index = $scope.contacts.indexOf(contactToRemove);
+           $scope.contacts.splice(index, 1);
           };
 
           $scope.clearContact = function(contact) {

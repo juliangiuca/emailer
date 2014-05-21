@@ -1,5 +1,47 @@
 ###Changelog
 
+2014-05-19 v1.2.1
+
+- Release
+
+2014-05-12 v1.2.1-pre6
+
+- FIX some FormatBlock issues.
+- Add .ta-bind class to the ta-bind directive.
+
+2014-05-01 v1.2.1-pre5
+
+- ADD Included some css built into the editor - no need for extra stylesheets unless you want to override.
+- CHANGE The registerTools function to be the entire signature so directives can be included as wanted.
+- ADD resizeOverlay functionality, includes a new scroll window that the ta-text editor nests inside to make positioning better (TODO: tests).
+- FIX ta-default-wrap in chrome bug.
+- ADD Class .ta-bind to all ta-bind directive elements.
+- FIX ta-default-wrap and other funkyness with ul/ol tags, #155.
+- FIX some execCommand bugs by adding taExecCommand.
+
+2014-04-08 v1.2.1-pre4
+
+- Fixing IE bugs with ta-default-wrap.
+
+2014-04-08 v1.2.1-pre3
+
+- Fixing a change focus bug introduced in v1.2.1-pre2
+- Changing the code so ta-bind no longer requires rangy-core.js, making it an optional requirement again.
+
+2014-04-08 v1.2.1-pre2
+
+- Fixed up ta-default-wrap. This now requires rangy-core.js
+- Fixed an IE Paste issue.
+- Fixed a webkit bug causing contenteditables not to loose focus.
+
+2014-03-24 v1.2.1-pre1
+
+- Moved setup functions into a seperate file, textAngularSetup.js. This file must be included before textAngular.js file. Using the defaults and textAngular.min.js causes no changes.
+- Adding the Image and Link click popup functions.
+- Adding ability to drag and drop files into the editor.
+- Manager now can add and remove tools dynamically.
+- Added Custom Renderers adding the ability to use placeholders, eg an image, in the editor and display something else in display mode. Uses factory function `taApplyCustomRenderers` to do this.
+
 2014-02-28 v1.2.0
 
 - Lots and Lots of changes, too many to list. Structural changes and added functionality. Supports down to IE8 and all other browsers.

@@ -34,7 +34,9 @@ Emailer::Application.routes.draw do
       post '/emails/:id/deliver', to: "emails#deliver", as: "email_deliver"
 
       resources :groups do
-        resources :members
+        resources :members do
+          post 'bulk', on: :collection
+        end
       end
     end
   end
