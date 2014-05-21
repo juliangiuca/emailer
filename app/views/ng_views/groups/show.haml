@@ -18,8 +18,7 @@
           %a{"editable-text"=>"group.name", "onbeforesave"=>"updateGroupName($data)"} {{group.name}}
 
         %div{"ng-switch-when" => "list"}
-          = render partial: 'ng_views/groups/list_members'
+          = render partial: 'ng_views/groups/members'
 
         %div{"ng-switch-when" => "bulkAdd"}
           = render partial: 'ng_views/groups/bulk_add'
-

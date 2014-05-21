@@ -1,4 +1,5 @@
-groups.controller("typeaheadGroupMemberCtrl", ["$scope", "$http", "Contact", "GroupMember", function typeaheadGroupMemberCtrl ($scope, $http, Contact, GroupMember) {
+groups.controller("membersCtrl", ["$scope", "$http", "Contact", "GroupMember",
+function membersCtrl ($scope, $http, Contact, GroupMember) {
   $scope.contacts = Contact.query()
   $scope.selected = undefined;
 
