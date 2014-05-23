@@ -1,8 +1,7 @@
-emailer.directive('emailerEnter', function() {
+contacts.directive('emailerEnter', function() {
   return function(scope, element, attrs) {
-    element.bind("keydown keypress blur", function(event) {
-      if(event.which === 13 || event.type === 'blur') {
-        console.log("Enter pressed, or focus lost");
+    element.bind("keydown keypress", function(event) {
+      if(event.which === 13) {
         scope.$apply(function(){
           scope.$eval(attrs.emailerEnter);
         });

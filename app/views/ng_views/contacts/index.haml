@@ -1,0 +1,40 @@
+.contacts
+  .container-fluid
+    .row
+
+      .col-sm-12.main
+        %h1.page-header Contacts
+
+        .contacts
+          %alert{type: "danger", "close" => "closeAlert()", "ng-show" => "error"} {{error}}
+
+          .form-inline
+            .form-group
+              %input.form-control.input-lg{"ng-model" => "email",
+                "placeholder" => "Email address",
+                type: "text",
+                "emailer-enter" => "addContact()"}
+            .form-group
+              %button.btn.btn-primary.form-control.input-lg
+                %span.glyphicon.glyphicon-plus-sign
+                Add
+
+          %h3.sub-header Already added
+          .table-responsive
+            %table.table.table-striped
+              %thead
+                %tr
+                  %th Name
+                  %th Email
+                  %th &nbsp;
+
+              %tbody
+                %tr{"ng-repeat" => "contact in contacts"}
+                  %td
+                    %a{"editable-text" => "contact.name", "onbeforesave" => "updateContact({id:contact.id, name: $data})"} {{contact.name || "No name"}}
+
+                  %td
+                    %a{"editable-email" => "contact.email_address", "onbeforesave" => "updateContact({id:contact.id, email_address: $data})"} {{contact.email_address}}
+
+                  %td
+                    %span.glyphicon.glyphicon-minus-sign{"ng-click" => "removeContact(contact)"}

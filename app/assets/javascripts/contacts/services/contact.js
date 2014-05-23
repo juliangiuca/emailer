@@ -1,4 +1,4 @@
-emailer.factory('Contact', ['$resource', function($resource) {
+contacts.factory('Contact', ['$resource', function($resource) {
   return $resource('/api/v1/contacts/:contactId',
     {
       contactId:'@id'

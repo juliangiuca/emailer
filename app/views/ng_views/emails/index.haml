@@ -10,7 +10,7 @@
             %a{href: "/emails/#/new"} Compose
 
       .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
-        %h1.page-header Drafts
+        %h3.page-header Drafts
         %div{{"ng-show" => "unsent.length > 0"}}
           .table-responsive
             %table.table.table-striped
@@ -35,7 +35,7 @@
           No sent emails.
 
         %br
-        %h1.page-header Sent emails
+        %h3.page-header Sent emails
 
         %div{{"ng-show" => "sent.length > 0"}}
           .table-responsive

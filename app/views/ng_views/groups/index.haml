@@ -4,11 +4,12 @@
       .col-sm-3.col-md-2.sidebar
         %ul.nav.nav-sidebar
           %li{"ui-sref-active" => "active"}
-            %a{"ui-sref" => "index"} 
+            %a{"ui-sref" => "index"}
               All groups
 
       .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
         %h1.page-header Groups
+        %alert{type: "danger", "close" => "closeAlert()", "ng-show" => "error"} {{error}}
 
         %form.form-inline{:role => "form"}
           .form-group
@@ -28,5 +29,6 @@
             %tbody
               %tr{"ng-repeat" => "group in groups"}
                 %td
-                  %a{href: "#/{{group.id}}"}
-                    {{group.name}}
+                  %a{href: "#/{{group.id}}"} {{group.name}}
+                %td
+                  %span.glyphicon.glyphicon-minus-sign{"ng-confirm-click" => "removeGroup(group)", "ng-confirm-message" => "Do you really want to delete {{group.name}}?"}

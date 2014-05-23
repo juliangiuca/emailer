@@ -12,7 +12,6 @@
 //= require highcharts-release/adapters/standalone-framework.src.js
 //= require highcharts-release/highcharts.src.js
 //= require highcharts-release/highcharts-more.src.js
-// require highcharts-ng/dist/highcharts-ng.min.js
 
 //= require ./emailer/app
 //= require_tree ./emailer

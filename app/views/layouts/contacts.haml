@@ -4,6 +4,7 @@
     %title Emailer
     %meta{name: "viewport", content: "width=device-width, initial-scale=1.0"}
 
+    = stylesheet_link_tag :shared
     = stylesheet_link_tag :contacts
     = csrf_meta_tags
 
@@ -15,6 +16,6 @@
     = render :partial => "nav/navbar"
 
 
-    %ng-view
+    %ui-view
     = javascript_include_tag :shared
     = javascript_include_tag :contacts

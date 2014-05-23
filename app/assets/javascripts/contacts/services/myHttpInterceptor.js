@@ -35,10 +35,10 @@ function AuthenticationInterceptor($q){
   };
 };
 
-emailer.service('AuthenticationInterceptor', ['$q', AuthenticationInterceptor]);
+contacts.service('AuthenticationInterceptor', ['$q', AuthenticationInterceptor]);
 
 function AuthenticationInterceptorConfig($httpProvider) {
   $httpProvider.interceptors.push('AuthenticationInterceptor');
 }
 
-emailer.config(['$httpProvider', AuthenticationInterceptorConfig]);
+contacts.config(['$httpProvider', AuthenticationInterceptorConfig]);

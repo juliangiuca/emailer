@@ -1,6 +1,6 @@
 class ContactsController < UIController
 
-  layout "emailer"
+  layout "contacts"
 
   def index
   end

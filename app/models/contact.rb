@@ -16,6 +16,7 @@ class Contact < ActiveRecord::Base
   has_many :groups, through: :memberships
   has_many :tracking_pixels
 
-  validates_presence_of :email_address
+  # validates_presence_of :email_address
+  validates :email_address, presence: true, email: true
   validates_uniqueness_of :email_address, scope: :user_id
 end

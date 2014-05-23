@@ -17,6 +17,13 @@ class Api::V1::GroupsController < Api::ApiController
     render json: group
   end
 
+  def destroy
+    group.destroy
+    render nothing: true, status: :ok
+  rescue ActiveRecord::RecordNotFound
+    render nothing: true, status: :not_found
+  end
+
 
   private
   def group
