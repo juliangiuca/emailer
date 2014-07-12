@@ -14,7 +14,8 @@ embedded in the email back to the end user. This gives Emailer a millisecond res
 of how long someone was reading your email for.
 
 ### Config
-Ensure you set the location of the nodeJS app. This can be found in config/environments/<environment>.rb
+Ensure you set the location of the nodeJS app. This can be found in config/environments/<environment>.rb.
+As part of the deployment process I grab all my secret files from BitBucket (database.yml, newrelic.yml). Clearly this won't work for you.
 
 ### FAQ
 ##### Gmail's proxy
