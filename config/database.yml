@@ -22,15 +22,6 @@ development: &development
   username: local
   password:
 
-local_production:
-  adapter: postgresql
-  encoding: unicode
-  database: emailer_production
-  pool: 5
-  username: emailer_ro
-  password: "M%L+3fiV3kkz"
-  host: "innocuous.deebee.me"
-
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
   # domain sockets, so uncomment these lines.
