@@ -1,8 +1,7 @@
 ## Emailer
 #### An email templating tool with millisecond resolution for tracking duration on email opens.
 
-
-
+Emailer works with a Nide.JS app [Tracker](https://github.com/juliangiuca/tracker)
 Ever wanted to know how long someone was reading your emailer for?
 
 Emailer uses Gmail to send out unique emails to groups of people. Create a template,
@@ -26,3 +25,6 @@ The millisecond resolution doesn't work with Gmail - we track the first 20ms of 
 
 #### What if someone doesn't have images loading?
 Then you get nothing! No tracking!
+
+### License
+MIT license
