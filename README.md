@@ -1,7 +1,10 @@
 # Emailer
 #### An email templating tool with millisecond resolution for tracking duration on email opens.
 
-Emailer works with a Node.JS app [Tracker](https://github.com/juliangiuca/tracker).  
+Emailer works with a Node.JS app [Tracker](https://github.com/juliangiuca/tracker).
+This is primarily an Angular app that runs atop of Rails. Originally this began as a Sinatra app, so their might be some residual odd code as part of the growth of this app.
+
+
 
 Ever wanted to know how long someone was reading your emailer for?  
 
@@ -35,4 +38,4 @@ fiddling with some of Node's controls, and instead of straight up serving the tr
 Then you get nothing! No tracking!
 
 ### License
-MIT license
+MIT license - however this project uses Highcharts and Capistrano 3, so pay attention to their licenses.
