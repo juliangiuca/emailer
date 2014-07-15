@@ -1,1 +1,14 @@
-= link_to "Log in via google", user_omniauth_authorize_path(:google_oauth2)
+
+
+.site-wrapper
+  .site-wrapper-inner
+    .cover-container
+
+      .inner.cover
+        %h1.cover-heading
+          Emailer.
+        .lead
+          An email tracking and templating tool.
+        .lead
+          = link_to("Log in via google", user_omniauth_authorize_path(:google_oauth2), class: "btn btn-lg btn-default")
+

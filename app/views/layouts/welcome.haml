@@ -1,34 +1,13 @@
 !!!
 %html
   %head
-    %title Welcome
+    %title Emailer
     %meta{name: "viewport", content: "width=device-width, initial-scale=1.0"}
+
+    = stylesheet_link_tag :shared
+    = stylesheet_link_tag :welcome
     = csrf_meta_tags
 
-    :css
-      body { padding-top: 70px; }
-      .nav, .pagination, .carousel a { cursor: pointer; }
-      .modal {
-        display: block;
-        height: 0;
-        overflow: visible;
-      }
-      .hide {
-        display: none;
-      }
-      .modal-body:before,
-      .modal-body:after {
-        display: table;
-        content: " ";
-      }
-      .modal-header:before,
-      .modal-header:after {
-        display: table;
-        content: " ";
-      }
-  %body
-    %p.notice= notice
-    %p.alert= alert
 
+  %body.welcome
     = yield
-

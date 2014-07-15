@@ -1,4 +1,4 @@
-## Emailer
+# Emailer
 #### An email templating tool with millisecond resolution for tracking duration on email opens.
 
 Emailer works with a Node.JS app [Tracker](https://github.com/juliangiuca/tracker)
