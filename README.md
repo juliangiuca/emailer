@@ -2,6 +2,7 @@
 #### An email templating tool with millisecond resolution for tracking duration on email opens.
 
 Emailer works with a Node.JS app [Tracker](https://github.com/juliangiuca/tracker).  
+
 Ever wanted to know how long someone was reading your emailer for?  
 
 Emailer uses Gmail to send out uniquely tracked emails to groups of people. Create a template,
