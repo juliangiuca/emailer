@@ -1,2 +1,2 @@
 # Load the redis configuration from resque.yml
-Resque.redis = YAML.load_file(File.join(Rails.root, "config", "resque.yml"))[Rails.env.to_s]
+Resque.redis = "#{ENV['REDIS_PORT_6379_TCP_ADDR']}:#{ENV['REDIS_PORT_6379_TCP_PORT']}"

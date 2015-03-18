@@ -1,0 +1,44 @@
+web:
+  build: .
+  volumes:
+  - .:/usr/src/app
+  links:
+  - db:postgres
+  - redis
+  - resque
+  ports:
+  - "8000:8080"
+  env_file:
+  - .env
+
+resque:
+  build: .
+  volumes:
+  - .:/usr/src/app
+  links:
+  - db:postgres
+  - redis
+  env_file:
+  - .env
+  command: bundle exec resque work
+
+db:
+  image: postgres
+  environment:
+  - POSTGRES_USER=emailer
+  - POSTGRES_PASSWORD=mysecretpassword
+
+tracker:
+  build: ../tracker
+  volumes:
+  - ../tracker:/app
+  links:
+  - db:postgres
+  ports:
+  - "8001:80"
+  env_file:
+  - ../tracker/.env
+
+redis:
+  image: redis
+

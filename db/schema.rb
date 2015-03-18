@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20140503222609) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "contacts", force: true do |t|
+  create_table "contacts", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "name"
     t.string   "email_address"
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20140503222609) do
     t.datetime "updated_at"
   end
 
-  create_table "emails", force: true do |t|
+  create_table "emails", force: :cascade do |t|
     t.string   "subject"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -33,21 +33,21 @@ ActiveRecord::Schema.define(version: 20140503222609) do
     t.datetime "sent_on"
   end
 
-  create_table "groups", force: true do |t|
+  create_table "groups", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "memberships", force: true do |t|
+  create_table "memberships", force: :cascade do |t|
     t.integer  "group_id"
     t.integer  "contact_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "tracking_pixels", force: true do |t|
+  create_table "tracking_pixels", force: :cascade do |t|
     t.string   "tracking"
     t.integer  "contact_id"
     t.integer  "email_id"
@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(version: 20140503222609) do
     t.datetime "sent"
   end
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email_address"
     t.string   "first_name"
@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(version: 20140503222609) do
     t.string   "provider"
   end
 
-  create_table "views", force: true do |t|
+  create_table "views", force: :cascade do |t|
     t.integer  "tracking_pixel_id"
     t.string   "agent",             limit: 1000
     t.string   "referer",           limit: 1000
