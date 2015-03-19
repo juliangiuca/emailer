@@ -3,17 +3,14 @@ emailer.controller("EmailsShowCtrl", [ "$scope", "$rootScope", "$http", "$state"
 
   $rootScope.$state = $state;
 
-  $scope.addRecipients = false
-  var recipients       = $scope.recipients = preFetched.recipients
-  var email            = $scope.email      = preFetched.email
+  $scope.addRecipients = false;
+  var recipients       = $scope.recipients = preFetched.recipients;
+  var email            = $scope.email      = preFetched.email;
 
   $http.get("/api/v1/emails/" + $scope.email.id + "/recipients")
     .then(function (response) {
-      $scope.recipients = response.data
-      return $scope.recipients
-    })
-    .then(function (recipients) {
-      $scope.enableMetrics = _.find(recipients, function (r) { return r.tracking_pixel.sent != undefined  })
+      $scope.recipients = response.data;
+      $scope.enableMetrics = true;
     })
 
   $cookieStore.put('unsentEmailId', email.id);
@@ -26,12 +23,14 @@ emailer.controller("EmailsShowCtrl", [ "$scope", "$rootScope", "$http", "$state"
 
   $scope.$watch("email.body", function(newBody, oldBody) {
     if (oldBody !== newBody) {
+      mixpanel.track('Editing body');
       $scope.saveEmail()
     }
   });
 
   $scope.$watch("email.subject", function(newSubject, oldSubject) {
     if (newSubject !== oldSubject) {
+      mixpanel.track('Editing subject');
       $scope.saveEmail();
     }
   });
@@ -62,6 +61,7 @@ emailer.controller("EmailsShowCtrl", [ "$scope", "$rootScope", "$http", "$state"
     modalInstance.result.then(function () {
       //They pressed OK
       //$scope.email.$deliver()
+      mixpanel.track('Sending email');
       $http.post("/api/v1/emails/" + $scope.email.id + "/deliver")
 
     }, function () {

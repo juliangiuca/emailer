@@ -1,13 +1,13 @@
 !!!
 %html{"data-framework" => "angularjs", :lang => "en", "ng-app" => "emailer"}
   %head
-    = render :partial => "shared/mixpanel"
     %title Emailer
     %meta{name: "viewport", content: "width=device-width, initial-scale=1.0"}
 
     = stylesheet_link_tag :shared
     = stylesheet_link_tag :emailer
     = csrf_meta_tags
+    = render :partial => "shared/mixpanel"
 
 
   %body
