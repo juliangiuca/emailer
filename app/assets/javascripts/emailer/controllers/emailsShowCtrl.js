@@ -17,21 +17,20 @@ emailer.controller("EmailsShowCtrl", [ "$scope", "$rootScope", "$http", "$state"
 
   // Debounce to prevent a bunch of save calls from being triggered
   // We don't really care about the response - we want to just send updates down the wire
-  $scope.saveEmail = _.debounce(function() {
+  $scope.saveEmail = _.debounce(function(thing) {
+    mixpanel.track('Editing ' + thing);
     $http.put('/api/v1/emails/' + $scope.email.id, {body: $scope.email.body, subject: $scope.email.subject})
   }, 1000)
 
   $scope.$watch("email.body", function(newBody, oldBody) {
     if (oldBody !== newBody) {
-      mixpanel.track('Editing body');
-      $scope.saveEmail()
+      $scope.saveEmail('body')
     }
   });
 
   $scope.$watch("email.subject", function(newSubject, oldSubject) {
     if (newSubject !== oldSubject) {
-      mixpanel.track('Editing subject');
-      $scope.saveEmail();
+      $scope.saveEmail('subject');
     }
   });
 

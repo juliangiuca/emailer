@@ -28,7 +28,7 @@ Emailer::Application.configure do
   config.assets.debug = true
 
   config.action_mailer.default_url_options = { host: 'mydocker.com:3000' }
-  config.asset_host = 'http://mydocker.com:8000'
+  #config.asset_host = 'http://mydocker.com:8000'
   IMAGE_LOCATION = "http://mydocker.com:8001/i/"
 
   Mail.defaults do
